@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 生图 · 行业百科</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --font-display:'Space Grotesk','Noto Sans SC',-apple-system,sans-serif;
+  --font-body:'Inter','Noto Sans SC','PingFang SC',-apple-system,sans-serif;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:var(--font-body);color:#1a1a1a;background:#FAF8F3;line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;min-height:100vh}
+::selection{background:#166534;color:#fff}
+
+/* ===== 顶部 ===== */
+.page-head{max-width:1200px;margin:0 auto;padding:60px 32px 32px;text-align:center}
+.page-head h1{font-family:var(--font-display);font-size:2.8rem;font-weight:700;letter-spacing:-.035em;color:#111;margin-bottom:12px}
+.page-head .subtitle{font-size:1rem;color:#666;font-weight:400;max-width:640px;margin:0 auto 8px;line-height:1.6}
+.page-head .meta{display:inline-flex;gap:16px;margin-top:20px;padding:8px 18px;border-radius:24px;background:#fff;font-size:.72rem;color:#666;font-weight:500;letter-spacing:.04em;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
+.page-head .meta strong{color:#166534;font-weight:600}
+
+/* ===== 三强区 ===== */
+.top3-section{max-width:1200px;margin:0 auto 48px;padding:36px;border-radius:32px;background:#fff;position:relative;box-shadow:0 2px 20px rgba(0,0,0,0.04)}
+.top3-head{margin-bottom:28px}
+.top3-title{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.top3-title h2{font-family:var(--font-display);font-size:1.32rem;font-weight:700;color:#111}
+.top3-title h2 em{font-style:normal;color:#0F6E56;font-weight:500;font-size:.82rem;margin-left:8px}
+.top3-sub{font-size:.78rem;color:#888;letter-spacing:.01em}
+.top3-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cmp-card{background:#fff;border-radius:20px;overflow:visible;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;transition:all .3s var(--ease-out)}
+.cmp-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+.cmp-body{padding:20px 20px 4px}
+.cmp-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.cmp-logo{width:44px;height:44px;border-radius:12px;background:#F4F4F1;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:600;color:#888;flex-shrink:0;overflow:hidden}
+.cmp-logo img{width:100%;height:100%;object-fit:contain}
+.cmp-name-wrap{flex:1;min-width:0}
+.cmp-name{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:#111;letter-spacing:-.01em;line-height:1.2}
+.cmp-en{font-size:.68rem;color:#888;letter-spacing:.04em;margin-top:2px}
+.cmp-niche{font-size:.8rem;color:#444;line-height:1.5;margin-top:8px;word-break:break-word}
+.cmp-tags{display:flex;gap:6px;flex-wrap:wrap;margin:4px 20px 14px}
+.cmp-tag{font-size:.65rem;padding:3px 10px;background:#F4F4F1;color:#555;border-radius:10px;font-weight:500}
+.cmp-section-label{font-family:var(--font-display);font-size:.66rem;font-weight:600;color:#0F6E56;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.cmp-moat{padding:0 20px;margin-bottom:14px}
+.cmp-moat-pro{font-size:.78rem;color:#333;line-height:1.75;background:#F0F8F2;border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.cmp-moat-pro::before{content:'专业视角';display:block;font-size:.62rem;color:#0F6E56;letter-spacing:.08em;margin-bottom:4px;font-weight:600}
+.cmp-moat-ez{font-size:.78rem;color:#333;line-height:1.75;background:#F4F4F1;border-radius:10px;padding:10px 12px}
+.cmp-moat-ez::before{content:'大白话';display:block;font-size:.62rem;color:#888;letter-spacing:.08em;margin-bottom:4px;font-weight:600}
+
+.cmp-life{padding:0 20px;margin-bottom:14px}
+.cmp-life-stages{display:flex;gap:4px}
+.cmp-life-stage{flex:1;text-align:center;position:relative}
+.cmp-life-stage .dot{width:10px;height:10px;border-radius:50%;background:#ddd;margin:0 auto 4px;transition:background .3s}
+.cmp-life-stage.done .dot{background:#B8E4C8}
+.cmp-life-stage.active .dot{background:#0F6E56;box-shadow:0 0 0 4px rgba(15,110,86,0.15)}
+.cmp-life-stage .label{font-size:.65rem;color:#999}
+.cmp-life-stage.active .label{color:#0F6E56;font-weight:600}
+
+.cmp-rev{padding:0 20px 4px}
+.cmp-rev-item{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.cmp-rev-label{font-size:.72rem;color:#444;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.cmp-rev-bar-wrap{flex:1.2;height:8px;background:#F0F0EC;border-radius:6px;overflow:hidden}
+.cmp-rev-bar{height:100%;border-radius:6px;width:var(--w,0%);transition:width 1s var(--ease-out)}
+.cmp-rev-pct{font-family:var(--font-display);font-size:.72rem;font-weight:700;color:#111;width:40px;text-align:right}
+.cmp-rev-empty{font-size:.72rem;color:#999;font-style:italic;padding:8px 12px;background:rgba(0,0,0,0.03);border-radius:8px;text-align:center}
+
+.cmp-visit{display:inline-flex;align-items:center;gap:6px;margin:4px 20px 20px;padding:8px 14px;border-radius:12px;background:#F4F4F1;color:#444;font-size:.78rem;font-weight:500;text-decoration:none;transition:all .2s}
+.cmp-visit:hover{background:#E8F1EB;color:#0F6E56;transform:translateY(-1px)}
+
+/* ===== 关键词 Section ===== */
+.kw-section-title{max-width:1200px;margin:48px auto 16px;padding:0 32px;display:flex;align-items:baseline;justify-content:space-between}
+.kw-section-title h2{font-family:var(--font-display);font-size:1.22rem;font-weight:700;color:#111}
+.kw-section-title h2 em{font-style:normal;color:#0F6E56;font-size:.78rem;font-weight:500;margin-left:6px}
+.kw-section-title .kst-meta{font-size:.72rem;color:#666;letter-spacing:.02em}
+
+.kw-grid{max-width:1200px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+
+/* ===== 关键词卡片 ===== */
+.kw-card{position:relative;background:#fff;border-radius:16px;overflow:visible;transition:all .3s var(--ease-out);box-shadow:0 2px 8px rgba(0,0,0,0.04);border:0.5px solid rgba(0,0,0,0.08)}
+.kw-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+.kw-top{padding:18px 20px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.kw-num{font-family:var(--font-display);font-size:.62rem;font-weight:500;letter-spacing:.04em;color:#999;flex-shrink:0;white-space:nowrap}
+.kw-name{font-family:var(--font-display);font-size:1.06rem;font-weight:600;flex:1;letter-spacing:-.01em;line-height:1.35;color:#111}
+.kw-name mark{background:rgba(34,197,94,0.18);color:#166534;font-weight:600;padding:0 2px;border-radius:2px}
+.kw-body{padding:0 20px 16px}
+
+/* ===== 区块通用 ===== */
+.kw-section{position:relative;padding:12px 0;border-top:0.5px solid rgba(0,0,0,0.08)}
+.kw-section:first-child{border-top:none;padding-top:4px}
+
+/* ===== 区块标签 ===== */
+.kw-label{display:inline-block;padding:0;font-family:var(--font-display);font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;white-space:nowrap}
+.kw-label-pro,.kw-label-ez{color:#0F6E56}
+.kw-label-ref,.kw-label-ind{color:#5F5E5A}
+
+/* 专业释义 */
+.kw-section-pro{background:transparent}
+.kw-pro-text{font-size:.86rem;color:#1a1a1a;line-height:1.85}
+.kw-pro-text mark{background:rgba(34,197,94,0.18);color:#166534;padding:0 2px;font-weight:600;border-radius:2px}
+
+/* 数字/百分比 高亮 */
+.kw-num-hl{color:#185FA5;font-weight:600;background:rgba(24,95,165,0.08);padding:1px 4px;border-radius:3px;border-bottom:1.5px solid rgba(24,95,165,0.4);cursor:default;transition:all .15s}
+.kw-num-hl:hover{background:rgba(24,95,165,0.14);border-bottom-color:rgba(24,95,165,0.7)}
+
+/* 大白话 */
+.kw-section-ez{background:#F0F8F2;border-radius:12px;padding:12px 14px;border-top:none;margin-top:6px}
+.kw-ez-text{font-size:.86rem;color:#1a1a1a;line-height:1.85}
+.kw-ez-text mark{background:rgba(34,197,94,0.22);color:#166534;padding:0 2px;border-radius:2px;font-weight:600}
+
+/* 查资料 */
+.kw-section-ref{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:transparent}
+.kw-section-ref .kw-label{margin-bottom:0}
+.kw-ref-links{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.kw-ref{height:24px;padding:0 10px;border-radius:12px;display:inline-flex;align-items:center;gap:4px;background:#E8F1EB;color:#166534;font-size:.72rem;font-weight:600;letter-spacing:.02em;text-decoration:none;font-family:var(--font-display);transition:all .2s}
+.kw-ref::after{content:'↗';font-size:.7rem;opacity:.7;margin-left:2px}
+.kw-ref:hover{background:#0F6E56;color:#fff;transform:translateY(-1px)}
+
+/* 行业数据 */
+.kw-section-ind{background:transparent}
+.kw-id-text{font-size:.86rem;color:#1a1a1a;line-height:1.85}
+.kw-id-text mark{background:rgba(34,197,94,0.18);color:#166534;padding:0 2px;border-radius:2px;font-weight:600}
+
+/* 分类过滤 */
+.cat-filter{max-width:1200px;margin:0 auto 20px;padding:0 32px;display:flex;gap:8px;flex-wrap:wrap}
+.cat-btn{padding:6px 14px;border-radius:20px;background:#fff;color:#555;font-size:.78rem;font-weight:500;border:1px solid rgba(0,0,0,0.08);cursor:pointer;transition:all .2s;font-family:var(--font-body)}
+.cat-btn:hover{background:#F0F8F2;color:#0F6E56;border-color:rgba(15,110,86,0.2)}
+.cat-btn.active{background:#0F6E56;color:#fff;border-color:#0F6E56}
+.cat-btn .cnt{opacity:.6;margin-left:4px;font-size:.72rem}
+
+/* 脚注 */
+.page-foot{max-width:1200px;margin:60px auto 40px;padding:24px 32px;text-align:center;color:#999;font-size:.76rem;line-height:1.7;border-top:0.5px solid rgba(0,0,0,0.08)}
+
+/* Scroll Reveal */
+.scroll-reveal{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
+.scroll-reveal.revealed{opacity:1;transform:translateY(0)}
+
+/* 小屏适配 */
+@media (max-width:860px){
+  .top3-section{padding:24px;border-radius:20px}
+  .top3-grid{grid-template-columns:1fr}
+  .page-head h1{font-size:2rem}
+  .kw-grid{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .page-head{padding:40px 20px 24px}
+  .kw-card{border-radius:14px}
+  .kw-top{padding:16px 16px 10px}
+  .kw-body{padding:0 16px 14px}
+  .kw-section{padding:10px 0}
+  .kw-section-ez{padding:10px 12px}
+  .kw-ref{padding:0 8px;font-size:.68rem;height:22px}
+  .kw-id-text,.kw-pro-text,.kw-ez-text{font-size:.83rem}
+}
+</style>
+</head>
+<body>
+<div class="page-head">
+  <h1>AI 生图</h1>
+  <div class="subtitle">基于生成式 AI 模型（Diffusion/Transformer）从文本/图像合成视觉内容的技术与产业</div>
+  <div class="meta"><span><strong>50</strong> 关键词</span><span><strong>3</strong> 标杆公司</span><span><strong>2025-2026</strong> 最新数据</span></div>
+</div>
+
+<!-- 三强区块 -->
+<div class="top3-section" id="top3Section"></div>
+
+<!-- 分类过滤 -->
+<div class="cat-filter" id="catFilter"></div>
+
+<!-- 关键词区 -->
+<div class="kw-section-title">
+  <h2>50 词百科<em>· 覆盖核心 / 财务 / 技术 / 商业四大维度</em></h2>
+  <div class="kst-meta" id="kwMeta"></div>
+</div>
+<div class="kw-grid" id="kwGrid"></div>
+
+<div class="page-foot">
+  Generated by <strong style="color:#0F6E56">IndustryLens</strong> · 专业释义 + 大白话 + 行业数据 + 三强拆解<br>
+  数据基于公开资料整理，不构成投资建议
+</div>
+
+<script>
+// ========== 数据注入点 ==========
+// 下面 3 个变量由 skill 在生成时填充
+var INDUSTRY = {"name": "AI 生图", "desc": "基于生成式 AI 模型（Diffusion/Transformer）从文本/图像合成视觉内容的技术与产业"};
+var KEYWORDS = [{"rank": 1, "cat": "core", "term": "扩散模型", "pro": "扩散模型（Diffusion Model）通过逐步向图像添加高斯噪声再学习反向去噪的过程生成图像，代表作 DDPM（2020）、LDM（Latent Diffusion）。2025 年主流开源模型 Stable Diffusion 3.5 / FLUX.1、闭源 Midjourney v7 / DALL-E 4 均基于该架构。相比 GAN 训练更稳、多样性更高，是当前 AI 生图商业化的核心技术底座，驱动 2025 年全球 AIGC 图像市场超 80 亿美元。", "ref": {"google": "扩散模型 Diffusion Model 原理 2025", "wiki": "Diffusion model"}, "industryData": "2025 年 Stable Diffusion 月活用户超 1200 万，Civitai 社区模型数超 50 万个；推理单图平均耗时 SDXL 4.2 秒、FLUX.1 2.8 秒。", "ez": "扩散模型就像雕塑家：先把图像全打碎成沙子（噪声），再一层层刮回清晰形状，反复练习就能无中生有画出任何画面。"}, {"rank": 2, "cat": "core", "term": "Stable Diffusion", "pro": "Stable Diffusion 是 Stability AI 联合 RunwayML/CompVis 2022 年发布的开源文生图模型，采用 LDM 架构在 VAE 压缩的潜空间中去噪，单卡 8GB 显存即可运行。2025 年发布 SD 3.5 Large（80 亿参数）开源商用，文字渲染、人手结构大幅改进。开源生态催生 LoRA、ControlNet、Civitai，是国内大多数 AI 绘画 App 的技术底层。", "ref": {"google": "Stable Diffusion 3.5 开源 2025", "wiki": "Stable Diffusion"}, "industryData": "SD 3.5 Large 参数 80 亿，Hugging Face 下载量超 5000 万次，LoRA 微调模型超 30 万个。", "ez": "Stable Diffusion 就是 AI 绘画界的安卓：免费开源，谁都能下载装机调改，全球最大 AI 绘画社区都靠它撑着。"}, {"rank": 3, "cat": "core", "term": "Midjourney", "pro": "Midjourney 是 2022 年上线的闭源商业文生图服务，由 David Holz 创办，独立运营、无外部融资，团队仅 50 人却盈利超 2 亿美元/年。2024 年 v6、2025 年 v7 在审美、光影、人物结构上领先业界，为商业广告/概念设计首选。采用 Discord 机器人交互（2025 年开放独立网页），订阅制 $10-120/月。其数据飞轮构成巨大护城河。", "ref": {"google": "Midjourney v7 2025", "wiki": "Midjourney"}, "industryData": "2025 年 MJ 付费用户超 200 万，年营收超 2 亿美元，团队仍仅 50 人；生成图像累计超 100 亿张。", "ez": "Midjourney 是 AI 画师里的网红头牌：贵但好看，50 个人撑起年入 2 亿美元的神话，审美赢过所有开源模型。"}, {"rank": 4, "cat": "core", "term": "DALL-E", "pro": "DALL-E 是 OpenAI 2021 年推出的文生图系列，DALL-E 3（2023）深度整合 ChatGPT，能自动改写用户 prompt 提升生成质量。2025 年 DALL-E 4 架构转向原生多模态 Transformer，与 GPT-5o 共享视觉 tokenizer，支持文字渲染准确率 95%+。免费 ChatGPT 用户每天 3 张、Plus 用户 80 张。", "ref": {"google": "DALL-E 4 OpenAI 2025", "wiki": "DALL-E"}, "industryData": "2025 年 DALL-E 3/4 日生成量超 2000 万张，为 GPT-5o 多模态核心组件；OpenAI 图像相关收入约占总收入 8%。", "ez": "DALL-E 是 OpenAI 的亲儿子画师：画得稳、听话，能把你啰嗦的需求自动翻译成 AI 能懂的 prompt。"}, {"rank": 5, "cat": "core", "term": "FLUX.1", "pro": "FLUX.1 是 Black Forest Labs（原 Stable Diffusion 核心作者创办）2024 年 8 月发布的新一代文生图模型，基于 Transformer + Flow Matching 架构，120 亿参数。分 [pro]、[dev]、[schnell]（4 步采样开源商用）三版。文字渲染、复杂场景、人手细节超过 SD3/MJ v6。2025 年成为开源阵营头部，LoRA 生态快速追赶 SD。", "ref": {"google": "FLUX.1 Black Forest Labs 2025", "wiki": "Flux (image generation model)"}, "industryData": "FLUX.1 Pro 在 ELO 评分榜超过 MJ v6.1 和 DALL-E 3；dev 版 Hugging Face 下载超 500 万次。", "ez": "FLUX.1 是 SD 原班人马另起炉灶的新招：画得比老东家好，还开源一部分让人白嫖，社区迅速站队。"}, {"rank": 6, "cat": "core", "term": "文生图", "pro": "文生图（Text-to-Image, T2I）指输入自然语言描述生成图像的任务，是 AI 生图最主流形态。关键指标：CLIPScore（语义匹配度）、FID（图像质量）、用户 ELO。2025 年顶级模型在写实风格已通过 10% 图灵测试。驱动广告、概念设计、电商 SKU 图、漫画分镜等多个下游市场，占 AIGC 图像总收入 70%+。", "ref": {"google": "文生图 Text-to-Image 2025", "wiki": "Text-to-image model"}, "industryData": "2025 年文生图市场规模 80 亿美元；中国市场占比 25%，年增速 120%。", "ez": "文生图就是 AI 翻译官：你用人话说'黄昏海边骑马的女孩'，它直接画出来，不用再找摄影师和模特。"}, {"rank": 7, "cat": "core", "term": "图生图", "pro": "图生图（Image-to-Image, I2I）以输入图像为基础，通过文本/参数引导生成风格迁移、细节重绘、高清放大等变体，本质是对 latent 加噪后重新去噪。典型场景：线稿上色、老照片修复、风格变换、虚拟换装。2025 年 ControlNet 和 IPAdapter 生态成熟，一致性保留达到商业可用，是电商 SKU 批量生成的核心技术。", "ref": {"google": "图生图 ControlNet 2025", "wiki": "Image-to-image translation"}, "industryData": "电商商拍图生图渗透率 2025 年达 35%，头部品牌单 SPU 节省拍摄成本 80%。", "ez": "图生图相当于 AI 的 PS：给它一张草稿或旧照片，它按你说的改风格、加细节、修瑕疵，比自己手动抠快 100 倍。"}, {"rank": 8, "cat": "core", "term": "ControlNet", "pro": "ControlNet 是 2023 年张吕敏等提出的扩散模型控制网络，通过额外的条件分支（Canny 边缘、深度图、OpenPose 骨骼、涂鸦等）精确控制构图、姿势、结构。为 Stable Diffusion 解决'不可控'痛点，使 AI 生图从艺术探索走向工业可控生产。2025 年 Flux 原生 ControlNet、SD 3.5 ControlNet++ 已成为电商/游戏原画标配。", "ref": {"google": "ControlNet 应用 2025", "wiki": "ControlNet"}, "industryData": "ControlNet 论文引用超 8000 次；配合 SD 构图精准度提升 60%，某游戏原画工作室效率提升 4 倍。", "ez": "ControlNet 就是给 AI 画家递一张骨架图：不再让它自由发挥乱画，而是按你指定的姿势/构图去画。"}, {"rank": 9, "cat": "core", "term": "LoRA", "pro": "LoRA（Low-Rank Adaptation）是 Microsoft 2021 年提出的参数高效微调方法，在冻结原模型权重的基础上添加低秩矩阵分解。单个 LoRA 仅 5-200MB，训练成本 1-5 美元即可让模型学习特定人物/画风/概念。是个人创作者、品牌风格化、角色 IP 定制的核心技术，Civitai 平台上 AI 生图相关 LoRA 超 30 万个。", "ref": {"google": "LoRA 扩散模型 微调 2025", "wiki": "Low-rank adaptation"}, "industryData": "Civitai 平台 LoRA 模型 2025 年超 30 万个，头部创作者月收入 $5000+；单 LoRA 训练成本 $1-5，4090 单卡约 30 分钟。", "ez": "LoRA 相当于给 AI 换装包：原模型不动，只加小补丁就能让它学会你女朋友/赛博朋克/王家卫风格。"}, {"rank": 10, "cat": "core", "term": "Prompt 工程", "pro": "Prompt Engineering 指通过精心设计文本描述、参数修饰词、权重括号等手段提升生图质量的技术。包含主体描述、风格标签、镜头语言、光影氛围、质量增强词、负向词等。2025 年随着模型对自然语言理解提升，复杂 tag 堆叠被自然句子替代，但仍是创作者核心技能。", "ref": {"google": "AI 绘画 prompt 技巧 2025", "wiki": "Prompt engineering"}, "industryData": "PromptHero 等 prompt 交易平台 MAU 超 200 万；国内淘宝 AI 绘画代画服务均价 ¥20-200/张。", "ez": "Prompt engineering 就是跟 AI 画家沟通的黑话：说'美女'它乱画，说'穿白裙的金发女孩站在樱花下，柔光'它立刻懂。"}, {"rank": 11, "cat": "core", "term": "潜在空间", "pro": "潜在空间（Latent Space）是 VAE/UNet 将高维图像压缩到低维表征（如 64×64×4）的数学空间。Stable Diffusion 的 LDM 在此空间中去噪，使 512×512 图像计算量降低 48 倍。潜在空间的可插值、可编辑特性催生图像融合、风格迁移、属性编辑等高阶应用。", "ref": {"google": "Latent Space Diffusion 原理 2025", "wiki": "Latent space"}, "industryData": "SD 潜空间压缩比 1:48，单卡 8GB 可跑 1024×1024；FLUX.1 潜空间维度 16 通道，提升细节保留 40%。", "ez": "潜在空间是 AI 脑子里的草稿本：它不在真图上反复涂改，而是在一张浓缩版小草图上画完，最后再放大成真图。"}, {"rank": 12, "cat": "core", "term": "CLIP", "pro": "CLIP（Contrastive Language-Image Pre-training）是 OpenAI 2021 年训练的图文对比模型，通过 4 亿图文对学习将语言与视觉映射到同一语义空间。作为 Stable Diffusion / Midjourney / DALL-E 的 text encoder，它让模型理解 prompt 中的细粒度语义。2025 年已被 T5-XXL、Gemma 等更强文本编码器替代部分场景，但仍是生态基石。", "ref": {"google": "CLIP model OpenAI 2025", "wiki": "CLIP"}, "industryData": "CLIP ViT-L/14 是 SD 1.5 标配；2025 年 SD 3/FLUX 改用 T5-XXL + CLIP-G 双编码器，长 prompt 理解力提升 3 倍。", "ez": "CLIP 是 AI 的图文翻译官：告诉模型'猫'应该对应毛茸茸的四脚动物照片，没它 SD 根本听不懂你在说什么。"}, {"rank": 13, "cat": "core", "term": "采样器", "pro": "采样器（Sampler）决定扩散模型反向去噪的数值积分算法，影响速度、质量、可复现性。主流 DDIM、Euler a、DPM++ 2M Karras（SD 默认综合最优）、UniPC、LCM-LoRA（2-4 步超快）。2025 年 FLUX.1 schnell 4 步出图、LCM 2 步出图已实现秒级生成。", "ref": {"google": "Stable Diffusion 采样器 2025", "wiki": "Diffusion model"}, "industryData": "DPM++ 2M Karras 25-30 步为行业标准；LCM-LoRA 4 步出图速度提升 7 倍。", "ez": "采样器是 AI 画画的节奏：快采样器像速写几笔出图，慢采样器像工笔慢慢磨，现在有新技术 4 步就能出大作。"}, {"rank": 14, "cat": "core", "term": "Inpainting", "pro": "Inpainting（图像修补/局部重绘）通过掩码指定区域，在保留其他部分不变的前提下重新生成该区域内容。典型应用：去水印、换脸、修手、换服装、扩展画布。SDXL Inpainting、FLUX.1 Fill、Photoshop Generative Fill 均基于此。2025 年与 ControlNet 结合实现像素级精确控制。", "ref": {"google": "Stable Diffusion Inpainting 2025", "wiki": "Inpainting"}, "industryData": "Adobe Generative Fill 2025 年月活超 4000 万；电商换图成本从 ¥30/张降至 ¥2/张。", "ez": "Inpainting 像 AI 的修正液：画框出一块区域说'这里改成红裙子'，它只动这块地方，其他部分一模一样。"}, {"rank": 15, "cat": "core", "term": "Seed", "pro": "Seed（随机种子）是扩散过程初始噪声的伪随机数种子。相同 seed + 相同 prompt + 相同参数 → 完全相同结果，是 AI 生图可复现性的基础。固定 seed 微调 prompt 可实现'变量控制'式优化，是商业化批量生产的核心机制。", "ref": {"google": "Stable Diffusion seed 2025", "wiki": "Random seed"}, "industryData": "Civitai 上热门作品 60% 附带完整 seed + prompt 复现配方。", "ez": "Seed 就是 AI 画画的抽奖号：同一个 seed 配同一句话每次画出一模一样的图。"}, {"rank": 16, "cat": "finance", "term": "Token 计费", "pro": "Token 计费是 API 类 AI 生图服务主流商业模式，按图像生成数量/分辨率/采样步数计量。DALL-E 3 1024×1024 约 $0.04/张、FLUX.1 Pro 约 $0.05/张。国内可灵/即梦/智谱按积分计费。毛利率普遍 60-80%，GPU 电费是主要成本。", "ref": {"google": "AI 绘画 API 定价 2025", "wiki": "API"}, "industryData": "DALL-E 3 $0.04/张、FLUX Pro $0.05、Ideogram $0.08；国内可灵 ¥0.1-0.3/张。", "ez": "Token 计费就是 AI 画厂的'按张算钱'：画一张收一次钱，画得细收贵点。"}, {"rank": 17, "cat": "finance", "term": "订阅制", "pro": "订阅制是 C 端 AI 生图服务主流变现方式。Midjourney $10/30/60/120 四档，ChatGPT Plus $20 含 DALL-E 3，国内即梦 ¥49/月、WHEE ¥29/月。月活转付费率顶级产品达 10-15%，远超游戏行业 2-5%。续费率是核心指标，头部产品 12 月 LTV 超 $120。", "ref": {"google": "AI 绘画订阅 LTV 2025", "wiki": "Subscription business model"}, "industryData": "Midjourney 付费率 12%、MAU 1500 万、ARR $2 亿+；国内头部 AI 绘画 App 付费率 3-8%。", "ez": "订阅制就像 Netflix 模式：月费几十块无限画，MJ 50 人干出年赚 2 亿的神话。"}, {"rank": 18, "cat": "finance", "term": "算力成本", "pro": "算力成本是 AI 生图最主要的可变成本，每张图约消耗 A100 GPU 5-15 秒。按 AWS $3.06/小时计算，单图成本 $0.004-0.013。闭源服务如 MJ 自建集群 H100 单卡成本摊薄至 $0.001-0.003/图，实现 80%+ 毛利率。", "ref": {"google": "AI 生图 GPU 成本 2025", "wiki": "Graphics processing unit"}, "industryData": "A100 单卡 SD XL 推理 0.8 秒、H100 0.4 秒；FLUX.1 schnell 4 步量化版 4090 单卡 0.3 秒。", "ez": "算力成本就是 AI 画厂的'水电费'：一张图消耗的显卡时间约几分钱，规模越大越便宜。"}, {"rank": 19, "cat": "finance", "term": "训练成本", "pro": "训练成本是基础模型研发门槛，SD 1.5 训练约 $60 万、SDXL 约 $200 万、FLUX.1 约 $800 万、Midjourney v6 据估 $2000 万+。2025 年行业玩家加速向商业化现金流转移，中小开源模型通过微调开源底模而非从零训练，成本降低 99%。", "ref": {"google": "Stable Diffusion 训练成本 2025", "wiki": "Cost of training large language models"}, "industryData": "FLUX.1 Pro 训练成本 $800 万、2000+ H100 运行 21 天；国内字节 Seedream 训练成本约 ¥4000 万。", "ez": "训练成本是 AI 画家的'上学费'：从零培养一个画家要几百万到几千万美元。"}, {"rank": 20, "cat": "finance", "term": "ARR", "pro": "ARR（Annual Recurring Revenue）衡量订阅制业务稳定收入规模。AI 生图头部公司 2025 年 ARR：Midjourney $2 亿+、Stability AI $0.3 亿、Runway $1 亿、国内可灵 ¥5 亿、即梦 ¥10 亿+。增长率反映产品 PMF，健康增长 >100% YoY。", "ref": {"google": "AI 绘画公司 ARR 2025", "wiki": "Annual recurring revenue"}, "industryData": "Midjourney 2025 ARR $2 亿（+40% YoY）、Runway $1 亿（+60%）、可灵 ¥5 亿（+200%）。", "ez": "ARR 就是 AI 画厂的'年收入税务单'：说明每年稳定能收多少钱。"}, {"rank": 21, "cat": "finance", "term": "毛利率", "pro": "毛利率 =（收入-算力与存储）/ 收入，是 AI 生图业务健康度核心指标。订阅制模式头部玩家毛利 70-85%（MJ 约 80%），API 毛利 60-75%，开源自部署毛利 40-60%。相比传统 SaaS 软件（80-90%）略低，但远高于硬件制造（20-40%）。", "ref": {"google": "AI 生图 毛利率 2025", "wiki": "Gross margin"}, "industryData": "Midjourney 毛利率约 80%、OpenAI 图像业务约 55%、国内头部 AI App 50-65%。", "ez": "毛利率是 AI 画厂的'赚头'：MJ 每卖一块能剩 8 毛，国内大多只能剩 5-6 毛还在烧钱。"}, {"rank": 22, "cat": "finance", "term": "CAC 获客成本", "pro": "CAC（Customer Acquisition Cost）衡量获取一个付费用户的营销支出。AI 生图 C 端 CAC 约 $20-60（Midjourney 早期 Discord 裂变 CAC <$5，2024 后投放增加升至 $30+）。国内通过小红书/抖音投流，CAC 约 ¥80-300。CAC/LTV 比 <1:3 才健康。", "ref": {"google": "AI 绘画 CAC LTV 2025", "wiki": "Customer acquisition cost"}, "industryData": "Midjourney CAC $40、LTV $200（1:5）；国内 AI App 平均 CAC ¥200、LTV ¥500-800。", "ez": "CAC 是 AI 画厂花在买用户上的钱：花 200 块让一个人用上你家产品，他得付超过 600 块你才不亏。"}, {"rank": 23, "cat": "finance", "term": "API 平台", "pro": "API 开放平台是 AI 生图公司 B 端重要收入渠道，按调用量计费。客户主要为电商 SaaS、设计工具（Canva、Figma）、游戏公司。B 端 ARPU 远高于 C 端，但集中度高，头部几家客户常占 30%+ 收入，客户流失风险大。", "ref": {"google": "AI 生图 API 平台 2025", "wiki": "API"}, "industryData": "OpenAI 图像 API 2025 年收入约 $3 亿；Stability AI API 年收入 $5000 万；国内智谱 GLM-4V API 开发者超 20 万。", "ez": "API 平台就是 AI 画厂的批发渠道：把画图能力卖给其他软件，人家再包装卖给终端用户。"}, {"rank": 24, "cat": "finance", "term": "开源商业化", "pro": "开源商业化是 Stability AI、Black Forest Labs 等采取的策略：开源研究版建立生态影响力，闭源商业版提供优质服务盈利。FLUX.1 分 dev/schnell/pro 三档。2025 年 Stability AI 一度濒临破产因变现困难被收购重组。", "ref": {"google": "Stable Diffusion 开源商业化 2025", "wiki": "Open-source model"}, "industryData": "Stability AI 2024 年营收约 $3000 万、亏损 $1 亿；Black Forest Labs 成立 1 年估值 $10 亿。", "ez": "开源商业化像健身房卖 VIP：免费版给大家试用造声势，高级功能才收钱，但免费用户容易薅羊毛。"}, {"rank": 25, "cat": "finance", "term": "估值泡沫", "pro": "AI 生图赛道 2023-2024 年经历估值泡沫：Midjourney 估值从 0 到 $100 亿仅 3 年；Stability AI 2022 年估值 $10 亿后因亏损缩水至 $2 亿被收购。2025 年投资人更理性，看 ARR、毛利率和 LTV 而非 MAU 故事。", "ref": {"google": "AI 生图 估值 2025", "wiki": "Venture capital"}, "industryData": "Midjourney 估值 $100 亿（无融资）、Runway $30 亿、可灵背后快手母公司 $430 亿美元市值；Stability AI 估值缩水 80%。", "ez": "估值泡沫就是 AI 独角兽的过山车：画一年广告估值 100 亿，发现不赚钱后 80% 缩水，投资人也学精了。"}, {"rank": 26, "cat": "tech", "term": "Transformer", "pro": "Transformer（注意力机制架构）自 2017 年论文 Attention Is All You Need 提出后，2024-2025 年加速渗透图像生成领域：DiT（Diffusion Transformer）取代传统 UNet 成为新一代 SD3/FLUX 主干，长程依赖建模和多模态对齐更强。在图像、视频、3D 生成全面替代 CNN+UNet 架构。", "ref": {"google": "Diffusion Transformer DiT 2025", "wiki": "Transformer (machine learning model)"}, "industryData": "SD 3 Medium（2B 参数 DiT）、FLUX.1 Pro（12B DiT）、OpenAI Sora 均基于 DiT 架构。", "ez": "Transformer 像 AI 的通用大脑：既能看又能说，2025 年起连画画也用它，全能选手。"}, {"rank": 27, "cat": "tech", "term": "UNet", "pro": "UNet 是 2015 年提出的 U 形全卷积神经网络，因其 encoder-decoder 跳跃连接结构在医学图像分割一炮而红，后成为 Stable Diffusion 1.5/2.1/XL 扩散去噪主干。但参数效率、长程建模能力弱于 Transformer。2024 年 SD3/FLUX 切换到 MMDiT 后，UNet 逐渐退场。", "ref": {"google": "UNet Stable Diffusion 2025", "wiki": "U-Net"}, "industryData": "SD 1.5 UNet 8.6 亿参数，SDXL 26 亿；2025 年绝大多数新模型转向 DiT。", "ez": "UNet 是 AI 画图的经典老师傅：2015 年当红现在快退休了，结构像字母 U。"}, {"rank": 28, "cat": "tech", "term": "MMDiT", "pro": "MMDiT（Multimodal Diffusion Transformer）是 SD3 提出的架构，让文本 tokens 和图像 patches 在同一 Transformer 中双向交互，相比 Cross-Attention 单向注入，语义理解和空间对齐更精细。FLUX.1 进一步改进为 Full-MMDiT。2025 年成为头部闭源/开源新模型标配。", "ref": {"google": "MMDiT SD3 2025", "wiki": "Diffusion model"}, "industryData": "SD3 Medium MMDiT 20 亿参数，长 prompt 理解准确率较 SDXL 提升 35%；多主体分离错误率下降 50%。", "ez": "MMDiT 是 AI 的双人合作新姿势：以前文字给画师单向下指令，现在两边互相讨论。"}, {"rank": 29, "cat": "tech", "term": "LCM", "pro": "LCM（Latent Consistency Model）2023 年由清华李杨博士等提出，通过蒸馏教师模型使学生在 2-8 步内生成。LCM-LoRA 可插入任何 SD 底模，让 25 步→4 步，推理速度提升 7 倍。2025 年成为实时交互式 AI 绘画、移动端生图、直播特效的核心技术。", "ref": {"google": "LCM 2025", "wiki": "Consistency model"}, "industryData": "LCM-LoRA 下载超 500 万次；Krea AI 实时生图产品 MAU 150 万。", "ez": "LCM 是 AI 画画的快车道：原本 25 步慢工细活，它让 AI 跳步 4 步就画完。"}, {"rank": 30, "cat": "tech", "term": "IP-Adapter", "pro": "IP-Adapter（图像提示适配器）由腾讯 2023 年提出，通过提取参考图像 CLIP 特征注入扩散模型，实现'图像 prompt'功能。典型用途：人脸保持（InstantID）、风格参考、物体复用。2025 年配合 ControlNet、LoRA 形成'三件套'，一致性图像生产成为可能。", "ref": {"google": "IP-Adapter 腾讯 2025", "wiki": "Diffusion model"}, "industryData": "IP-Adapter Face Plus 下载超 100 万次；InstantID 人脸相似度 CLIPScore 达 0.85。", "ez": "IP-Adapter 就是 AI 的'参考图插座'：你塞一张脸进去，AI 画的所有图里都是那个脸。"}, {"rank": 31, "cat": "tech", "term": "ComfyUI", "pro": "ComfyUI 是基于节点图的 Stable Diffusion 可视化工作流工具，2023 年爆发。相比 AUTOMATIC1111 WebUI 的线性参数面板，ComfyUI 可自由连接采样器、LoRA、ControlNet 等节点形成复杂 pipeline，工作流可导出 JSON 复用。2025 年成为专业创作者、工作室标配。", "ref": {"google": "ComfyUI 2025", "wiki": "Stable Diffusion"}, "industryData": "ComfyUI GitHub star 超 50K，CivitAI/OpenArt 上传超 100 万个工作流。", "ez": "ComfyUI 像 AI 画画的乐高：把每个环节做成一块积木，拼起来就是一条自动化流水线。"}, {"rank": 32, "cat": "tech", "term": "A1111 WebUI", "pro": "AUTOMATIC1111 WebUI（A1111）是 2022 年发布的 Stable Diffusion 最流行本地部署工具，集成文生图/图生图/Inpaint/扩展插件生态。Gradio 界面简单易用，插件 2000+ 个。2024 年后生态活跃度被 ComfyUI 超越，但新用户入门首选仍是它。Forge 等分叉版维护性能优化。", "ref": {"google": "AUTOMATIC1111 WebUI 2025", "wiki": "Stable Diffusion"}, "industryData": "A1111 GitHub star 超 140K；全球 SD 本地部署用户 70% 用 A1111 或其分叉版。", "ez": "A1111 是 SD 的老牌前台：打开浏览器就能用，新手最爱，现在高级用户更爱 ComfyUI。"}, {"rank": 33, "cat": "tech", "term": "InstantID", "pro": "InstantID 是 InstantX 团队 2024 年发布的 zero-shot 人脸定制方案，单张参考照片即可保持人脸一致性（相似度 CLIP 0.85+），无需训练。基于 IP-Adapter Face + ControlNet Identity 双分支架构。2025 年成为肖像类 AI 应用的核心技术，个人写真/婚纱照业务大爆发。", "ref": {"google": "InstantID 2025", "wiki": "Face recognition"}, "industryData": "InstantID HuggingFace demo 月访问 1000 万+；国内多款'AI 证件照'App 基于此，单张收费 ¥3-19.9。", "ez": "InstantID 是 AI 换装大师：给它一张你脸，马上画出你穿各种衣服的照片，完全不用训练模型。"}, {"rank": 34, "cat": "tech", "term": "Rectified Flow", "pro": "Rectified Flow（整流流）是 2022 年提出的生成建模新范式，通过学习直线化的概率流，让模型在 1-4 步内生成高质量样本，远快于传统扩散 25+ 步。FLUX.1、SD3 均基于此，配合 LCM/TCD 蒸馏技术实现消费级 GPU 秒级出图，移动端实时生图成为可能。", "ref": {"google": "Rectified Flow 2025", "wiki": "Flow-based generative model"}, "industryData": "FLUX.1 schnell 4 步出 1024px 图，4090 耗时 0.8 秒。", "ez": "Rectified Flow 是 AI 画画的直通车：以前要绕 25 个弯才能出图，现在 4 步直达。"}, {"rank": 35, "cat": "tech", "term": "视频生成", "pro": "视频生成模型是 2024-2025 年 AI 生图最激烈的下一站。代表：OpenAI Sora（60s，闭测）、Runway Gen-3 Alpha、快手可灵 AI、字节即梦、Pika 1.5、Luma Dream Machine。技术上 3D-DiT、时空注意力是关键。2025 年商业化加速，短视频/广告行业率先应用。", "ref": {"google": "AI 视频生成 Sora 2025", "wiki": "Video generation model"}, "industryData": "可灵 AI 2025 年 MAU 超 500 万，5s 视频生成成本 ¥2；Runway Gen-3 订阅付费用户 120 万。", "ez": "视频生成是 AI 画画的进阶版：从画一张图到画一段会动的戏，2025 年已经能拍广告了。"}, {"rank": 36, "cat": "tech", "term": "3D 生成", "pro": "3D 生成从文本/图像生成 3D 模型（Mesh、NeRF、3D Gaussian Splatting），是 AI 生图的下一前沿。代表：Stability AI SV3D、Tripo、Meshy、腾讯 Hunyuan3D。2025 年单图生 3D 模型耗时 30-60 秒，拓扑质量接近游戏可用。下游应用：元宇宙、游戏资产、电商 3D 展示、3D 打印。", "ref": {"google": "AI 3D 生成 2025", "wiki": "3D reconstruction"}, "industryData": "Meshy 月活 50 万；某手游团队用 Tripo 节省 3D 美术成本 70%。", "ez": "3D 生成就是 AI 做雕塑：给它一张图，它直接输出能在游戏里动起来的 3D 模型。"}, {"rank": 37, "cat": "tech", "term": "AIGC 水印", "pro": "AIGC 水印（以 C2PA 为代表的内容溯源标准）通过密码学签名嵌入生成内容元数据，追溯来源防滥用。Adobe、OpenAI、Microsoft 等成立 C2PA 联盟。2025 年中国《生成式 AI 服务管理办法》强制要求添加显式水印；欧盟 AI Act 也明确 AI 生成内容需标注。", "ref": {"google": "C2PA AIGC 水印 2025", "wiki": "Digital watermarking"}, "industryData": "C2PA 联盟成员 200+；中国 AIGC 水印强制性标准 2025 年 10 月实施。", "ez": "AIGC 水印像 AI 图的出生证：每张图暗藏了是谁画的标记，用来防 AI 假新闻满天飞。"}, {"rank": 38, "cat": "tech", "term": "模型量化", "pro": "模型量化（Quantization）将浮点权重压缩为低比特表示（FP16→INT8→INT4），大幅降低显存和算力需求。FLUX.1 NF4 量化版仅 11GB 可在 8GB 显存 GPU 运行；SDXL INT8 版本速度提升 2.5×、质量损失 <5%。是边缘部署、手机生图的核心技术。", "ref": {"google": "Stable Diffusion 量化 2025", "wiki": "Quantization"}, "industryData": "FLUX.1 NF4 从 23GB→11GB，显存需求降 52%；SD 3 GGUF Q4 量化版 CPU 可跑，出图 45 秒/张。", "ez": "模型量化是 AI 减肥术：从几十 GB 瘦身到十几 GB，性能损失不大但老显卡也能跑。"}, {"rank": 39, "cat": "tech", "term": "Safetensors", "pro": "Safetensors 是 Hugging Face 2023 年推出的模型权重存储格式，取代 PyTorch .pt/.ckpt 格式。优势：1) 纯数据无代码，安全不执行任意脚本 2) 加载速度快 5-10 倍 3) 零拷贝内存映射。2025 年已成为模型分发事实标准。", "ref": {"google": "Safetensors 2025", "wiki": "Safetensors"}, "industryData": "Hugging Face 模型 80%+ 提供 Safetensors；Civitai 限制 ckpt 上传以防恶意代码注入。", "ez": "Safetensors 是 AI 模型的安全盒：老格式 ckpt 里能藏病毒，新格式只装数据不运行代码。"}, {"rank": 40, "cat": "tech", "term": "CFG Scale", "pro": "CFG Scale（Classifier-Free Guidance）控制生成图像与 prompt 的贴合度，典型值 4-12。低 CFG 生成更自然多样但可能偏离 prompt，高 CFG 严格遵循但容易过饱和、伪影。2025 年 APG、CFG++ 等改进方法缓解高 CFG 伪影问题。", "ref": {"google": "CFG Scale 2025", "wiki": "Classifier-free guidance"}, "industryData": "SD 推荐 CFG 7-9，SDXL 为 5-8，FLUX.1 约 3.5。", "ez": "CFG 相当于 AI 听话的认真度：太低自由发挥，太高像强迫症画成四不像。"}, {"rank": 41, "cat": "biz", "term": "妙鸭相机", "pro": "妙鸭相机是阿里达摩院 2023 年 7 月推出的 AI 写真 App，21 张照片 + 9.9 元生成 100 张不同风格定制肖像。基于 DreamBooth + LoRA 底层，产品设计极致简化。上线 7 天涌入 1000 万用户，成为国内 AI 生图首个现象级 C 端爆款。但由于留存差，2024 年热度大幅下降。", "ref": {"google": "妙鸭相机 2025", "wiki": "Alibaba Group"}, "industryData": "妙鸭 2023 年 7 月爆发，7 天 1000 万用户、¥9.9 客单；2024 年 MAU 跌至 30 万。", "ez": "妙鸭相机是国内 AI 画画的火箭引爆点：花 9.9 拿 100 张写真，小红书霸屏一周。"}, {"rank": 42, "cat": "biz", "term": "数字人", "pro": "数字人 / AI 主播使用 AI 生图 + TTS + 动捕技术生成虚拟人物进行直播带货、短视频、客服。2025 年头部厂商（商汤小浣熊、硅基智能）月费 ¥100-5000，24×7 直播成本 <¥100/天，较真人主播成本降 95%。是 AI 生图最大 B 端变现场景之一。", "ref": {"google": "AI 数字人 2025", "wiki": "Virtual human"}, "industryData": "国内 AI 数字人市场 2025 年规模 ¥180 亿，年增 130%。", "ez": "数字人是 AI 的永动主播：24 小时不眠不休叫卖带货，抖音快手一堆都是 AI 老板娘。"}, {"rank": 43, "cat": "biz", "term": "AI 商拍", "pro": "AI 电商商拍是 AI 生图在电商的核心落地，用生图替代实物拍摄。主要场景：虚拟模特换装、商品背景替换、SKU 批量出图。国内厂商：阿里绘蛙、京东凤凰台、蝉妈妈。2025 年渗透率 35%，单 SPU 出图成本从 ¥50 降至 ¥0.5。", "ref": {"google": "AI 电商商拍 2025", "wiki": "E-commerce photography"}, "industryData": "阿里绘蛙 2025 月活商家 50 万；电商 AI 商拍市场 ¥60 亿，年增 200%。", "ez": "AI 电商商拍就是 ZARA 不用请模特了：1 件衣服秒出 100 种场景，成本从几千元降到几毛钱。"}, {"rank": 44, "cat": "biz", "term": "Civitai", "pro": "Civitai 是 AI 生图最大社区与模型分发平台，2022 年创立。提供免费模型下载、作品展示、在线生图、Bounty 众包训练模型。2025 年月活 1200 万、日生图 500 万张、模型数 50 万+。创作者可通过打赏、Bounty、付费生图分成变现。", "ref": {"google": "Civitai 2025", "wiki": "Civitai"}, "industryData": "Civitai 2025 年 MAU 1200 万、ARR 约 $2000 万；存量模型 50 万+。", "ez": "Civitai 是 AI 绘画界的 GitHub + YouTube 合体：所有模型都在这里免费下。"}, {"rank": 45, "cat": "biz", "term": "Canva AI", "pro": "Canva 2022 年开始集成 AI 生图功能（Text-to-Image、Magic Edit、Magic Expand）。依托原有 1.9 亿月活设计用户，AI 功能渗透率超 50%。2025 年 Canva AI 年收入贡献超 $5 亿，估值 $400 亿，AI 生图是其从'模板设计'向'创意工具'升级的核心引擎。", "ref": {"google": "Canva AI 2025", "wiki": "Canva"}, "industryData": "Canva 2025 年 MAU 1.9 亿、AI 使用率 55%、ARR $35 亿、AI 贡献 $5 亿。", "ez": "Canva 是'傻瓜 PS 加 AI'：1.9 亿人用的设计工具，估值冲到 400 亿美元。"}, {"rank": 46, "cat": "biz", "term": "Adobe Firefly", "pro": "Adobe Firefly 是 Adobe 2023 年推出的生成式 AI 系列，覆盖文生图、矢量图、视频、3D。差异化卖点：训练数据来自 Adobe Stock 授权图库（合规可商用），内嵌 Photoshop/Illustrator/Premiere 全家桶。2025 年 Firefly 累计生成超 200 亿张，创意云订阅 ARR 超 $220 亿。", "ref": {"google": "Adobe Firefly 2025", "wiki": "Adobe Firefly"}, "industryData": "Adobe 2025 财年 ARR $220 亿，Firefly 生成 200 亿+ 张；Generative Fill 月活 4000 万。", "ez": "Adobe Firefly 就是老牌设计软件商挤进 AI 战场：数据都是买版权的合规 OK。"}, {"rank": 47, "cat": "biz", "term": "Runway", "pro": "Runway ML 是 2018 年创立的创意 AI 工具公司，与 Stability AI 联合开发 Stable Diffusion。2023 年转型专注 AI 视频 Gen-1/2/3，2025 年 Runway Gen-3 Alpha 成为影视行业 AI 视频首选，单月付费用户 120 万，估值 $30 亿。B 端客户包括好莱坞工作室、广告公司。", "ref": {"google": "Runway Gen-3 2025", "wiki": "Runway (company)"}, "industryData": "Runway 2025 年估值 $30 亿、ARR $1 亿；Gen-3 付费用户 120 万。", "ez": "Runway 是 AI 视频界的头牌：专门给影视广告公司造 AI 短片工具，好莱坞都用。"}, {"rank": 48, "cat": "biz", "term": "可灵 AI", "pro": "可灵 AI 是快手 2024 年推出的视频生成模型，国内首个对标 Sora 的实用化 AI 视频工具。核心场景：短视频创作、IP 形象动画化、广告素材。2025 年可灵 AI 1.6 支持 10 秒 1080p 视频，5s 视频生成成本 ¥2。MAU 超 500 万，API B 端客户含多家 MCN、广告公司。", "ref": {"google": "可灵 AI 快手 2025", "wiki": "Kuaishou"}, "industryData": "可灵 AI 2025 年 MAU 500 万+、ARR ¥5 亿；支持 10 秒 1080p。", "ez": "可灵是国内 AI 视频的扛把子：快手做的，5 秒视频 2 块钱，短视频创作者人均用它。"}, {"rank": 49, "cat": "biz", "term": "即梦", "pro": "即梦 AI 是字节跳动 2024 年推出的 AI 创作平台，集成文生图、视频生成、AI 配音、剪辑。底层整合字节 SeedDream、Seedance 等自研模型。优势：抖音生态分发 + 低价策略（¥49/月无限次）。2025 年 MAU 超 800 万，国内排名 Top 3。", "ref": {"google": "即梦 AI 字节 2025", "wiki": "ByteDance"}, "industryData": "即梦 2025 年 MAU 800 万+，付费率 5%、ARPPU ¥80。", "ez": "即梦是抖音他爸造的 AI 工具：画图拍片配音一条龙，49 块包月画爆。"}, {"rank": 50, "cat": "biz", "term": "版权争议", "pro": "版权争议是 AI 生图行业最大不确定性。核心议题：1) 训练数据是否侵权（Getty 起诉 Stability AI 仍在审理）2) AI 生成内容是否可版权注册（美国版权局 2023 裁定纯 AI 作品不受保护）3) 特定画师风格模仿。2025 年多国加强立法约束，行业进入合规转型期。", "ref": {"google": "AI 绘画 版权 诉讼 2025", "wiki": "AI copyright"}, "industryData": "Getty v. Stability AI 诉讼索赔 $17 亿未决；中国北京互联网法院承认'AI 辅助创作'享版权。", "ez": "版权争议是 AI 画画的阿喀琉斯脚后跟：训练素材有没有交版权费、画出来算谁的，全是官司。"}];
+var COMPANIES = [{"name": "Midjourney", "enName": "Midjourney", "domain": "midjourney.com", "ecoNiche": "闭源高审美文生图订阅制王者，独立运营", "tags": ["订阅制", "Discord", "审美标杆", "无外部融资"], "moatPro": "Midjourney 的护城河是数据飞轮+审美优势：累计超 100 亿张生成图积累了人类偏好数据，独家的 MJ Style 审美特征非开源模型所能复刻。团队仅 50 人却年赚 $2 亿+，完全无外部融资 100% 自由决策权。v7 在 ELO 评分榜上领先 Flux Pro / DALL-E 4，是广告创意/游戏原画/概念设计行业首选。唯一短板是 API 未开放、文字渲染弱于 FLUX。", "moatEz": "Midjourney 像 AI 画界的爱马仕：画风独特、50 个手艺人撑起 200 万会员，别人复刻不了它的审美。", "lifecycle": 2, "lifeLabel": "成熟期", "revenue": [{"label": "个人订阅", "pct": 75, "color": "#0F6E56"}, {"label": "团队订阅", "pct": 15, "color": "#185FA5"}, {"label": "商用授权", "pct": 10, "color": "#888"}]}, {"name": "Stability AI", "enName": "Stability AI", "domain": "stability.ai", "ecoNiche": "Stable Diffusion 开源鼻祖，转型商业化中", "tags": ["开源", "SD 系列", "API 服务", "经历重组"], "moatPro": "Stability AI 曾是 AI 生图开源标准制定者，Stable Diffusion 下载超 5000 万次，生态网络效应巨大。SD 3.5 Large 开源 80 亿参数、支持商用。但公司长期陷入'开源情怀与商业变现'矛盾：2024 年营收仅 $3000 万、亏损 $1 亿，创始人 Emad Mostaque 离任，2025 年被私募重组。FLUX.1 团队（原核心作者）另起炉灶后，Stability 技术领先优势被削弱。API 服务、Dream Studio 订阅是主要收入。", "moatEz": "Stability AI 像开源界的拓荒者：搞出了 AI 画画的'大白菜价格'，但自己没赚到钱差点破产，现在努力变现中。", "lifecycle": 3, "lifeLabel": "转型期", "revenue": [{"label": "API 调用", "pct": 60, "color": "#0F6E56"}, {"label": "企业授权", "pct": 25, "color": "#185FA5"}, {"label": "订阅服务", "pct": 15, "color": "#888"}]}, {"name": "快手可灵", "enName": "Kling AI", "domain": "klingai.com", "ecoNiche": "国内 AI 视频生成首发商业化，短视频生态协同", "tags": ["视频生成", "对标 Sora", "快手生态", "B端 API"], "moatPro": "可灵 AI 是国内首个真正商业化的 AI 视频生成产品，依托快手母公司 4 亿 DAU 短视频生态快速验证与分发。2024 年 6 月发布即对标 Sora，2025 年 1.6 版本支持 10 秒 1080p，单 5 秒视频成本仅 ¥2。快手自有 GPU 集群降低训练成本 40%。B 端 MCN 矩阵 + C 端 500 万 MAU 双轮驱动，ARR 突破 ¥5 亿。劣势：国际市场受合规限制、审美偏东亚风格。", "moatEz": "可灵是 AI 视频的国内一哥：快手爸爸的 GPU 不要钱，MCN 和主播天然用户，比 Sora 更先商业化。", "lifecycle": 1, "lifeLabel": "成长期", "revenue": [{"label": "会员订阅", "pct": 55, "color": "#0F6E56"}, {"label": "API 企业服务", "pct": 30, "color": "#185FA5"}, {"label": "广告变现", "pct": 15, "color": "#888"}]}];
+
+// ========== 渲染：三强公司 ==========
+var lifecyclePhases = ['初创期','成长期','成熟期','转型期','衰退期'];
+function renderTop3() {
+  var el = document.getElementById('top3Section');
+  var head = '<div class="top3-head">' +
+    '<div class="top3-title">' +
+      '<h2>行业标杆三强<em>· ' + INDUSTRY.name + '</em></h2>' +
+    '</div>' +
+    '<div class="top3-sub">生态位 / 护城河 / 生命周期 / 收入结构</div>' +
+  '</div>';
+  
+  var cards = COMPANIES.slice(0,3).map(function(c){
+    var logoSrc = 'https://logo.clearbit.com/' + (c.domain || '');
+    var fb = (c.name || '?').charAt(0);
+    var lifeIdx = typeof c.lifecycle === 'number' ? c.lifecycle : 1;
+    
+    var tagsHtml = (c.tags || []).map(function(t){
+      return '<span class="cmp-tag">' + t + '</span>';
+    }).join('');
+    
+    var revArr = c.revenue || [];
+    var revIsPlaceholder = revArr.length === 1 && revArr[0] && revArr[0].pct === 100;
+    var revHtml = revIsPlaceholder
+      ? '<div class="cmp-rev-empty">营收结构未公开 · ' + (revArr[0].label || '主要支出') + '</div>'
+      : revArr.map(function(r){
+          return '<div class="cmp-rev-item">' +
+            '<div class="cmp-rev-label">' + r.label + '</div>' +
+            '<div class="cmp-rev-bar-wrap"><div class="cmp-rev-bar" style="--w:' + r.pct + '%;background:' + (r.color || '#0F6E56') + '"></div></div>' +
+            '<div class="cmp-rev-pct">' + r.pct + '%</div>' +
+          '</div>';
+        }).join('');
+    
+    var stageHtml = lifecyclePhases.slice(0,4).map(function(p, i){
+      var cls = i === lifeIdx ? 'active' : (i < lifeIdx ? 'done' : '');
+      return '<div class="cmp-life-stage ' + cls + '"><div class="dot"></div><div class="label">' + p + '</div></div>';
+    }).join('');
+    
+    return '<div class="cmp-card">' +
+      '<div class="cmp-body">' +
+        '<div class="cmp-head">' +
+          '<div class="cmp-logo"><img src="' + logoSrc + '" alt="' + c.name + '" onerror="this.style.display=\'none\';this.parentNode.textContent=\'' + fb + '\'"></div>' +
+          '<div class="cmp-name-wrap">' +
+            '<div class="cmp-name">' + c.name + '</div>' +
+            '<div class="cmp-en">' + (c.enName || '') + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="cmp-niche">' + (c.ecoNiche || '') + '</div>' +
+      '</div>' +
+      (tagsHtml ? '<div class="cmp-tags">' + tagsHtml + '</div>' : '') +
+      '<div class="cmp-moat">' +
+        '<div class="cmp-section-label">核心护城河</div>' +
+        '<div class="cmp-moat-pro">' + fmtList(c.moatPro || '') + '</div>' +
+        '<div class="cmp-moat-ez">' + (c.moatEz || '') + '</div>' +
+      '</div>' +
+      '<div class="cmp-life">' +
+        '<div class="cmp-section-label">企业生命周期</div>' +
+        '<div class="cmp-life-stages">' + stageHtml + '</div>' +
+      '</div>' +
+      (revHtml ? '<div class="cmp-rev">' +
+        '<div class="cmp-section-label">收入结构</div>' + revHtml + '</div>' : '') +
+      (c.domain ? '<a class="cmp-visit" href="https://' + c.domain + '" target="_blank" rel="noopener">访问官网 ↗</a>' : '') +
+    '</div>';
+  }).join('');
+  
+  el.innerHTML = head + '<div class="top3-grid">' + cards + '</div>';
+}
+
+function fmtList(html) {
+  return (html || '').replace(/(\d+[.)]\s*)/g, '<br>$1');
+}
+
+// ========== 自动高亮数字 / L级别 ==========
+function autoHl(html) {
+  if (!html) return '';
+  var placeholders = [];
+  var safe = html.replace(/<mark[\s\S]*?<\/mark>|<b[\s\S]*?<\/b>|<a[\s\S]*?<\/a>/g, function(m){
+    placeholders.push(m);
+    return '__PH' + (placeholders.length - 1) + '__';
+  });
+  safe = safe.replace(/(\d+(?:\.\d+)?%\+?)/g, '<b class="kw-num-hl">$1</b>');
+  safe = safe.replace(/\b(L[0-9](?:[\u2013\-]L[0-9])?\+?)\b/g, '<b class="kw-num-hl">$1</b>');
+  safe = safe.replace(/__PH(\d+)__/g, function(_, idx){
+    return placeholders[parseInt(idx, 10)];
+  });
+  return safe;
+}
+
+// ========== 渲染：关键词网格 ==========
+var catNames = {core:'核心概念', finance:'财务指标', tech:'技术术语', biz:'商业模型'};
+var currentCat = 'all';
+
+function renderGrid() {
+  var el = document.getElementById('kwGrid');
+  var data = currentCat === 'all' ? KEYWORDS : KEYWORDS.filter(function(k){return k.cat === currentCat;});
+  
+  document.getElementById('kwMeta').textContent = '显示 ' + data.length + ' / ' + KEYWORDS.length + ' 条';
+  
+  el.innerHTML = data.map(function(kw, i) {
+    var delay = Math.min(i % 9, 8) * 60;
+    var q = encodeURIComponent(kw.term || '');
+    var googleQ = (kw.ref && kw.ref.google) ? encodeURIComponent(kw.ref.google) : q;
+    var wikiQ   = (kw.ref && kw.ref.wiki) ? encodeURIComponent(kw.ref.wiki) : q;
+    var refLinks =
+      '<a class="kw-ref" href="https://zh.wikipedia.org/wiki/Special:Search?search=' + wikiQ + '" target="_blank" rel="noopener">Wiki</a>' +
+      '<a class="kw-ref" href="https://www.google.com/search?q=' + googleQ + '" target="_blank" rel="noopener">Google</a>';
+    
+    var indSection = '';
+    if (kw.industryData && kw.industryData.length > 10) {
+      indSection = '<div class="kw-section kw-section-ind">' +
+        '<div class="kw-label kw-label-ind">行业数据</div>' +
+        '<div class="kw-id-text">' + autoHl(kw.industryData) + '</div>' +
+      '</div>';
+    }
+    
+    return '<div class="kw-card scroll-reveal" data-delay="' + delay + '">' +
+      '<div class="kw-top">' +
+        '<div class="kw-name">' + kw.term + '</div>' +
+        '<span class="kw-num">#' + (kw.rank || i + 1) + ' · ' + (catNames[kw.cat] || '') + '</span>' +
+      '</div>' +
+      '<div class="kw-body">' +
+        '<div class="kw-section kw-section-pro">' +
+          '<div class="kw-label kw-label-pro">专业释义</div>' +
+          '<div class="kw-pro-text">' + autoHl(kw.pro || '') + '</div>' +
+        '</div>' +
+        '<div class="kw-section kw-section-ref">' +
+          '<div class="kw-label kw-label-ref">查资料</div>' +
+          '<div class="kw-ref-links">' + refLinks + '</div>' +
+        '</div>' +
+        indSection +
+        '<div class="kw-section kw-section-ez">' +
+          '<div class="kw-label kw-label-ez">大白话</div>' +
+          '<div class="kw-ez-text">' + autoHl(kw.ez || '') + '</div>' +
+        '</div>' +
+      '</div></div>';
+  }).join('');
+  
+  observeScrollReveal();
+}
+
+// ========== 分类过滤按钮 ==========
+function renderCatFilter() {
+  var el = document.getElementById('catFilter');
+  var counts = {all: KEYWORDS.length, core:0, finance:0, tech:0, biz:0};
+  KEYWORDS.forEach(function(k){ if(counts[k.cat] != null) counts[k.cat]++; });
+  
+  var cats = [
+    {id:'all', name:'全部'},
+    {id:'core', name:'核心概念'},
+    {id:'finance', name:'财务指标'},
+    {id:'tech', name:'技术术语'},
+    {id:'biz', name:'商业模型'}
+  ];
+  
+  el.innerHTML = cats.map(function(c){
+    return '<button class="cat-btn ' + (currentCat===c.id?'active':'') + '" data-cat="' + c.id + '">' + c.name + '<span class="cnt">' + counts[c.id] + '</span></button>';
+  }).join('');
+  
+  el.querySelectorAll('.cat-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      currentCat = btn.getAttribute('data-cat');
+      renderCatFilter();
+      renderGrid();
+      // 滚动到关键词区
+      document.querySelector('.kw-section-title').scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+}
+
+// ========== Scroll Reveal ==========
+var revealObserver = null;
+function observeScrollReveal() {
+  if (revealObserver) revealObserver.disconnect();
+  var cards = document.querySelectorAll('.scroll-reveal:not(.revealed)');
+  if (!cards.length) return;
+  revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var delay = parseInt(el.getAttribute('data-delay') || '0', 10);
+        setTimeout(function() { el.classList.add('revealed'); }, delay);
+        revealObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  cards.forEach(function(card) { revealObserver.observe(card); });
+}
+
+// 初始化
+renderTop3();
+renderCatFilter();
+renderGrid();
+</script>
+</body>
+</html>

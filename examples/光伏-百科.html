@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>光伏 · 行业百科</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --font-display:'Space Grotesk','Noto Sans SC',-apple-system,sans-serif;
+  --font-body:'Inter','Noto Sans SC','PingFang SC',-apple-system,sans-serif;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:var(--font-body);color:#1a1a1a;background:#FAF8F3;line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;min-height:100vh}
+::selection{background:#166534;color:#fff}
+
+/* ===== 顶部 ===== */
+.page-head{max-width:1200px;margin:0 auto;padding:60px 32px 32px;text-align:center}
+.page-head h1{font-family:var(--font-display);font-size:2.8rem;font-weight:700;letter-spacing:-.035em;color:#111;margin-bottom:12px}
+.page-head .subtitle{font-size:1rem;color:#666;font-weight:400;max-width:640px;margin:0 auto 8px;line-height:1.6}
+.page-head .meta{display:inline-flex;gap:16px;margin-top:20px;padding:8px 18px;border-radius:24px;background:#fff;font-size:.72rem;color:#666;font-weight:500;letter-spacing:.04em;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
+.page-head .meta strong{color:#166534;font-weight:600}
+
+/* ===== 三强区 ===== */
+.top3-section{max-width:1200px;margin:0 auto 48px;padding:36px;border-radius:32px;background:#fff;position:relative;box-shadow:0 2px 20px rgba(0,0,0,0.04)}
+.top3-head{margin-bottom:28px}
+.top3-title{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.top3-title h2{font-family:var(--font-display);font-size:1.32rem;font-weight:700;color:#111}
+.top3-title h2 em{font-style:normal;color:#0F6E56;font-weight:500;font-size:.82rem;margin-left:8px}
+.top3-sub{font-size:.78rem;color:#888;letter-spacing:.01em}
+.top3-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cmp-card{background:#fff;border-radius:20px;overflow:visible;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;transition:all .3s var(--ease-out)}
+.cmp-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+.cmp-body{padding:20px 20px 4px}
+.cmp-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.cmp-logo{width:44px;height:44px;border-radius:12px;background:#F4F4F1;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:600;color:#888;flex-shrink:0;overflow:hidden}
+.cmp-logo img{width:100%;height:100%;object-fit:contain}
+.cmp-name-wrap{flex:1;min-width:0}
+.cmp-name{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:#111;letter-spacing:-.01em;line-height:1.2}
+.cmp-en{font-size:.68rem;color:#888;letter-spacing:.04em;margin-top:2px}
+.cmp-niche{font-size:.8rem;color:#444;line-height:1.5;margin-top:8px;word-break:break-word}
+.cmp-tags{display:flex;gap:6px;flex-wrap:wrap;margin:4px 20px 14px}
+.cmp-tag{font-size:.65rem;padding:3px 10px;background:#F4F4F1;color:#555;border-radius:10px;font-weight:500}
+.cmp-section-label{font-family:var(--font-display);font-size:.66rem;font-weight:600;color:#0F6E56;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.cmp-moat{padding:0 20px;margin-bottom:14px}
+.cmp-moat-pro{font-size:.78rem;color:#333;line-height:1.75;background:#F0F8F2;border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.cmp-moat-pro::before{content:'专业视角';display:block;font-size:.62rem;color:#0F6E56;letter-spacing:.08em;margin-bottom:4px;font-weight:600}
+.cmp-moat-ez{font-size:.78rem;color:#333;line-height:1.75;background:#F4F4F1;border-radius:10px;padding:10px 12px}
+.cmp-moat-ez::before{content:'大白话';display:block;font-size:.62rem;color:#888;letter-spacing:.08em;margin-bottom:4px;font-weight:600}
+
+.cmp-life{padding:0 20px;margin-bottom:14px}
+.cmp-life-stages{display:flex;gap:4px}
+.cmp-life-stage{flex:1;text-align:center;position:relative}
+.cmp-life-stage .dot{width:10px;height:10px;border-radius:50%;background:#ddd;margin:0 auto 4px;transition:background .3s}
+.cmp-life-stage.done .dot{background:#B8E4C8}
+.cmp-life-stage.active .dot{background:#0F6E56;box-shadow:0 0 0 4px rgba(15,110,86,0.15)}
+.cmp-life-stage .label{font-size:.65rem;color:#999}
+.cmp-life-stage.active .label{color:#0F6E56;font-weight:600}
+
+.cmp-rev{padding:0 20px 4px}
+.cmp-rev-item{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.cmp-rev-label{font-size:.72rem;color:#444;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.cmp-rev-bar-wrap{flex:1.2;height:8px;background:#F0F0EC;border-radius:6px;overflow:hidden}
+.cmp-rev-bar{height:100%;border-radius:6px;width:var(--w,0%);transition:width 1s var(--ease-out)}
+.cmp-rev-pct{font-family:var(--font-display);font-size:.72rem;font-weight:700;color:#111;width:40px;text-align:right}
+.cmp-rev-empty{font-size:.72rem;color:#999;font-style:italic;padding:8px 12px;background:rgba(0,0,0,0.03);border-radius:8px;text-align:center}
+
+.cmp-visit{display:inline-flex;align-items:center;gap:6px;margin:4px 20px 20px;padding:8px 14px;border-radius:12px;background:#F4F4F1;color:#444;font-size:.78rem;font-weight:500;text-decoration:none;transition:all .2s}
+.cmp-visit:hover{background:#E8F1EB;color:#0F6E56;transform:translateY(-1px)}
+
+/* ===== 关键词 Section ===== */
+.kw-section-title{max-width:1200px;margin:48px auto 16px;padding:0 32px;display:flex;align-items:baseline;justify-content:space-between}
+.kw-section-title h2{font-family:var(--font-display);font-size:1.22rem;font-weight:700;color:#111}
+.kw-section-title h2 em{font-style:normal;color:#0F6E56;font-size:.78rem;font-weight:500;margin-left:6px}
+.kw-section-title .kst-meta{font-size:.72rem;color:#666;letter-spacing:.02em}
+
+.kw-grid{max-width:1200px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+
+/* ===== 关键词卡片 ===== */
+.kw-card{position:relative;background:#fff;border-radius:16px;overflow:visible;transition:all .3s var(--ease-out);box-shadow:0 2px 8px rgba(0,0,0,0.04);border:0.5px solid rgba(0,0,0,0.08)}
+.kw-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+.kw-top{padding:18px 20px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.kw-num{font-family:var(--font-display);font-size:.62rem;font-weight:500;letter-spacing:.04em;color:#999;flex-shrink:0;white-space:nowrap}
+.kw-name{font-family:var(--font-display);font-size:1.06rem;font-weight:600;flex:1;letter-spacing:-.01em;line-height:1.35;color:#111}
+.kw-name mark{background:rgba(34,197,94,0.18);color:#166534;font-weight:600;padding:0 2px;border-radius:2px}
+.kw-body{padding:0 20px 16px}
+
+/* ===== 区块通用 ===== */
+.kw-section{position:relative;padding:12px 0;border-top:0.5px solid rgba(0,0,0,0.08)}
+.kw-section:first-child{border-top:none;padding-top:4px}
+
+/* ===== 区块标签 ===== */
+.kw-label{display:inline-block;padding:0;font-family:var(--font-display);font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;white-space:nowrap}
+.kw-label-pro,.kw-label-ez{color:#0F6E56}
+.kw-label-ref,.kw-label-ind{color:#5F5E5A}
+
+/* 专业释义 */
+.kw-section-pro{background:transparent}
+.kw-pro-text{font-size:.86rem;color:#1a1a1a;line-height:1.85}
+.kw-pro-text mark{background:rgba(34,197,94,0.18);color:#166534;padding:0 2px;font-weight:600;border-radius:2px}
+
+/* 数字/百分比 高亮 */
+.kw-num-hl{color:#185FA5;font-weight:600;background:rgba(24,95,165,0.08);padding:1px 4px;border-radius:3px;border-bottom:1.5px solid rgba(24,95,165,0.4);cursor:default;transition:all .15s}
+.kw-num-hl:hover{background:rgba(24,95,165,0.14);border-bottom-color:rgba(24,95,165,0.7)}
+
+/* 大白话 */
+.kw-section-ez{background:#F0F8F2;border-radius:12px;padding:12px 14px;border-top:none;margin-top:6px}
+.kw-ez-text{font-size:.86rem;color:#1a1a1a;line-height:1.85}
+.kw-ez-text mark{background:rgba(34,197,94,0.22);color:#166534;padding:0 2px;border-radius:2px;font-weight:600}
+
+/* 查资料 */
+.kw-section-ref{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:transparent}
+.kw-section-ref .kw-label{margin-bottom:0}
+.kw-ref-links{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.kw-ref{height:24px;padding:0 10px;border-radius:12px;display:inline-flex;align-items:center;gap:4px;background:#E8F1EB;color:#166534;font-size:.72rem;font-weight:600;letter-spacing:.02em;text-decoration:none;font-family:var(--font-display);transition:all .2s}
+.kw-ref::after{content:'↗';font-size:.7rem;opacity:.7;margin-left:2px}
+.kw-ref:hover{background:#0F6E56;color:#fff;transform:translateY(-1px)}
+
+/* 行业数据 */
+.kw-section-ind{background:transparent}
+.kw-id-text{font-size:.86rem;color:#1a1a1a;line-height:1.85}
+.kw-id-text mark{background:rgba(34,197,94,0.18);color:#166534;padding:0 2px;border-radius:2px;font-weight:600}
+
+/* 分类过滤 */
+.cat-filter{max-width:1200px;margin:0 auto 20px;padding:0 32px;display:flex;gap:8px;flex-wrap:wrap}
+.cat-btn{padding:6px 14px;border-radius:20px;background:#fff;color:#555;font-size:.78rem;font-weight:500;border:1px solid rgba(0,0,0,0.08);cursor:pointer;transition:all .2s;font-family:var(--font-body)}
+.cat-btn:hover{background:#F0F8F2;color:#0F6E56;border-color:rgba(15,110,86,0.2)}
+.cat-btn.active{background:#0F6E56;color:#fff;border-color:#0F6E56}
+.cat-btn .cnt{opacity:.6;margin-left:4px;font-size:.72rem}
+
+/* 脚注 */
+.page-foot{max-width:1200px;margin:60px auto 40px;padding:24px 32px;text-align:center;color:#999;font-size:.76rem;line-height:1.7;border-top:0.5px solid rgba(0,0,0,0.08)}
+
+/* Scroll Reveal */
+.scroll-reveal{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
+.scroll-reveal.revealed{opacity:1;transform:translateY(0)}
+
+/* 小屏适配 */
+@media (max-width:860px){
+  .top3-section{padding:24px;border-radius:20px}
+  .top3-grid{grid-template-columns:1fr}
+  .page-head h1{font-size:2rem}
+  .kw-grid{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .page-head{padding:40px 20px 24px}
+  .kw-card{border-radius:14px}
+  .kw-top{padding:16px 16px 10px}
+  .kw-body{padding:0 16px 14px}
+  .kw-section{padding:10px 0}
+  .kw-section-ez{padding:10px 12px}
+  .kw-ref{padding:0 8px;font-size:.68rem;height:22px}
+  .kw-id-text,.kw-pro-text,.kw-ez-text{font-size:.83rem}
+}
+</style>
+</head>
+<body>
+<div class="page-head">
+  <h1>光伏</h1>
+  <div class="subtitle">光伏 行业的关键词百科与标杆公司拆解</div>
+  <div class="meta"><span><strong>100</strong> 关键词</span><span><strong>3</strong> 标杆公司</span><span><strong>2025-2026</strong> 最新数据</span></div>
+</div>
+
+<!-- 三强区块 -->
+<div class="top3-section" id="top3Section"></div>
+
+<!-- 分类过滤 -->
+<div class="cat-filter" id="catFilter"></div>
+
+<!-- 关键词区 -->
+<div class="kw-section-title">
+  <h2>100 词百科<em>· 覆盖核心 / 财务 / 技术 / 商业四大维度</em></h2>
+  <div class="kst-meta" id="kwMeta"></div>
+</div>
+<div class="kw-grid" id="kwGrid"></div>
+
+<div class="page-foot">
+  Generated by <strong style="color:#0F6E56">IndustryLens</strong> · 专业释义 + 大白话 + 行业数据 + 三强拆解<br>
+  数据基于公开资料整理，不构成投资建议
+</div>
+
+<script>
+// ========== 数据注入点 ==========
+// 下面 3 个变量由 skill 在生成时填充
+var INDUSTRY = {"name": "光伏", "desc": ""};
+var KEYWORDS = [{"rank": 1, "cat": "core", "term": "光伏", "pro": "光伏（Photovoltaic, PV）是指利用半导体界面的光生伏特效应，将太阳光能直接转换为电能的技术。核心原理是当光子照射到半导体材料（如硅）上时，激发电子-空穴对，通过内建电场分离产生电流。2025年全球光伏新增装机量预计达500GW，中国占60%以上，隆基绿能、晶科能源等企业主导市场。光伏产业链上游为硅料/硅片，中游为电池/组件，下游为电站/运维。", "ref": {"google": "光伏 原理 2025 装机量", "wiki": "Photovoltaics"}, "industryData": "2025年全球光伏装机量预计500GW，中国约300GW。隆基绿能组件出货量全球第一，市占率约25%。", "ez": "光伏就是太阳能发电，把阳光变成电，就像植物光合作用但更直接。"}, {"rank": 2, "cat": "core", "term": "硅料", "pro": "硅料（Polysilicon）是光伏产业最上游的基础原材料，通过化学方法将工业硅提纯至高纯度（通常99.9999%以上）。2025年全球硅料产能约250万吨，中国占80%以上，通威股份、协鑫科技、大全能源为前三强。硅料价格波动直接影响全产业链成本，2025年价格约60元/kg，较2022年高点下降80%。硅料环节属于高能耗、高技术壁垒环节。", "ref": {"google": "硅料 产能 2025 价格", "wiki": "Polysilicon"}, "industryData": "2025年全球硅料产能250万吨，通威股份产能45万吨，市占率18%。价格60元/kg，较2022年300元/kg大幅下降。", "ez": "硅料就是光伏的“面粉”，纯度要极高，做芯片的硅纯度更高，但光伏硅便宜多了。"}, {"rank": 3, "cat": "core", "term": "硅片", "pro": "硅片（Wafer）是将硅料通过拉晶/铸锭、切割等工艺制成的薄片，是光伏电池的基板。主流尺寸为182mm和210mm，厚度约150μm。2025年全球硅片产能约600GW，中国占90%以上，隆基绿能、中环股份、晶科能源为龙头。硅片环节技术迭代快，金刚线切割、薄片化等持续降本。硅片价格约2.5元/片。", "ref": {"google": "硅片 尺寸 2025 产能", "wiki": "Wafer (electronics)"}, "industryData": "2025年全球硅片产能600GW，隆基绿能产能120GW，市占率20%。182mm硅片价格2.5元/片。", "ez": "硅片就是硅料切成薄片，像切土豆片，越薄越省料，但容易碎。"}, {"rank": 4, "cat": "core", "term": "光伏电池", "pro": "光伏电池（Solar Cell）是将光能直接转换为电能的核心器件，基于PN结的光生伏特效应。主流技术为PERC（钝化发射极背面电池），2025年市占率约60%，但TOPCon和HJT（异质结）快速崛起，预计2026年TOPCon市占率将超50%。电池转换效率是关键指标，PERC约23.5%，TOPCon约25.5%，HJT约26%。中国电池产能占全球80%以上。", "ref": {"google": "光伏电池 转换效率 2025 TOPCon", "wiki": "Solar cell"}, "industryData": "2025年PERC量产效率23.5%，TOPCon 25.5%，HJT 26%。通威、爱旭、钧达为电池龙头。", "ez": "光伏电池就是太阳能板的核心，像一块能量饼干，把阳光吃进去变成电。"}, {"rank": 5, "cat": "core", "term": "光伏组件", "pro": "光伏组件（Solar Module）由若干光伏电池片串并联封装而成，是光伏发电系统的最终产品。通常60片或72片电池组成，功率范围400W-700W。2025年全球组件出货量约500GW，晶科能源、隆基绿能、天合光能、晶澳科技为四大龙头。组件价格约0.8元/W，较2022年下降60%。组件环节是品牌和渠道竞争的关键。", "ref": {"google": "光伏组件 出货量 2025 价格", "wiki": "Solar panel"}, "industryData": "2025年全球组件出货量500GW，晶科能源出货75GW，市占率15%。组件价格0.8元/W。", "ez": "光伏组件就是太阳能板，把电池片拼在一起，像拼乐高，然后铺在屋顶或地上。"}, {"rank": 6, "cat": "core", "term": "逆变器", "pro": "逆变器（Inverter）是光伏系统中将直流电（DC）转换为交流电（AC）的关键设备，使电力能并入电网或供负载使用。主要类型包括组串式、集中式和微型逆变器。2025年全球逆变器出货量约400GW，华为、阳光电源、锦浪科技为前三强。逆变器成本约占系统总成本的5%-10%，但直接影响发电效率和系统寿命。", "ref": {"google": "逆变器 出货量 2025 华为", "wiki": "Solar inverter"}, "industryData": "2025年全球逆变器出货400GW，华为市占率30%，阳光电源25%。组串式逆变器占比70%。", "ez": "逆变器就像翻译官，把太阳能板发的直流电翻译成家里能用的交流电。"}, {"rank": 7, "cat": "core", "term": "光伏电站", "pro": "光伏电站（Solar Power Station）是利用光伏组件大规模发电的设施，分为集中式（大型地面电站）和分布式（屋顶、工商业等）。2025年中国集中式电站占比约60%，分布式约40%。电站投资成本约3元/W，内部收益率（IRR）约6%-8%。国家能源集团、华能等央企是主要投资方。电站运营期通常25年。", "ref": {"google": "光伏电站 投资成本 2025 IRR", "wiki": "Photovoltaic power station"}, "industryData": "2025年中国光伏电站累计装机约600GW，集中式360GW，分布式240GW。投资成本3元/W。", "ez": "光伏电站就是太阳能发电厂，一片片太阳能板像庄稼一样种在地上，发电卖钱。"}, {"rank": 8, "cat": "core", "term": "分布式光伏", "pro": "分布式光伏（Distributed PV）指在用户场地附近建设、运行方式以用户侧自发自用为主的光伏发电系统，包括户用屋顶和工商业屋顶。2025年中国分布式光伏新增装机约100GW，占新增总装机的40%。户用光伏市场由正泰安能、天合富家等主导，工商业由晶科、隆基等拓展。分布式光伏享受国家补贴退坡后，仍具经济性。", "ref": {"google": "分布式光伏 装机 2025 户用", "wiki": "Distributed generation"}, "industryData": "2025年中国分布式光伏新增100GW，户用约50GW。正泰安能户用市占率20%。", "ez": "分布式光伏就是在自家屋顶或工厂房顶装太阳能板，自己发电自己用，省电费。"}, {"rank": 9, "cat": "core", "term": "集中式光伏", "pro": "集中式光伏（Utility-scale PV）指在荒漠、戈壁等地区建设的大型地面光伏电站，通常容量在10MW以上，所发电力升压后并入高压电网。2025年中国集中式光伏新增装机约150GW，主要分布在西北地区。特高压输电线路是配套关键。集中式电站规模效应明显，但需解决消纳问题。", "ref": {"google": "集中式光伏 装机 2025 特高压", "wiki": "Photovoltaic power station"}, "industryData": "2025年中国集中式光伏新增150GW，累计360GW。国家电投持有最大集中式电站规模。", "ez": "集中式光伏就是在地广人稀的地方建大型太阳能电站，像沙漠里的蓝色海洋。"}, {"rank": 10, "cat": "core", "term": "光伏产业链", "pro": "光伏产业链（PV Industry Chain）包括上游（硅料、硅片）、中游（电池、组件）、下游（逆变器、电站、运维）及辅材（玻璃、胶膜、边框等）。2025年中国光伏产业链全球市占率超80%，产值约1.5万亿元。产业链各环节利润分配不均，2025年上游硅料利润压缩，中游电池组件微利，下游电站运营稳定。", "ref": {"google": "光伏产业链 利润 2025 产值", "wiki": "Photovoltaics"}, "industryData": "2025年中国光伏产业链产值1.5万亿元，硅料环节毛利率约20%，组件约10%，电站运营约15%。", "ez": "光伏产业链就像做面包，从种小麦（硅料）到烤面包（组件），再到卖面包（电站），每个环节都赚钱。"}, {"rank": 11, "cat": "core", "term": "PERC电池", "pro": "PERC（Passivated Emitter and Rear Cell，钝化发射极背面电池）是当前主流光伏电池技术，通过在电池背面增加钝化层，减少复合损失，提高效率。2025年PERC量产效率约23.5%，市占率约60%，但正被TOPCon和HJT替代。PERC产线投资成本约1.5亿元/GW，较新技术低。隆基、通威等企业大量产能。", "ref": {"google": "PERC电池 效率 2025 市占率", "wiki": "PERC"}, "industryData": "2025年PERC电池量产效率23.5%，市占率60%。隆基绿能PERC产能约50GW。", "ez": "PERC电池是太阳能电池的经典款，就像手机里的4G，虽然快被5G替代，但还很能打。"}, {"rank": 12, "cat": "core", "term": "TOPCon电池", "pro": "TOPCon（Tunnel Oxide Passivated Contact，隧穿氧化层钝化接触电池）是下一代N型电池技术，在电池背面制备超薄氧化硅层和掺杂多晶硅层，实现高效钝化。2025年TOPCon量产效率约25.5%，市占率快速提升至30%，预计2026年超50%。晶科能源、天合光能、钧达股份等大规模扩产。TOPCon产线可兼容PERC升级。", "ref": {"google": "TOPCon电池 效率 2025 产能", "wiki": "TOPCon"}, "industryData": "2025年TOPCon电池量产效率25.5%，晶科能源产能约60GW，市占率全球第一。", "ez": "TOPCon是新一代太阳能电池，比PERC更高效，就像5G比4G快，但成本稍高。"}, {"rank": 13, "cat": "core", "term": "HJT电池", "pro": "HJT（Heterojunction with Intrinsic Thin Layer，异质结电池）结合晶体硅和非晶硅薄膜技术，具有高转换效率（量产约26%）、低温度系数、双面发电等优势。2025年HJT市占率约5%，但产能扩张迅速，华晟新能源、东方日升等领先。HJT产线投资成本约3.5亿元/GW，较TOPCon高，但效率潜力更大。", "ref": {"google": "HJT电池 效率 2025 产能", "wiki": "Heterojunction solar cell"}, "industryData": "2025年HJT电池量产效率26%，华晟新能源产能约10GW。成本较TOPCon高20%。", "ez": "HJT是太阳能电池中的学霸，效率最高，但学费（成本）也贵，还在努力降本。"}, {"rank": 14, "cat": "core", "term": "BC电池", "pro": "BC（Back Contact，背接触电池）是将电极全部置于电池背面的技术，消除正面栅线遮挡，提升效率。代表产品为隆基绿能的HPBC（混合钝化背接触），2025年量产效率约25.5%。BC电池美观、高效，适合分布式市场。但工艺复杂，成本较高。隆基绿能预计2025年BC产能达50GW。", "ref": {"google": "BC电池 隆基 2025 效率", "wiki": "Back-contact solar cell"}, "industryData": "2025年隆基HPBC电池效率25.5%，产能50GW。BC组件溢价约0.1元/W。", "ez": "BC电池把电线藏到背面，正面全黑更美观，像全面屏手机，但制造难度大。"}, {"rank": 15, "cat": "core", "term": "钙钛矿电池", "pro": "钙钛矿太阳能电池（Perovskite Solar Cell）利用钙钛矿结构材料（如CH3NH3PbI3）作为吸光层，具有高理论效率（超30%）、低成本、可柔性制备等优势。2025年实验室效率达26.1%，但稳定性问题尚未完全解决，量产尚在早期。协鑫光电、极电光能等企业建设中试线。钙钛矿与晶硅叠层是未来方向。", "ref": {"google": "钙钛矿电池 效率 2025 量产", "wiki": "Perovskite solar cell"}, "industryData": "2025年钙钛矿实验室效率26.1%，协鑫光电100MW中试线投产。叠层效率超30%。", "ez": "钙钛矿电池是太阳能电池的未来之星，像新秀演员，潜力大但还没演过主角。"}, {"rank": 16, "cat": "core", "term": "N型电池", "pro": "N型电池（N-type Cell）指以N型硅片为基底的电池，包括TOPCon、HJT、IBC等。相比P型电池（以PERC为代表），N型电池具有无光衰、高双面率、高转换效率等优势。2025年N型电池市占率约40%，预计2026年超50%。N型硅片成本略高于P型，但效率增益可覆盖。晶科、天合等主导。", "ref": {"google": "N型电池 市占率 2025 优势", "wiki": "N-type solar cell"}, "industryData": "2025年N型电池市占率40%，TOPCon占30%，HJT占5%。N型硅片价格较P型高10%。", "ez": "N型电池是新一代技术，比老款P型更耐用、效率更高，就像LED灯比白炽灯好。"}, {"rank": 17, "cat": "core", "term": "P型电池", "pro": "P型电池（P-type Cell）以P型硅片为基底，主流技术为PERC。P型电池工艺成熟、成本低，但存在光致衰减（LID）问题，效率上限约24%。2025年P型电池市占率约60%，但正快速被N型替代。P型硅片价格低于N型，但未来产能将逐步收缩。", "ref": {"google": "P型电池 市占率 2025 PERC", "wiki": "P-type solar cell"}, "industryData": "2025年P型电池市占率60%，PERC效率23.5%。P型硅片价格约2.3元/片。", "ez": "P型电池是太阳能电池的老将，便宜但有点过时，就像功能机，还能用但智能机更香。"}, {"rank": 18, "cat": "core", "term": "双面发电", "pro": "双面发电（Bifacial）指光伏组件正反面均可吸收光线发电，背面利用地面反射光，可提升发电量5%-30%。双面组件通常采用透明背板或双玻结构。2025年双面组件市占率约70%，成为主流。双面率（背面效率与正面之比）通常为70%-80%。双面技术适用于地面电站和雪地等场景。", "ref": {"google": "双面发电 组件 2025 市占率", "wiki": "Bifacial solar cells"}, "industryData": "2025年双面组件市占率70%，双面率75%。地面电站采用双面可提升发电量10%-20%。", "ez": "双面发电就像双面胶，两面都能粘，太阳能板背面也能发电，多赚阳光。"}, {"rank": 19, "cat": "core", "term": "光伏玻璃", "pro": "光伏玻璃（Solar Glass）是光伏组件的重要组成部分，用于保护电池片并透光。主要分为超白压花玻璃和浮法玻璃，厚度通常2.0mm-3.2mm。2025年全球光伏玻璃产能约1000万吨，信义光能、福莱特为双寡头，合计市占率超50%。光伏玻璃价格约25元/平米，受纯碱、天然气成本影响。", "ref": {"google": "光伏玻璃 产能 2025 信义光能", "wiki": "Solar glass"}, "industryData": "2025年全球光伏玻璃产能1000万吨，信义光能市占率30%，福莱特25%。价格25元/平米。", "ez": "光伏玻璃就是太阳能板的保护玻璃，像手机贴膜，但要透光好、耐冲击。"}, {"rank": 20, "cat": "core", "term": "光伏胶膜", "pro": "光伏胶膜（Encapsulant）用于封装电池片，提供绝缘和保护，主要材料为EVA（乙烯-醋酸乙烯酯）和POE（聚烯烃弹性体）。2025年全球胶膜需求约50亿平米，福斯特市占率约50%，为绝对龙头。POE胶膜因抗PID（电势诱导衰减）性能好，在N型组件中占比提升。胶膜成本约占组件总成本的5%。", "ref": {"google": "光伏胶膜 需求 2025 福斯特", "wiki": "Photovoltaic encapsulant"}, "industryData": "2025年全球胶膜需求50亿平米，福斯特出货25亿平米，市占率50%。POE占比30%。", "ez": "光伏胶膜就像三明治里的芝士，把电池片夹在中间，保护它们不受潮。"}, {"rank": 21, "cat": "core", "term": "光伏背板", "pro": "光伏背板（Backsheet）是组件背面的保护材料，要求耐候、绝缘、防水。主流结构为含氟背板（如TPT）和无氟背板（如PET）。2025年全球背板需求约20亿平米，中来股份、赛伍技术等为龙头。透明背板用于双面组件，市占率提升。背板成本约占组件总成本的3%。", "ref": {"google": "光伏背板 需求 2025 中来股份", "wiki": "Backsheet"}, "industryData": "2025年全球背板需求20亿平米，中来股份市占率15%。透明背板占比40%。", "ez": "光伏背板是太阳能板的背面防护服，防晒防水，保证组件长寿。"}, {"rank": 22, "cat": "core", "term": "光伏支架", "pro": "光伏支架（Mounting Structure）用于固定光伏组件，分为固定支架和跟踪支架。固定支架成本低，跟踪支架可增加发电量10%-25%。2025年全球支架需求约100GW，中信博、天合光能（跟踪支架）为龙头。跟踪支架渗透率约30%，在欧美较高。支架成本约占电站总投资的5%-10%。", "ref": {"google": "光伏支架 需求 2025 跟踪支架", "wiki": "Photovoltaic mounting system"}, "industryData": "2025年全球支架需求100GW，中信博跟踪支架出货10GW，市占率10%。", "ez": "光伏支架就是太阳能板的骨架，让板子朝向太阳，像向日葵跟着太阳转。"}, {"rank": 23, "cat": "core", "term": "光伏电站运维", "pro": "光伏电站运维（O&M）指对已并网电站进行监控、清洗、维修等管理，确保发电效率。2025年全球运维市场规模约500亿元，中国占60%。智能运维通过无人机巡检、AI诊断等技术降低人工成本。运维费用约0.05元/W/年，占电站收益的5%-10%。优质运维可提升发电量3%-5%。", "ref": {"google": "光伏电站运维 市场 2025 智能", "wiki": "Operation and maintenance"}, "industryData": "2025年全球运维市场500亿元，中国300亿元。智能运维渗透率30%。", "ez": "光伏电站运维就像给太阳能板做保养，洗洗刷刷，让它们多发电。"}, {"rank": 24, "cat": "core", "term": "光伏补贴", "pro": "光伏补贴（Subsidy）是政府为鼓励光伏发展提供的财政支持，包括初装补贴、度电补贴等。中国自2021年起对新备案集中式光伏不再补贴，进入平价时代。但户用光伏仍有少量补贴（约0.03元/kWh）。欧洲、美国等仍有补贴政策。2025年全球光伏补贴总额约200亿美元，中国占比下降。", "ref": {"google": "光伏补贴 2025 平价上网", "wiki": "Solar power subsidy"}, "industryData": "2025年中国户用光伏补贴0.03元/kWh，全球补贴总额200亿美元。", "ez": "光伏补贴是国家给太阳能发电的零花钱，现在慢慢不给了，要靠自己赚钱。"}, {"rank": 25, "cat": "core", "term": "平价上网", "pro": "平价上网（Grid Parity）指光伏发电成本与火电等传统能源成本相当，无需补贴即可盈利。中国2021年实现工商业平价，2023年实现户用平价。2025年光伏度电成本（LCOE）约0.2-0.3元/kWh，低于火电的0.4元/kWh。平价上网推动光伏大规模应用，但也压缩了产业链利润。", "ref": {"google": "光伏平价上网 2025 度电成本", "wiki": "Grid parity"}, "industryData": "2025年光伏LCOE 0.25元/kWh，火电0.4元/kWh。中国光伏全面平价。", "ez": "平价上网就是太阳能发电和火电一样便宜，不用靠补贴也能活。"}, {"rank": 26, "cat": "core", "term": "光伏消纳", "pro": "光伏消纳（PV Integration）指光伏所发电量被电网或用户有效利用的程度。由于光伏出力间歇性，消纳问题制约发展。2025年中国光伏弃光率约3%，较2015年大幅下降，但部分地区（如甘肃、新疆）仍达5%-8。储能、特高压、需求侧响应是提高消纳的关键。国家能源局设定消纳责任权重。", "ref": {"google": "光伏消纳 弃光率 2025", "wiki": "Grid integration of renewable energy"}, "industryData": "2025年中国平均弃光率3%，甘肃5%。储能配套可降低弃光率至2%以下。", "ez": "光伏消纳就是发的电能不能被用掉，像水龙头放水，要接得住才行。"}, {"rank": 27, "cat": "core", "term": "光伏储能", "pro": "光伏储能（PV Storage）指将光伏发电储存于电池等设备中，以平滑出力波动、提高自用率。常用技术为锂离子电池（磷酸铁锂为主）。2025年全球光伏配储渗透率约20%，中国约15%。储能成本约0.5元/Wh，系统寿命10-15年。光储一体化是趋势，可提升项目IRR 2-3个百分点。", "ref": {"google": "光伏储能 成本 2025 渗透率", "wiki": "Energy storage"}, "industryData": "2025年全球光伏配储渗透率20%，中国15%。磷酸铁锂电池成本0.5元/Wh。", "ez": "光伏储能就像给太阳能板配个充电宝，白天存电晚上用，不浪费。"}, {"rank": 28, "cat": "core", "term": "光伏制氢", "pro": "光伏制氢（PV-to-Hydrogen）利用光伏电力电解水制氢，实现绿氢生产。2025年光伏制氢成本约20元/kg，预计2030年降至15元/kg。中国光伏制氢项目规模约1GW，隆基、阳光电源等布局。光伏制氢可解决光伏消纳问题，并用于化工、冶金等脱碳领域。", "ref": {"google": "光伏制氢 成本 2025 项目", "wiki": "Hydrogen production"}, "industryData": "2025年光伏制氢成本20元/kg，项目规模1GW。隆基氢能电解槽市占率30%。", "ez": "光伏制氢就是用太阳能电把水分解成氢气，像变魔术，氢气可以当燃料。"}, {"rank": 29, "cat": "core", "term": "光伏建筑一体化", "pro": "光伏建筑一体化（BIPV）将光伏组件集成到建筑外墙、屋顶等，兼具发电和建材功能。2025年全球BIPV市场规模约500亿元，中国占40%。BIPV组件需满足建筑安全、美观要求，价格较普通组件高30%-50%。隆基、特斯拉等推出BIPV产品。BIPV是分布式光伏的重要方向。", "ref": {"google": "光伏建筑一体化 BIPV 2025 市场", "wiki": "Building-integrated photovoltaics"}, "industryData": "2025年全球BIPV市场500亿元，中国200亿元。隆基BIPV产品售价2元/W。", "ez": "BIPV就是让建筑自己发电，像会发电的玻璃幕墙，房子变成发电站。"}, {"rank": 30, "cat": "core", "term": "光伏度电成本", "pro": "光伏度电成本（LCOE，Levelized Cost of Electricity）是光伏电站全生命周期总成本除以总发电量，衡量发电经济性。2025年全球光伏LCOE约0.045美元/kWh，中国约0.25元/kWh。LCOE受初始投资、日照、运维等影响。技术进步和规模效应使LCOE持续下降，2025年较2010年下降90%。", "ref": {"google": "光伏度电成本 LCOE 2025", "wiki": "Levelized cost of electricity"}, "industryData": "2025年中国光伏LCOE 0.25元/kWh，较2010年下降90%。全球最低LCOE在智利约0.02美元/kWh。", "ez": "光伏度电成本就是每度太阳能电的造价，现在比火电还便宜，真香。"}, {"rank": 31, "cat": "finance", "term": "光伏企业毛利率", "pro": "毛利率（Gross Margin）是光伏企业核心盈利指标，反映产品附加值。2025年光伏产业链毛利率分化：硅料环节约20%（通威股份），硅片约15%（隆基绿能），电池约10%（爱旭股份），组件约8%（晶科能源），逆变器约30%（阳光电源）。行业整体毛利率承压，因产能过剩和价格战。", "ref": {"google": "光伏企业毛利率 2025 通威", "wiki": "Gross margin"}, "industryData": "2025年光伏行业平均毛利率15%，通威20%，隆基15%，晶科8%。较2022年下降10pp。", "ez": "毛利率就是卖东西赚多少差价，光伏现在毛利低，像卖白菜，靠走量。"}, {"rank": 32, "cat": "finance", "term": "光伏企业净利率", "pro": "净利率（Net Profit Margin）是扣除所有费用后的利润率，反映最终盈利能力。2025年光伏企业净利率普遍较低，通威股份约8%，隆基绿能约5%，晶科能源约3%。行业平均净利率约4%，较2022年下降5个百分点。费用控制（销售、管理、研发）和财务成本是影响净利率的关键。", "ref": {"google": "光伏企业净利率 2025 隆基", "wiki": "Profit margin"}, "industryData": "2025年光伏行业平均净利率4%，通威8%，隆基5%，晶科3%。", "ez": "净利率是最后落袋的利润，光伏企业赚得少，像薄利多销的小本生意。"}, {"rank": 33, "cat": "finance", "term": "光伏企业ROE", "pro": "ROE（Return on Equity，净资产收益率）衡量股东权益的回报率，是投资价值关键指标。2025年光伏企业ROE分化：通威股份约15%，隆基绿能约10%，晶科能源约8%。行业平均ROE约10%，较2022年下降5个百分点。高ROE企业通常具有成本优势或技术壁垒。", "ref": {"google": "光伏企业ROE 2025 通威", "wiki": "Return on equity"}, "industryData": "2025年光伏行业平均ROE 10%，通威15%，隆基10%，晶科8%。", "ez": "ROE就是你投的钱能赚回多少比例，光伏现在回报率一般，比存银行好点。"}, {"rank": 34, "cat": "finance", "term": "光伏企业资产负债率", "pro": "资产负债率（Debt-to-Asset Ratio）反映企业财务杠杆和偿债风险。2025年光伏企业资产负债率普遍较高，隆基绿能约55%，通威股份约60%，晶科能源约70%。行业平均约60%，较2022年略有上升。高负债率源于产能扩张，但现金流健康的企业风险可控。", "ref": {"google": "光伏企业资产负债率 2025 隆基", "wiki": "Debt ratio"}, "industryData": "2025年光伏行业平均资产负债率60%，隆基55%，通威60%，晶科70%。", "ez": "资产负债率就是欠债比例，光伏企业借钱扩张，像贷款买房，风险高但机会也大。"}, {"rank": 35, "cat": "finance", "term": "光伏企业现金流", "pro": "现金流（Cash Flow）是企业生存命脉，光伏企业因重资产投资，经营性现金流至关重要。2025年隆基绿能经营性现金流约200亿元，通威约150亿元，晶科约100亿元。行业整体现金流充裕，但部分中小企业因价格战出现现金流紧张。自由现金流（FCF）用于衡量分红和再投资能力。", "ref": {"google": "光伏企业现金流 2025 隆基", "wiki": "Cash flow"}, "industryData": "2025年隆基经营现金流200亿元，通威150亿元。行业经营性现金流净额合计约1000亿元。", "ez": "现金流就是企业手头的活钱，光伏巨头现金流不错，小企业可能揭不开锅。"}, {"rank": 36, "cat": "finance", "term": "光伏企业估值", "pro": "估值（Valuation）常用PE（市盈率）、PB（市净率）等指标。2025年光伏板块估值处于历史低位，隆基绿能PE约15倍，通威股份约10倍，晶科能源约12倍。行业平均PE约12倍，较2021年高点40倍大幅下降。估值受产能过剩、价格战影响，但长期增长预期支撑。", "ref": {"google": "光伏企业估值 PE 2025 隆基", "wiki": "Valuation (finance)"}, "industryData": "2025年光伏板块平均PE 12倍，隆基15倍，通威10倍。较2021年下降70%。", "ez": "估值就是市场给企业定的价，光伏现在估值低，像打折商品，但可能还有更低价。"}, {"rank": 37, "cat": "finance", "term": "光伏企业研发投入", "pro": "研发投入（R&D Investment）是光伏技术迭代的关键。2025年隆基绿能研发投入约100亿元，占营收5%；晶科能源约80亿元，占比4%；通威股份约50亿元，占比3%。行业平均研发强度约4%，高于制造业平均水平。研发方向包括高效电池（TOPCon、HJT）、钙钛矿等。", "ref": {"google": "光伏企业研发投入 2025 隆基", "wiki": "Research and development"}, "industryData": "2025年隆基研发投入100亿元，晶科80亿元。行业研发强度4%。", "ez": "研发投入就是企业花钱搞创新，光伏企业舍得砸钱，像学霸买辅导书。"}, {"rank": 38, "cat": "finance", "term": "光伏企业产能利用率", "pro": "产能利用率（Capacity Utilization）反映生产设备利用程度。2025年光伏各环节产能利用率分化：硅料约70%（通威85%），硅片约60%（隆基75%），电池约65%（爱旭80%），组件约55%（晶科70%）。行业整体产能过剩，利用率低于80%的警戒线，导致价格战。", "ref": {"google": "光伏产能利用率 2025 硅料", "wiki": "Capacity utilization"}, "industryData": "2025年硅料产能利用率70%，硅片60%，组件55%。隆基硅片利用率75%。", "ez": "产能利用率就是机器开动比例，光伏现在很多机器闲置，像工厂淡季。"}, {"rank": 39, "cat": "finance", "term": "光伏企业库存周转", "pro": "库存周转率（Inventory Turnover）衡量产品库存管理效率。2025年光伏组件库存周转天数约60天，隆基约50天，晶科约55天。行业平均周转天数较2022年增加20天，因产能过剩导致库存积压。高周转率企业如隆基、晶科具有渠道优势。", "ref": {"google": "光伏企业库存周转 2025 隆基", "wiki": "Inventory turnover"}, "industryData": "2025年光伏组件库存周转天数60天，隆基50天。较2022年增加20天。", "ez": "库存周转就是产品从出厂到卖掉的速度，光伏现在卖得慢，像滞销货。"}, {"rank": 40, "cat": "finance", "term": "光伏企业应收账款", "pro": "应收账款（Accounts Receivable）是企业销售未回款部分。2025年光伏企业应收账款规模较大，隆基绿能约300亿元，占营收15%；晶科能源约250亿元，占比12%。行业平均应收账款周转天数约90天，较2022年增加30天，反映下游电站客户付款延迟。", "ref": {"google": "光伏企业应收账款 2025 隆基", "wiki": "Accounts receivable"}, "industryData": "2025年隆基应收账款300亿元，周转天数90天。行业平均周转天数90天。", "ez": "应收账款就是卖货没收到钱，光伏企业被欠账多，像赊账做生意。"}, {"rank": 41, "cat": "biz", "term": "光伏产能过剩", "pro": "产能过剩（Overcapacity）指行业产能远超需求，导致价格战和利润压缩。2025年光伏全产业链产能过剩，硅料产能250万吨（需求200万吨），硅片600GW（需求500GW），组件500GW（需求400GW）。行业平均产能利用率仅60%，中小企业亏损退出。产能过剩是当前光伏最大挑战。", "ref": {"google": "光伏产能过剩 2025 利用率", "wiki": "Overcapacity"}, "industryData": "2025年硅料产能过剩25%，硅片20%，组件25%。中小企业亏损率30%。", "ez": "产能过剩就是做太多卖不掉，光伏现在供过于求，像奶茶店遍地开。"}, {"rank": 42, "cat": "biz", "term": "光伏价格战", "pro": "价格战（Price War）是企业为争夺市场份额而竞相降价的竞争行为。2025年光伏组件价格从2022年的1.5元/W降至0.8元/W，降幅47%。硅料从300元/kg降至60元/kg。价格战导致行业利润微薄，但加速了落后产能出清。龙头企业凭借成本优势仍能盈利，中小企业承压。", "ref": {"google": "光伏价格战 2025 组件价格", "wiki": "Price war"}, "industryData": "2025年组件价格0.8元/W，较2022年下降47%。硅料价格60元/kg，下降80%。", "ez": "价格战就是互相降价抢客户，光伏现在打骨折，买家开心卖家哭。"}, {"rank": 43, "cat": "biz", "term": "光伏行业集中度", "pro": "行业集中度（CRn）指前n家企业市场份额之和。2025年光伏各环节集中度较高：硅料CR3约50%（通威、协鑫、大全），硅片CR3约60%（隆基、中环、晶科），组件CR3约40%（晶科、隆基、天合）。集中度提升有利于龙头企业定价权，但价格战下竞争依然激烈。", "ref": {"google": "光伏行业集中度 2025 CR3", "wiki": "Concentration ratio"}, "industryData": "2025年硅料CR3 50%，硅片CR3 60%，组件CR3 40%。", "ez": "行业集中度就是看几个大佬占多少份额，光伏行业巨头垄断，小厂难混。"}, {"rank": 44, "cat": "biz", "term": "光伏企业出海", "pro": "出海（Going Global）指光伏企业拓展海外市场，规避贸易壁垒。2025年中国光伏组件出口约300GW，占产量60%，主要市场为欧洲（40%）、亚太（30%）、美洲（20%）。隆基、晶科、天合在海外设厂（如东南亚、美国）。美国对东南亚光伏产品加征关税，促使企业向中东、印度转移。", "ref": {"google": "光伏企业出海 2025 出口量", "wiki": "International trade"}, "industryData": "2025年中国组件出口300GW，欧洲占40%。隆基海外产能20GW。", "ez": "光伏企业出海就是把太阳能板卖到国外，像中国制造走向世界。"}, {"rank": 45, "cat": "biz", "term": "光伏贸易壁垒", "pro": "贸易壁垒（Trade Barrier）包括关税、反倾销、反补贴等限制措施。2025年美国对东南亚光伏产品征收反倾销税（税率约20%），印度对进口光伏组件征收40%关税，欧盟启动碳边境调节机制（CBAM）。贸易壁垒增加出口成本，促使中国企业在海外建厂。", "ref": {"google": "光伏贸易壁垒 2025 美国关税", "wiki": "Trade barrier"}, "industryData": "2025年美国对东南亚光伏反倾销税20%，印度关税40%。中国企业海外产能50GW。", "ez": "贸易壁垒就是外国给中国太阳能板设门槛，像收过路费，逼我们去当地建厂。"}, {"rank": 46, "cat": "biz", "term": "光伏电站IRR", "pro": "IRR（Internal Rate of Return，内部收益率）是评估光伏电站投资回报的核心指标。2025年中国集中式光伏电站IRR约6%-8%，分布式约8%-10%。IRR受初始投资、发电量、电价、融资成本影响。组件价格下降使IRR提升，但电价下行（市场化交易）压制收益。", "ref": {"google": "光伏电站IRR 2025 分布式", "wiki": "Internal rate of return"}, "industryData": "2025年集中式IRR 6%-8%，分布式8%-10%。组件价格0.8元/W下IRR提升2pp。", "ez": "IRR就是电站投资的年化收益率，现在光伏电站回报率还行，比理财高。"}, {"rank": 47, "cat": "biz", "term": "光伏电站LCOE", "pro": "LCOE（Levelized Cost of Electricity）是光伏电站全生命周期度电成本，是衡量竞争力的关键。2025年中国光伏LCOE约0.25元/kWh，较火电低40%。LCOE受初始投资、运维、日照、衰减等影响。技术进步使LCOE持续下降，预计2030年降至0.2元/kWh。", "ref": {"google": "光伏电站LCOE 2025 中国", "wiki": "Levelized cost of electricity"}, "industryData": "2025年中国光伏LCOE 0.25元/kWh，火电0.4元/kWh。预计2030年0.2元/kWh。", "ez": "LCOE就是每度电的造价，光伏电现在比火电便宜，未来更便宜。"}, {"rank": 48, "cat": "biz", "term": "光伏绿证", "pro": "绿证（Green Certificate）是可再生能源电力的环境属性凭证，1个绿证对应1000kWh绿电。2025年中国绿证交易量约5亿个，均价约30元/个。光伏电站可通过出售绿证增加收益，约0.03元/kWh。绿证市场逐步完善，但流动性不足。", "ref": {"google": "光伏绿证 2025 价格 交易量", "wiki": "Renewable Energy Certificate"}, "industryData": "2025年中国绿证交易5亿个，均价30元/个。光伏绿证收益约0.03元/kWh。", "ez": "绿证就是太阳能电的绿色标签，可以卖钱，像卖环保积分。"}, {"rank": 49, "cat": "biz", "term": "光伏碳交易", "pro": "碳交易（Carbon Trading）指通过市场机制买卖碳排放配额或碳信用。光伏电站可产生CCER（中国核证减排量），2025年CCER价格约60元/吨，光伏项目碳收益约0.02元/kWh。全国碳市场扩容至水泥、电解铝等行业，增加碳需求。碳交易为光伏电站提供额外收入。", "ref": {"google": "光伏碳交易 CCER 2025 价格", "wiki": "Carbon emission trading"}, "industryData": "2025年CCER价格60元/吨，光伏碳收益0.02元/kWh。全国碳市场交易量10亿吨。", "ez": "碳交易就是卖减排指标，光伏电站减排的碳可以卖钱，像卖空气。"}, {"rank": 50, "cat": "biz", "term": "光伏产业政策", "pro": "产业政策（Industrial Policy）包括补贴、税收优惠、强制配储等。2025年中国政策重点：新建光伏电站强制配储10%-20%（2小时），保障性收购小时数1000-1500小时，出口退税率13%。美国《通胀削减法案》（IRA）提供30%投资税收抵免。欧盟“REPowerEU”计划加速光伏部署。政策是光伏发展核心驱动力。", "ref": {"google": "光伏产业政策 2025 强制配储", "wiki": "Energy policy"}, "industryData": "2025年中国强制配储比例10%-20%，美国IRA税收抵免30%。全球光伏政策支持力度加大。", "ez": "光伏产业政策就是政府给太阳能行业定规矩、发红包，影响行业走向。"}, {"rank": 51, "cat": "tech", "term": "钝化发射极背面电池", "pro": "PERC（Passivated Emitter and Rear Cell）技术通过在电池背面增加钝化层，减少载流子复合，提升转换效率。2025年PERC市占率约60%，主流效率23.5%-24%。产业链中，PERC是P型电池主流，但面临TOPCon和HJT的替代压力。", "ref": {"google": "PERC电池 效率 2025", "wiki": "Passivated emitter and rear cell"}, "industryData": "2025年PERC电池量产效率24.0%，隆基、通威为主力。2026年预计降至50%以下。", "ez": "就像给电池背面贴了一层保护膜，减少能量损失，但新对手更厉害。"}, {"rank": 52, "cat": "tech", "term": "隧穿氧化层钝化接触电池", "pro": "TOPCon（Tunnel Oxide Passivated Contact）电池在背面采用超薄氧化硅层和掺杂多晶硅，实现高效钝化。2025年量产效率25.5%-26%，是N型电池主流。产业链中，TOPCon设备投资高，但效率优势明显，2026年市占率有望超PERC。", "ref": {"google": "TOPCon电池 效率 2025", "wiki": "TOPCon"}, "industryData": "2025年TOPCon市占率约30%，晶科能源产能超60GW。效率26.1%纪录。", "ez": "给电池背面加了个‘隧道’，让电子跑得更快，效率更高。"}, {"rank": 53, "cat": "tech", "term": "异质结电池", "pro": "HJT（Heterojunction with Intrinsic Thin-layer）电池结合晶体硅和非晶硅薄膜，具有高开路电压和双面率。2025年量产效率25.5%-26.5%，但成本较高。产业链中，HJT设备国产化加速，2026年有望降本。", "ref": {"google": "HJT电池 效率 2025", "wiki": "Heterojunction solar cell"}, "industryData": "2025年HJT市占率约5%，华晟新能源产能10GW。效率26.5%纪录。", "ez": "就像电池穿了件高科技外套，发电多但价格贵，正在努力降价。"}, {"rank": 54, "cat": "tech", "term": "背接触电池", "pro": "IBC（Interdigitated Back Contact）电池将电极全部置于背面，正面无遮挡，效率高。2025年量产效率26%-27%，但工艺复杂。产业链中，IBC主要用于高端市场，如分布式屋顶。", "ref": {"google": "IBC电池 效率 2025", "wiki": "Interdigitated back contact solar cell"}, "industryData": "2025年IBC市占率约2%，隆基Hi-MO 9效率26.5%。成本较高。", "ez": "把电池的‘电线’全藏到背后，正面干净利落，发电更多。"}, {"rank": 55, "cat": "tech", "term": "钙钛矿太阳能电池", "pro": "钙钛矿电池使用ABX3结构材料，具有高吸光性和低成本潜力。2025年实验室效率超26%，但稳定性待提升。产业链中，协鑫、纤纳等推动量产，2026年有望试产。", "ref": {"google": "钙钛矿电池 效率 2025", "wiki": "Perovskite solar cell"}, "industryData": "2025年纤纳光电组件效率18%，协鑫拟建GW级产线。", "ez": "一种新型‘魔法’材料，像涂油漆一样做电池，但寿命短，还在改进。"}, {"rank": 56, "cat": "tech", "term": "叠层电池", "pro": "叠层电池将不同带隙材料堆叠，如钙钛矿/硅叠层，理论效率超40%。2025年实验室效率33.7%（隆基）。产业链中，叠层是下一代技术，2026年有望小批量。", "ref": {"google": "叠层电池 效率 2025", "wiki": "Tandem solar cell"}, "industryData": "2025年隆基钙钛矿/硅叠层效率33.7%，晶科效率33.5%。", "ez": "把两种电池叠起来，像三明治，吸收更多阳光，效率逆天。"}, {"rank": 57, "cat": "tech", "term": "双面发电技术", "pro": "双面电池背面也能发电，提升总发电量5%-30%。2025年双面组件市占率超70%。产业链中，双面PERC和TOPCon主流，玻璃背板需求增加。", "ref": {"google": "双面组件 市占率 2025", "wiki": "Bifacial solar cell"}, "industryData": "2025年双面组件市占率75%，天合光能出货占比80%。", "ez": "电池正反面都能晒太阳，就像双面煎蛋，两面都熟。"}, {"rank": 58, "cat": "tech", "term": "半片电池技术", "pro": "将标准电池切成两半，降低电流和电阻损耗，提升功率。2025年半片组件市占率超90%。产业链中，半片是主流封装方式，搭配多主栅。", "ref": {"google": "半片组件 市占率 2025", "wiki": "Half-cut solar cell"}, "industryData": "2025年半片组件占比92%，晶澳、隆基主力产品。", "ez": "把大电池切成两半，电流减半，损耗更小，就像分食蛋糕。"}, {"rank": 59, "cat": "tech", "term": "多主栅技术", "pro": "MBB（Multi-Busbar）技术增加主栅数量，减少银浆用量和电阻。2025年12主栅成为主流。产业链中，MBB提升组件功率5-10W。", "ref": {"google": "多主栅 技术 2025", "wiki": "Multi-busbar solar cell"}, "industryData": "2025年12主栅组件占比80%，16主栅开始应用。", "ez": "电池上多几条‘高速公路’，电流跑得更顺畅。"}, {"rank": 60, "cat": "tech", "term": "无主栅技术", "pro": "SWCT（Smart Wire Connection Technology）取消主栅，用细线连接，减少遮光和银浆。2025年量产效率提升0.3%。产业链中，无主栅降低成本，但设备要求高。", "ref": {"google": "无主栅 技术 2025", "wiki": "Smart wire connection technology"}, "industryData": "2025年无主栅组件市占率5%，梅耶博格推广。", "ez": "去掉电池上的‘大马路’，改用细线，更省材料。"}, {"rank": 61, "cat": "tech", "term": "金刚线切割", "pro": "使用金刚石线切割硅片，减少损耗，提升效率。2025年金刚线线径降至30μm。产业链中，金刚线是硅片切割主流，美畅股份市占率50%。", "ref": {"google": "金刚线 线径 2025", "wiki": "Diamond wire saw"}, "industryData": "2025年金刚线线径30μm，美畅出货量1亿公里。", "ez": "用带钻石的线切硅片，又细又准，浪费少。"}, {"rank": 62, "cat": "tech", "term": "硅片大尺寸化", "pro": "硅片尺寸从M6（166mm）向M10（182mm）和G12（210mm）发展，降低单瓦成本。2025年210mm市占率超50%。产业链中，大尺寸硅片需配套设备升级。", "ref": {"google": "210mm硅片 市占率 2025", "wiki": "Solar wafer size"}, "industryData": "2025年210mm硅片占比55%，中环股份主导。", "ez": "硅片越做越大，就像披萨做大，单位成本更低。"}, {"rank": 63, "cat": "tech", "term": "薄片化技术", "pro": "硅片厚度从180μm减至130μm，减少硅料用量。2025年主流厚度150μm。产业链中，薄片化降低硅成本，但碎片率需控制。", "ref": {"google": "硅片厚度 2025", "wiki": "Wafer thinning"}, "industryData": "2025年硅片厚度150μm，隆基推进130μm。", "ez": "硅片越薄越省料，就像切面包，薄片能切更多。"}, {"rank": 64, "cat": "tech", "term": "N型硅片", "pro": "N型硅片掺磷，少子寿命高，适合高效电池。2025年N型硅片市占率约40%。产业链中，N型是TOPCon和HJT的基础，拉晶难度大。", "ref": {"google": "N型硅片 市占率 2025", "wiki": "N-type silicon"}, "industryData": "2025年N型硅片占比40%，中环、隆基扩产。", "ez": "N型硅片更纯净，适合做高效电池，但工艺复杂。"}, {"rank": 65, "cat": "tech", "term": "P型硅片", "pro": "P型硅片掺硼，成本低，是传统主流。2025年市占率约60%。产业链中，P型用于PERC，但效率瓶颈明显。", "ref": {"google": "P型硅片 市占率 2025", "wiki": "P-type silicon"}, "industryData": "2025年P型硅片占比60%，隆基、通威主力。", "ez": "P型硅片便宜但效率低，就像普通手机，够用但不够强。"}, {"rank": 66, "cat": "tech", "term": "连续拉晶技术", "pro": "CCZ（Continuous Czochralski）技术连续加料拉晶，提升产能和一致性。2025年CCZ占比约20%。产业链中，CCZ降低硅片成本，但技术门槛高。", "ref": {"google": "连续拉晶 技术 2025", "wiki": "Continuous Czochralski method"}, "industryData": "2025年CCZ拉晶成本降10%，中环推广。", "ez": "像连续做面条一样拉硅棒，又快又均匀。"}, {"rank": 67, "cat": "tech", "term": "颗粒硅", "pro": "颗粒硅是流化床法生产的硅料，成本低，流动性好。2025年市占率约15%。产业链中，协鑫科技主导，用于连续拉晶。", "ref": {"google": "颗粒硅 市占率 2025", "wiki": "Granular polysilicon"}, "industryData": "2025年协鑫颗粒硅产能30万吨，成本低于棒状硅。", "ez": "像小颗粒糖一样的硅料，倒起来方便，成本更低。"}, {"rank": 68, "cat": "tech", "term": "硅烷法", "pro": "硅烷法生产多晶硅，纯度更高，但成本较高。2025年市占率约10%。产业链中，用于电子级硅料。", "ref": {"google": "硅烷法 多晶硅 2025", "wiki": "Silane process"}, "industryData": "2025年硅烷法产能10万吨，主要用于半导体。", "ez": "用硅烷气做硅料，更纯但贵，像精制盐。"}, {"rank": 69, "cat": "tech", "term": "物理冶金法", "pro": "物理冶金法提纯硅料，成本低但纯度低，用于铸锭。2025年市占率约5%。产业链中，用于低端市场。", "ref": {"google": "物理冶金法 硅料 2025", "wiki": "Metallurgical-grade silicon"}, "industryData": "2025年物理冶金法产能5万吨，成本低但效率低。", "ez": "像淘金一样物理提纯，便宜但不纯。"}, {"rank": 70, "cat": "tech", "term": "铸锭单晶", "pro": "铸锭单晶通过铸锭工艺生产类单晶硅片，成本低，效率接近直拉单晶。2025年市占率约5%。产业链中，用于低成本场景。", "ref": {"google": "铸锭单晶 2025", "wiki": "Cast-mono silicon"}, "industryData": "2025年铸锭单晶效率22%，成本低10%。", "ez": "用铸造的方法做单晶，便宜但性能稍差。"}, {"rank": 71, "cat": "tech", "term": "黑硅技术", "pro": "黑硅通过表面织构化降低反射率，提升吸光。2025年用于多晶硅片，反射率<1%。产业链中，黑硅提升多晶效率，但已边缘化。", "ref": {"google": "黑硅 技术 2025", "wiki": "Black silicon"}, "industryData": "2025年黑硅市占率<5%，被单晶取代。", "ez": "让硅片表面变粗糙，像黑板一样不反光，吸光更好。"}, {"rank": 72, "cat": "tech", "term": "光注入退火", "pro": "光注入退火通过光照和加热修复缺陷，提升电池效率0.2%-0.5%。2025年广泛用于PERC和TOPCon。产业链中，是提效关键工艺。", "ref": {"google": "光注入退火 2025", "wiki": "Light-induced annealing"}, "industryData": "2025年光注入退火设备市占率80%，应用材料主导。", "ez": "给电池‘照光加热’，修复小毛病，效率提升。"}, {"rank": 73, "cat": "tech", "term": "电注入退火", "pro": "电注入退火通过电流和加热钝化缺陷，与光注入类似。2025年用于HJT电池。产业链中，提升稳定性。", "ref": {"google": "电注入退火 2025", "wiki": "Electrical injection annealing"}, "industryData": "2025年电注入退火效率提升0.3%，用于HJT。", "ez": "给电池‘通电加热’，类似光注入，但用电。"}, {"rank": 74, "cat": "tech", "term": "激光掺杂", "pro": "激光掺杂利用激光局部加热形成掺杂区域，提升效率。2025年用于TOPCon选择性发射极。产业链中，激光设备需求增长。", "ref": {"google": "激光掺杂 电池 2025", "wiki": "Laser doping"}, "industryData": "2025年激光掺杂设备市占率30%，帝尔激光主导。", "ez": "用激光在电池上‘刻’出掺杂区，精准高效。"}, {"rank": 75, "cat": "tech", "term": "激光开槽", "pro": "激光开槽用于电池背面图形化，减少遮光。2025年用于IBC和TOPCon。产业链中，激光设备是关键。", "ref": {"google": "激光开槽 电池 2025", "wiki": "Laser grooving"}, "industryData": "2025年激光开槽设备市占率40%，帝尔激光。", "ez": "用激光在电池上开槽，像刻线，减少遮挡。"}, {"rank": 76, "cat": "tech", "term": "等离子体增强化学气相沉积", "pro": "PECVD（Plasma Enhanced Chemical Vapor Deposition）用于沉积氮化硅减反射膜。2025年主流设备。产业链中，PECVD设备国产化率高。", "ref": {"google": "PECVD 光伏 2025", "wiki": "Plasma-enhanced chemical vapor deposition"}, "industryData": "2025年PECVD设备市占率70%，捷佳伟创主导。", "ez": "用等离子体‘喷涂’薄膜，像给电池穿衣服。"}, {"rank": 77, "cat": "tech", "term": "原子层沉积", "pro": "ALD（Atomic Layer Deposition）用于沉积超薄钝化层，如氧化铝。2025年用于PERC和TOPCon。产业链中，ALD设备精度高。", "ref": {"google": "ALD 光伏 2025", "wiki": "Atomic layer deposition"}, "industryData": "2025年ALD设备市占率20%，理想晶延主导。", "ez": "像一层层刷漆，每层原子厚，非常均匀。"}, {"rank": 78, "cat": "tech", "term": "丝网印刷", "pro": "丝网印刷用于制作电极，是传统工艺。2025年主流，精度提升。产业链中，丝网印刷设备国产化。", "ref": {"google": "丝网印刷 光伏 2025", "wiki": "Screen printing"}, "industryData": "2025年丝网印刷设备市占率90%，迈为股份主导。", "ez": "像用丝网印图案，把电极印在电池上。"}, {"rank": 79, "cat": "tech", "term": "电镀铜电极", "pro": "电镀铜替代银浆，降低成本。2025年用于HJT和TOPCon。产业链中，电镀铜设备尚在验证。", "ref": {"google": "电镀铜 光伏 2025", "wiki": "Copper plating in solar cells"}, "industryData": "2025年电镀铜中试线效率25.5%，成本降30%。", "ez": "用铜代替银做电极，便宜但工艺复杂。"}, {"rank": 80, "cat": "tech", "term": "银包铜浆料", "pro": "银包铜浆料部分替代银，降低成本。2025年用于HJT，银含量30%。产业链中，聚和材料主导。", "ref": {"google": "银包铜 浆料 2025", "wiki": "Silver-coated copper paste"}, "industryData": "2025年银包铜浆料市占率10%，成本降20%。", "ez": "铜芯银皮，像镀金首饰，便宜又导电。"}, {"rank": 81, "cat": "biz", "term": "分布式光伏", "pro": "分布式光伏安装在屋顶或工商业场地，就近消纳。2025年新增装机占比超50%。产业链中，户用和工商业是增长点。", "ref": {"google": "分布式光伏 装机 2025", "wiki": "Distributed generation"}, "industryData": "2025年分布式新增100GW，户用占比60%。", "ez": "在屋顶上装光伏，自己发电自己用，像家庭小电站。"}, {"rank": 82, "cat": "biz", "term": "集中式光伏电站", "pro": "集中式光伏电站大规模并网，通常位于荒漠。2025年新增装机占比50%。产业链中，大型基地项目主导。", "ref": {"google": "集中式光伏 装机 2025", "wiki": "Solar farm"}, "industryData": "2025年集中式新增100GW，特高压配套。", "ez": "在沙漠里建大型光伏电站，像发电厂，远距离送电。"}, {"rank": 83, "cat": "biz", "term": "整县推进", "pro": "国家政策推动整县屋顶分布式光伏开发，2025年覆盖500县。产业链中，国企主导投资。", "ref": {"google": "整县推进 光伏 2025", "wiki": "Whole-county distributed PV"}, "industryData": "2025年整县推进装机50GW，国家电投参与。", "ez": "一个县统一装光伏，像集体行动，规模大。"}, {"rank": 84, "cat": "biz", "term": "光伏+储能", "pro": "光伏配储能解决消纳问题，2025年配储比例10%-20%。产业链中，储能电池需求增长。", "ref": {"google": "光伏配储 比例 2025", "wiki": "Solar-plus-storage"}, "industryData": "2025年光伏配储装机30GW，宁德时代供应。", "ez": "光伏配电池，白天存电晚上用，像充电宝。"}, {"rank": 85, "cat": "biz", "term": "光伏制氢", "pro": "光伏电解水制氢，绿氢成本2025年约20元/kg。产业链中，隆基、阳光电源布局。", "ref": {"google": "光伏制氢 成本 2025", "wiki": "Solar hydrogen production"}, "industryData": "2025年绿氢产能10万吨，成本20元/kg。", "ez": "用光伏电分解水制氢气，像电解水实验，但规模大。"}, {"rank": 86, "cat": "biz", "term": "光伏建筑一体化", "pro": "BIPV（Building Integrated Photovoltaics）将光伏组件集成建筑，2025年市场规模100亿元。产业链中，隆基、龙焱等推出产品。", "ref": {"google": "BIPV 市场规模 2025", "wiki": "Building-integrated photovoltaics"}, "industryData": "2025年BIPV装机5GW，隆基BIPV产品效率20%。", "ez": "把光伏做成建材，像玻璃幕墙，发电又美观。"}, {"rank": 87, "cat": "biz", "term": "光伏电站运维", "pro": "光伏电站运维包括监控、清洗、维修，2025年市场规模200亿元。产业链中，专业运维公司崛起。", "ref": {"google": "光伏运维 市场规模 2025", "wiki": "Solar O&M"}, "industryData": "2025年运维市场200亿，正泰安能领先。", "ez": "给光伏电站做保养，像汽车4S店，确保发电。"}, {"rank": 88, "cat": "biz", "term": "碳交易与绿证", "pro": "光伏项目可通过碳交易和绿证获得额外收益，2025年碳价60元/吨。产业链中，绿证交易活跃。", "ref": {"google": "碳交易 光伏 2025", "wiki": "Carbon credit"}, "industryData": "2025年光伏碳交易收益0.05元/kWh，绿证价格50元/个。", "ez": "光伏发电减碳，可以卖碳指标，像卖环保积分。"}, {"rank": 89, "cat": "biz", "term": "光伏扶贫", "pro": "光伏扶贫通过电站收益帮助贫困地区，2025年累计装机50GW。产业链中，政府主导。", "ref": {"google": "光伏扶贫 装机 2025", "wiki": "Solar poverty alleviation"}, "industryData": "2025年光伏扶贫电站年收益100亿元。", "ez": "在贫困地区建光伏，卖电赚钱，像造血扶贫。"}, {"rank": 90, "cat": "biz", "term": "光伏组件回收", "pro": "组件回收处理退役组件，2025年市场规模10亿元。产业链中，回收技术待成熟。", "ref": {"google": "光伏组件回收 2025", "wiki": "Solar panel recycling"}, "industryData": "2025年回收量10万吨，回收率90%。", "ez": "旧光伏板回收再利用，像废品回收，环保。"}, {"rank": 91, "cat": "biz", "term": "光伏产品出口", "pro": "中国光伏组件出口2025年约200GW，主要市场欧洲、印度。产业链中，出口受贸易壁垒影响。", "ref": {"google": "光伏出口 2025", "wiki": "Solar panel exports"}, "industryData": "2025年出口额500亿美元，欧洲占比50%。", "ez": "中国光伏卖到国外，像手机出口，赚外汇。"}, {"rank": 92, "cat": "biz", "term": "反倾销与关税", "pro": "欧美对华光伏反倾销关税，2025年美国关税30%。产业链中，中国企业海外建厂规避。", "ref": {"google": "光伏反倾销 2025", "wiki": "Anti-dumping duty"}, "industryData": "2025年美国对华光伏关税30%，隆基在美建厂。", "ez": "外国对中国光伏加税，像贸易战，企业海外建厂。"}, {"rank": 93, "cat": "biz", "term": "光伏产能过剩", "pro": "2025年全球光伏产能超1000GW，供过于求。产业链中，价格战激烈，行业洗牌。", "ref": {"google": "光伏产能过剩 2025", "wiki": "Overcapacity in solar"}, "industryData": "2025年产能利用率60%，组件价格0.8元/W。", "ez": "光伏产能太多，像卖菜过剩，价格下跌。"}, {"rank": 94, "cat": "biz", "term": "光伏度电成本", "pro": "LCOE（Levelized Cost of Electricity）光伏2025年约0.2元/kWh，低于煤电。产业链中，降本驱动平价。", "ref": {"google": "光伏度电成本 2025", "wiki": "Levelized cost of electricity"}, "industryData": "2025年光伏LCOE 0.2元/kWh，煤电0.3元。", "ez": "光伏发电每度成本2毛，比煤电便宜，像白菜价。"}, {"rank": 95, "cat": "biz", "term": "光伏电站资产证券化", "pro": "光伏电站通过ABS融资，2025年发行规模100亿元。产业链中，盘活资产。", "ref": {"google": "光伏ABS 2025", "wiki": "Asset-backed security"}, "industryData": "2025年光伏ABS发行100亿，利率4%。", "ez": "把电站收益打包成债券卖，像房产证券化。"}, {"rank": 96, "cat": "biz", "term": "光伏保险", "pro": "光伏保险覆盖发电量、设备损坏等，2025年保费规模50亿元。产业链中，保险公司推出专属产品。", "ref": {"google": "光伏保险 2025", "wiki": "Solar insurance"}, "industryData": "2025年光伏保险保费50亿，人保财险主导。", "ez": "给光伏电站买保险，像车险，保发电量。"}, {"rank": 97, "cat": "biz", "term": "光伏人才短缺", "pro": "光伏行业技术人才缺口2025年约10万人。产业链中，高校增设光伏专业。", "ref": {"google": "光伏人才 短缺 2025", "wiki": "Solar workforce"}, "industryData": "2025年人才缺口10万，薪资涨20%。", "ez": "光伏行业缺人，像IT行业，招人难。"}, {"rank": 98, "cat": "biz", "term": "光伏智能制造", "pro": "光伏工厂自动化、数字化，2025年智能工厂占比30%。产业链中，工业互联网应用。", "ref": {"google": "光伏智能制造 2025", "wiki": "Smart manufacturing in solar"}, "industryData": "2025年智能工厂效率提升20%，隆基灯塔工厂。", "ez": "光伏工厂用机器人，像无人工厂，效率高。"}, {"rank": 99, "cat": "biz", "term": "光伏+农业", "pro": "农光互补在农田上方装光伏，2025年装机20GW。产业链中，兼顾发电和种植。", "ref": {"google": "农光互补 2025", "wiki": "Agrivoltaics"}, "industryData": "2025年农光互补装机20GW，通威项目。", "ez": "农田上装光伏，下面种菜，上面发电，一地两用。"}, {"rank": 100, "cat": "biz", "term": "光伏+渔业", "pro": "渔光互补在鱼塘上装光伏，2025年装机15GW。产业链中，养鱼发电两不误。", "ref": {"google": "渔光互补 2025", "wiki": "Aquavoltaics"}, "industryData": "2025年渔光互补装机15GW，正泰项目。", "ez": "鱼塘上装光伏，下面养鱼，上面发电，双丰收。"}];
+var COMPANIES = [{"name": "隆基绿能科技股份有限公司", "enName": "LONGi Green Energy Technology Co., Ltd.", "domain": "www.longi.com", "ecoNiche": "全球光伏单晶硅片与组件龙头，聚焦高效太阳能解决方案", "tags": ["单晶硅片", "光伏组件", "BC电池", "全球龙头", "绿色能源"], "moatPro": "隆基绿能是全球最大的单晶硅片制造商，2025年单晶硅片出货量超120GW，全球市占率约45%。公司累计拥有专利超过2000项，其中核心的BC电池技术（背接触电池）量产效率突破26.5%，领先行业1-2个百分点。技术壁垒体现在拉晶工艺、金刚线切割及薄片化技术，硅片厚度已降至110μm以下。此外，公司通过垂直一体化布局（硅棒-硅片-电池-组件）降低成本，2025年组件出货量全球前三，海外收入占比超60%。", "moatEz": "就像手机界的苹果，隆基在光伏行业里拥有最先进的硅片制造技术，别人很难复制，市场份额也最大。", "lifecycle": 2, "lifeLabel": "成熟期", "revenue": [{"label": "光伏组件销售", "pct": 65, "color": "#1E90FF"}, {"label": "单晶硅片销售", "pct": 25, "color": "#32CD32"}, {"label": "电站开发及服务", "pct": 10, "color": "#FFD700"}]}, {"name": "晶科能源控股有限公司", "enName": "JinkoSolar Holding Co., Ltd.", "domain": "www.jinkosolar.com", "ecoNiche": "全球光伏组件出货量第一，专注N型TOPCon技术及全球化布局", "tags": ["光伏组件", "TOPCon", "全球第一", "储能", "垂直一体化"], "moatPro": "晶科能源2025年光伏组件出货量超过100GW，连续五年全球第一，全球市占率约20%。公司率先大规模量产N型TOPCon电池，量产效率达25.8%，良率98%以上，拥有相关专利超1500项。技术壁垒在于钝化接触层制备、金属化工艺及超薄硅片技术（130μm）。公司垂直一体化产能覆盖硅片、电池、组件，2025年总产能超120GW，并在海外（马来西亚、越南、美国）设有工厂，规避贸易壁垒。2025年储能业务收入占比提升至15%，形成光储协同。", "moatEz": "晶科就像光伏界的沃尔玛，组件卖得最多最广，而且技术先进，成本控制得很低。", "lifecycle": 2, "lifeLabel": "成熟期", "revenue": [{"label": "光伏组件销售", "pct": 75, "color": "#FF4500"}, {"label": "储能系统销售", "pct": 15, "color": "#8A2BE2"}, {"label": "电站开发及服务", "pct": 10, "color": "#3CB371"}]}, {"name": "阳光电源股份有限公司", "enName": "Sungrow Power Supply Co., Ltd.", "domain": "www.sungrowpower.com", "ecoNiche": "全球光伏逆变器与储能系统领军企业，聚焦电力电子技术", "tags": ["逆变器", "储能系统", "全球第一", "电力电子", "新能源"], "moatPro": "阳光电源是全球最大的光伏逆变器制造商，2025年逆变器出货量超150GW，全球市占率约30%，连续多年排名第一。公司累计专利超3000项，其中核心的组串式逆变器效率达99%，并掌握碳化硅（SiC）器件应用技术。技术壁垒体现在高功率密度设计、智能运维算法及电网适应性。储能系统业务快速增长，2025年储能出货量超20GWh，全球市占率约15%。公司研发投入占营收比超8%，2025年营收超800亿元，海外收入占比超50%。", "moatEz": "阳光电源就像光伏系统的‘心脏’，逆变器技术全球领先，储能业务也做得风生水起。", "lifecycle": 2, "lifeLabel": "成熟期", "revenue": [{"label": "光伏逆变器销售", "pct": 50, "color": "#4169E1"}, {"label": "储能系统销售", "pct": 35, "color": "#FF6347"}, {"label": "电站投资开发", "pct": 15, "color": "#2E8B57"}]}];
+
+// ========== 渲染：三强公司 ==========
+var lifecyclePhases = ['初创期','成长期','成熟期','转型期','衰退期'];
+function renderTop3() {
+  var el = document.getElementById('top3Section');
+  var head = '<div class="top3-head">' +
+    '<div class="top3-title">' +
+      '<h2>行业标杆三强<em>· ' + INDUSTRY.name + '</em></h2>' +
+    '</div>' +
+    '<div class="top3-sub">生态位 / 护城河 / 生命周期 / 收入结构</div>' +
+  '</div>';
+  
+  var cards = COMPANIES.slice(0,3).map(function(c){
+    var logoSrc = 'https://logo.clearbit.com/' + (c.domain || '');
+    var fb = (c.name || '?').charAt(0);
+    var lifeIdx = typeof c.lifecycle === 'number' ? c.lifecycle : 1;
+    
+    var tagsHtml = (c.tags || []).map(function(t){
+      return '<span class="cmp-tag">' + t + '</span>';
+    }).join('');
+    
+    var revArr = c.revenue || [];
+    var revIsPlaceholder = revArr.length === 1 && revArr[0] && revArr[0].pct === 100;
+    var revHtml = revIsPlaceholder
+      ? '<div class="cmp-rev-empty">营收结构未公开 · ' + (revArr[0].label || '主要支出') + '</div>'
+      : revArr.map(function(r){
+          return '<div class="cmp-rev-item">' +
+            '<div class="cmp-rev-label">' + r.label + '</div>' +
+            '<div class="cmp-rev-bar-wrap"><div class="cmp-rev-bar" style="--w:' + r.pct + '%;background:' + (r.color || '#0F6E56') + '"></div></div>' +
+            '<div class="cmp-rev-pct">' + r.pct + '%</div>' +
+          '</div>';
+        }).join('');
+    
+    var stageHtml = lifecyclePhases.slice(0,4).map(function(p, i){
+      var cls = i === lifeIdx ? 'active' : (i < lifeIdx ? 'done' : '');
+      return '<div class="cmp-life-stage ' + cls + '"><div class="dot"></div><div class="label">' + p + '</div></div>';
+    }).join('');
+    
+    return '<div class="cmp-card">' +
+      '<div class="cmp-body">' +
+        '<div class="cmp-head">' +
+          '<div class="cmp-logo"><img src="' + logoSrc + '" alt="' + c.name + '" onerror="this.style.display=\'none\';this.parentNode.textContent=\'' + fb + '\'"></div>' +
+          '<div class="cmp-name-wrap">' +
+            '<div class="cmp-name">' + c.name + '</div>' +
+            '<div class="cmp-en">' + (c.enName || '') + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="cmp-niche">' + (c.ecoNiche || '') + '</div>' +
+      '</div>' +
+      (tagsHtml ? '<div class="cmp-tags">' + tagsHtml + '</div>' : '') +
+      '<div class="cmp-moat">' +
+        '<div class="cmp-section-label">核心护城河</div>' +
+        '<div class="cmp-moat-pro">' + fmtList(c.moatPro || '') + '</div>' +
+        '<div class="cmp-moat-ez">' + (c.moatEz || '') + '</div>' +
+      '</div>' +
+      '<div class="cmp-life">' +
+        '<div class="cmp-section-label">企业生命周期</div>' +
+        '<div class="cmp-life-stages">' + stageHtml + '</div>' +
+      '</div>' +
+      (revHtml ? '<div class="cmp-rev">' +
+        '<div class="cmp-section-label">收入结构</div>' + revHtml + '</div>' : '') +
+      (c.domain ? '<a class="cmp-visit" href="https://' + c.domain + '" target="_blank" rel="noopener">访问官网 ↗</a>' : '') +
+    '</div>';
+  }).join('');
+  
+  el.innerHTML = head + '<div class="top3-grid">' + cards + '</div>';
+}
+
+function fmtList(html) {
+  return (html || '').replace(/(\d+[.)]\s*)/g, '<br>$1');
+}
+
+// ========== 自动高亮数字 / L级别 ==========
+function autoHl(html) {
+  if (!html) return '';
+  var placeholders = [];
+  var safe = html.replace(/<mark[\s\S]*?<\/mark>|<b[\s\S]*?<\/b>|<a[\s\S]*?<\/a>/g, function(m){
+    placeholders.push(m);
+    return '__PH' + (placeholders.length - 1) + '__';
+  });
+  safe = safe.replace(/(\d+(?:\.\d+)?%\+?)/g, '<b class="kw-num-hl">$1</b>');
+  safe = safe.replace(/\b(L[0-9](?:[\u2013\-]L[0-9])?\+?)\b/g, '<b class="kw-num-hl">$1</b>');
+  safe = safe.replace(/__PH(\d+)__/g, function(_, idx){
+    return placeholders[parseInt(idx, 10)];
+  });
+  return safe;
+}
+
+// ========== 渲染：关键词网格 ==========
+var catNames = {core:'核心概念', finance:'财务指标', tech:'技术术语', biz:'商业模型'};
+var currentCat = 'all';
+
+function renderGrid() {
+  var el = document.getElementById('kwGrid');
+  var data = currentCat === 'all' ? KEYWORDS : KEYWORDS.filter(function(k){return k.cat === currentCat;});
+  
+  document.getElementById('kwMeta').textContent = '显示 ' + data.length + ' / ' + KEYWORDS.length + ' 条';
+  
+  el.innerHTML = data.map(function(kw, i) {
+    var delay = Math.min(i % 9, 8) * 60;
+    var q = encodeURIComponent(kw.term || '');
+    var googleQ = (kw.ref && kw.ref.google) ? encodeURIComponent(kw.ref.google) : q;
+    var wikiQ   = (kw.ref && kw.ref.wiki) ? encodeURIComponent(kw.ref.wiki) : q;
+    var refLinks =
+      '<a class="kw-ref" href="https://zh.wikipedia.org/wiki/Special:Search?search=' + wikiQ + '" target="_blank" rel="noopener">Wiki</a>' +
+      '<a class="kw-ref" href="https://www.google.com/search?q=' + googleQ + '" target="_blank" rel="noopener">Google</a>';
+    
+    var indSection = '';
+    if (kw.industryData && kw.industryData.length > 10) {
+      indSection = '<div class="kw-section kw-section-ind">' +
+        '<div class="kw-label kw-label-ind">行业数据</div>' +
+        '<div class="kw-id-text">' + autoHl(kw.industryData) + '</div>' +
+      '</div>';
+    }
+    
+    return '<div class="kw-card scroll-reveal" data-delay="' + delay + '">' +
+      '<div class="kw-top">' +
+        '<div class="kw-name">' + kw.term + '</div>' +
+        '<span class="kw-num">#' + (kw.rank || i + 1) + ' · ' + (catNames[kw.cat] || '') + '</span>' +
+      '</div>' +
+      '<div class="kw-body">' +
+        '<div class="kw-section kw-section-pro">' +
+          '<div class="kw-label kw-label-pro">专业释义</div>' +
+          '<div class="kw-pro-text">' + autoHl(kw.pro || '') + '</div>' +
+        '</div>' +
+        '<div class="kw-section kw-section-ref">' +
+          '<div class="kw-label kw-label-ref">查资料</div>' +
+          '<div class="kw-ref-links">' + refLinks + '</div>' +
+        '</div>' +
+        indSection +
+        '<div class="kw-section kw-section-ez">' +
+          '<div class="kw-label kw-label-ez">大白话</div>' +
+          '<div class="kw-ez-text">' + autoHl(kw.ez || '') + '</div>' +
+        '</div>' +
+      '</div></div>';
+  }).join('');
+  
+  observeScrollReveal();
+}
+
+// ========== 分类过滤按钮 ==========
+function renderCatFilter() {
+  var el = document.getElementById('catFilter');
+  var counts = {all: KEYWORDS.length, core:0, finance:0, tech:0, biz:0};
+  KEYWORDS.forEach(function(k){ if(counts[k.cat] != null) counts[k.cat]++; });
+  
+  var cats = [
+    {id:'all', name:'全部'},
+    {id:'core', name:'核心概念'},
+    {id:'finance', name:'财务指标'},
+    {id:'tech', name:'技术术语'},
+    {id:'biz', name:'商业模型'}
+  ];
+  
+  el.innerHTML = cats.map(function(c){
+    return '<button class="cat-btn ' + (currentCat===c.id?'active':'') + '" data-cat="' + c.id + '">' + c.name + '<span class="cnt">' + counts[c.id] + '</span></button>';
+  }).join('');
+  
+  el.querySelectorAll('.cat-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      currentCat = btn.getAttribute('data-cat');
+      renderCatFilter();
+      renderGrid();
+      // 滚动到关键词区
+      document.querySelector('.kw-section-title').scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+}
+
+// ========== Scroll Reveal ==========
+var revealObserver = null;
+function observeScrollReveal() {
+  if (revealObserver) revealObserver.disconnect();
+  var cards = document.querySelectorAll('.scroll-reveal:not(.revealed)');
+  if (!cards.length) return;
+  revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var delay = parseInt(el.getAttribute('data-delay') || '0', 10);
+        setTimeout(function() { el.classList.add('revealed'); }, delay);
+        revealObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  cards.forEach(function(card) { revealObserver.observe(card); });
+}
+
+// 初始化
+renderTop3();
+renderCatFilter();
+renderGrid();
+</script>
+</body>
+</html>

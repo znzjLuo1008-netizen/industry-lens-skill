@@ -1,5 +1,8 @@
 # 🔍 IndustryLens Skill
 
+[English](README.en.md) | [中文](README.md)
+
+
 > **输入一个行业名，30 秒生成 100 词百科 + 3 家标杆公司深度拆解的单页 HTML**
 
 ![GitHub](https://img.shields.io/badge/Type-WorkBuddy%20Skill-166534)

@@ -151,11 +151,11 @@ body{font-family:var(--font-body);color:#1a1a1a;background:#FAF8F3;line-height:1
 .vc-insight strong{color:#166534;font-weight:600}
 
 /* 金钱流向示意（轴） */
-.vc-money-flow{display:flex;align-items:center;justify-content:space-between;padding:10px 4px 18px;font-size:.72rem;color:#666;border-bottom:1px dashed #E8E3D4;margin-bottom:22px}
-.vc-money-flow .mf-label{font-weight:500;color:#0F6E56}
-.vc-money-flow .mf-arrow{flex:1;display:flex;align-items:center;gap:8px;padding:0 16px;color:#999}
+.vc-money-flow{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;font-size:.78rem;color:#475569;background:#F8FAF7;border:1px solid #E8E3D4;border-radius:12px;margin-bottom:22px}
+.vc-money-flow .mf-label{font-weight:600;color:#0F6E56;flex-shrink:0;white-space:nowrap}
+.vc-money-flow .mf-arrow{flex:0 0 60px;display:flex;align-items:center;height:1.4rem}
 .vc-money-flow .mf-arrow .line{flex:1;height:1px;background:linear-gradient(to right,#0F6E56,#BA7517)}
-.vc-money-flow .mf-note{color:#888;font-size:.7rem}
+.vc-money-flow .mf-note{color:#475569;font-size:.78rem;line-height:1.7;flex:1;min-width:0}
 
 /* 三列价值链 */
 .vc-chain{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;position:relative;border:1px solid #EDE9DC;border-radius:16px;overflow:hidden}
@@ -205,8 +205,8 @@ body{font-family:var(--font-body);color:#1a1a1a;background:#FAF8F3;line-height:1
   .vc-section{padding:24px;border-radius:20px}
   .vc-chain{grid-template-columns:1fr}
   .vc-col + .vc-col{border-left:none;border-top:1px solid #EDE9DC}
-  .vc-money-flow{flex-direction:column;gap:6px;align-items:flex-start}
-  .vc-money-flow .mf-arrow{width:100%;padding:0}
+  .vc-money-flow{flex-direction:column;gap:10px;align-items:flex-start}
+  .vc-money-flow .mf-arrow{width:60px;flex:0 0 auto}
 }
 @media (max-width:520px){
   .page-head{padding:40px 20px 24px}
@@ -468,16 +468,14 @@ function renderValueChain() {
     html += '<div class="vc-insight">' + VALUE_CHAIN.keyInsight + '</div>';
   }
 
-  // 金钱流向轴
-  html += '<div class="vc-money-flow">' +
-    '<span class="mf-label">💰 价值流动</span>' +
-    '<span class="mf-arrow">' +
-      '<span>上游提供算力/底模</span>' +
-      '<span class="line"></span>' +
-      '<span>下游消费付费</span>' +
-    '</span>' +
-    (VALUE_CHAIN.flowNote ? '<span class="mf-note">' + VALUE_CHAIN.flowNote + '</span>' : '') +
-  '</div>';
+  // 金钱流向轴（仅展示当前行业的 flowNote，去掉硬编码占位文案）
+  if (VALUE_CHAIN.flowNote) {
+    html += '<div class="vc-money-flow">' +
+      '<span class="mf-label">💰 价值流动</span>' +
+      '<span class="mf-arrow"><span class="line"></span></span>' +
+      '<span class="mf-note">' + VALUE_CHAIN.flowNote + '</span>' +
+    '</div>';
+  }
 
   // 三列价值链
   html += '<div class="vc-chain">';

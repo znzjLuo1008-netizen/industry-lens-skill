@@ -139,12 +139,74 @@ body{font-family:var(--font-body);color:#1a1a1a;background:#FAF8F3;line-height:1
 .scroll-reveal{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
 .scroll-reveal.revealed{opacity:1;transform:translateY(0)}
 
+/* ===== 产业链上中下游（投研研报风） ===== */
+.vc-section{max-width:1200px;margin:0 auto 48px;padding:36px;border-radius:32px;background:#fff;box-shadow:0 2px 20px rgba(0,0,0,0.04)}
+.vc-head{margin-bottom:18px}
+.vc-head h2{font-family:var(--font-display);font-size:1.32rem;font-weight:700;color:#111;margin-bottom:4px}
+.vc-head h2 em{font-style:normal;color:#0F6E56;font-weight:500;font-size:.82rem;margin-left:8px}
+.vc-head .vc-subtitle{font-size:.78rem;color:#888;letter-spacing:.01em}
+
+.vc-insight{font-size:.82rem;color:#3a3a3a;line-height:1.8;background:#F9FAFB;border-left:3px solid #0F6E56;padding:14px 18px;border-radius:0 10px 10px 0;margin-bottom:22px}
+.vc-insight::before{content:'产业链观察';display:block;font-size:.66rem;color:#0F6E56;letter-spacing:.12em;margin-bottom:6px;font-weight:600;text-transform:uppercase}
+.vc-insight strong{color:#166534;font-weight:600}
+
+/* 金钱流向示意（轴） */
+.vc-money-flow{display:flex;align-items:center;justify-content:space-between;padding:10px 4px 18px;font-size:.72rem;color:#666;border-bottom:1px dashed #E8E3D4;margin-bottom:22px}
+.vc-money-flow .mf-label{font-weight:500;color:#0F6E56}
+.vc-money-flow .mf-arrow{flex:1;display:flex;align-items:center;gap:8px;padding:0 16px;color:#999}
+.vc-money-flow .mf-arrow .line{flex:1;height:1px;background:linear-gradient(to right,#0F6E56,#BA7517)}
+.vc-money-flow .mf-note{color:#888;font-size:.7rem}
+
+/* 三列价值链 */
+.vc-chain{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;position:relative;border:1px solid #EDE9DC;border-radius:16px;overflow:hidden}
+.vc-col{padding:18px 18px 20px;position:relative;background:#fff}
+.vc-col + .vc-col{border-left:1px solid #EDE9DC}
+.vc-col.up{background:#F6FAF3}
+.vc-col.mid{background:#F5FAF8}
+.vc-col.down{background:#FCF7ED}
+
+/* 层级头 */
+.vc-col-head{margin-bottom:12px}
+.vc-col-title{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+.vc-col-title .cn{font-family:var(--font-display);font-size:1.02rem;font-weight:700;color:#111}
+.vc-col-title .en{font-size:.66rem;color:#888;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.vc-col-badges{display:flex;gap:5px;margin-bottom:8px}
+.vc-col-badge{font-size:.6rem;padding:2px 8px;border-radius:6px;font-weight:600;letter-spacing:.02em}
+.vc-col-badge.m-high,.vc-col-badge.p-strong{background:#E8F5EC;color:#166534}
+.vc-col-badge.m-mid,.vc-col-badge.p-medium{background:#F1F5F9;color:#475569}
+.vc-col-badge.m-low,.vc-col-badge.p-weak{background:#FEF3C7;color:#A16207}
+.vc-col-role{font-size:.74rem;color:#0F6E56;font-weight:600;line-height:1.55;margin-bottom:6px}
+.vc-col-desc{font-size:.7rem;color:#555;line-height:1.7;padding-bottom:12px;margin-bottom:12px;border-bottom:1px dashed #E8E3D4}
+
+/* 细分环节行 */
+.vc-seg-row{padding:8px 0;border-bottom:1px dashed #F0EDE3;display:block}
+.vc-seg-row:last-child{border-bottom:none}
+.vc-seg-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:3px}
+.vc-seg-name{font-size:.76rem;font-weight:600;color:#222}
+.vc-seg-note{font-size:.65rem;color:#999;font-weight:400;text-align:right;max-width:55%}
+.vc-seg-row .players{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.vc-seg-row .player{font-size:.63rem;padding:1px 7px;background:#fff;border:1px solid #E0DCCF;color:#444;border-radius:4px;font-weight:500}
+.vc-seg-row:hover .player{border-color:#0F6E56;color:#0F6E56}
+
+/* 列底部毛利带 */
+.vc-col-meter{margin-top:14px;padding-top:10px;border-top:1px dashed #E8E3D4;display:flex;align-items:center;justify-content:space-between;font-size:.65rem;color:#888}
+.vc-col-meter .metric{display:flex;align-items:center;gap:4px}
+.vc-col-meter .dot{width:6px;height:6px;border-radius:50%}
+.vc-col.up .dot{background:#3B6D11}
+.vc-col.mid .dot{background:#0F6E56}
+.vc-col.down .dot{background:#BA7517}
+
 /* 小屏适配 */
 @media (max-width:860px){
   .top3-section{padding:24px;border-radius:20px}
   .top3-grid{grid-template-columns:1fr}
   .page-head h1{font-size:2rem}
   .kw-grid{grid-template-columns:1fr}
+  .vc-section{padding:24px;border-radius:20px}
+  .vc-chain{grid-template-columns:1fr}
+  .vc-col + .vc-col{border-left:none;border-top:1px solid #EDE9DC}
+  .vc-money-flow{flex-direction:column;gap:6px;align-items:flex-start}
+  .vc-money-flow .mf-arrow{width:100%;padding:0}
 }
 @media (max-width:520px){
   .page-head{padding:40px 20px 24px}
@@ -168,6 +230,9 @@ body{font-family:var(--font-body);color:#1a1a1a;background:#FAF8F3;line-height:1
 <!-- 三强区块 -->
 <div class="top3-section" id="top3Section"></div>
 
+<!-- 产业链上中下游（Sankey 桑基图） -->
+<div class="vc-section" id="vcSection" style="display:none"></div>
+
 <!-- 分类过滤 -->
 <div class="cat-filter" id="catFilter"></div>
 
@@ -189,6 +254,7 @@ body{font-family:var(--font-body);color:#1a1a1a;background:#FAF8F3;line-height:1
 var INDUSTRY = {{INDUSTRY_JSON}};
 var KEYWORDS = {{KEYWORDS_JSON}};
 var COMPANIES = {{COMPANIES_JSON}};
+var VALUE_CHAIN = {{VALUE_CHAIN_JSON}};
 
 // ========== 渲染：三强公司 ==========
 var lifecyclePhases = ['初创期','成长期','成熟期','转型期','衰退期'];
@@ -377,8 +443,88 @@ function observeScrollReveal() {
   cards.forEach(function(card) { revealObserver.observe(card); });
 }
 
+// ========== 渲染：产业链上中下游（研报风横向价值链） ==========
+function renderValueChain() {
+  var el = document.getElementById('vcSection');
+  if (!VALUE_CHAIN || !VALUE_CHAIN.upstream || !VALUE_CHAIN.midstream || !VALUE_CHAIN.downstream) {
+    el.style.display = 'none';
+    return;
+  }
+  el.style.display = 'block';
+
+  var marginLabels = {high:'高毛利 ≥40%', mid:'中毛利 20-40%', low:'低毛利 ≤20%'};
+  var powerLabels = {strong:'议价强', medium:'议价中', weak:'议价弱'};
+  var layerCNs = {upstream:'上游', midstream:'中游', downstream:'下游'};
+  var layerENs = {upstream:'Upstream', midstream:'Midstream', downstream:'Downstream'};
+  var layerCls = {upstream:'up', midstream:'mid', downstream:'down'};
+
+  // -------- HTML 骨架 --------
+  var html = '<div class="vc-head">' +
+    '<h2>产业链上中下游<em>· ' + INDUSTRY.name + ' 价值链拆解</em></h2>' +
+    '<div class="vc-subtitle">顺序从左至右：上游提供能力 → 中游封装产品 → 下游消费付费；价值货币从右向左回流</div>' +
+  '</div>';
+
+  if (VALUE_CHAIN.keyInsight) {
+    html += '<div class="vc-insight">' + VALUE_CHAIN.keyInsight + '</div>';
+  }
+
+  // 金钱流向轴
+  html += '<div class="vc-money-flow">' +
+    '<span class="mf-label">💰 价值流动</span>' +
+    '<span class="mf-arrow">' +
+      '<span>上游提供算力/底模</span>' +
+      '<span class="line"></span>' +
+      '<span>下游消费付费</span>' +
+    '</span>' +
+    (VALUE_CHAIN.flowNote ? '<span class="mf-note">' + VALUE_CHAIN.flowNote + '</span>' : '') +
+  '</div>';
+
+  // 三列价值链
+  html += '<div class="vc-chain">';
+  ['upstream', 'midstream', 'downstream'].forEach(function(key){
+    var layer = VALUE_CHAIN[key];
+    if (!layer) return;
+    var marg = layer.marginLevel || 'mid';
+    var pow = layer.bargainPower || 'medium';
+
+    var segsHtml = (layer.segments || []).map(function(s){
+      var players = (s.players || []).map(function(p){
+        return '<span class="player">' + p + '</span>';
+      }).join('');
+      return '<div class="vc-seg-row">' +
+        '<div class="vc-seg-top">' +
+          '<span class="vc-seg-name">' + (s.name || '') + '</span>' +
+          (s.note ? '<span class="vc-seg-note">' + s.note + '</span>' : '') +
+        '</div>' +
+        '<div class="players">' + players + '</div>' +
+      '</div>';
+    }).join('');
+
+    html += '<div class="vc-col ' + layerCls[key] + '">' +
+      '<div class="vc-col-head">' +
+        '<div class="vc-col-title"><span class="cn">' + layerCNs[key] + '</span><span class="en">' + layerENs[key] + '</span></div>' +
+        '<div class="vc-col-badges">' +
+          '<span class="vc-col-badge m-' + marg + '">' + marginLabels[marg] + '</span>' +
+          '<span class="vc-col-badge p-' + pow + '">' + powerLabels[pow] + '</span>' +
+        '</div>' +
+        (layer.role ? '<div class="vc-col-role">' + layer.role + '</div>' : '') +
+        (layer.desc ? '<div class="vc-col-desc">' + layer.desc + '</div>' : '') +
+      '</div>' +
+      segsHtml +
+      '<div class="vc-col-meter">' +
+        '<span class="metric"><span class="dot"></span>' + (layer.segments || []).length + ' 个细分 · ' + (layer.segments || []).reduce(function(sum, s){ return sum + (s.players || []).length; }, 0) + ' 家代表公司</span>' +
+        '<span>' + marginLabels[marg].split(' ')[1] + '</span>' +
+      '</div>' +
+    '</div>';
+  });
+  html += '</div>';
+
+  el.innerHTML = html;
+}
+
 // 初始化
 renderTop3();
+renderValueChain();
 renderCatFilter();
 renderGrid();
 </script>

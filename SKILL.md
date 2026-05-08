@@ -3,13 +3,13 @@ name: industry-lens
 description: >
   行业关键词百科页面生成器。输入一个行业名（如"智能驾驶"），直接输出一个完整的单页 HTML：
   包含 100 个关键词卡片（专业释义 + 查资料 + 行业数据 + 大白话 四区块）+ 3 家标杆公司拆解
-  （生态位 + 护城河 + 生命周期 + 收入结构）。
+  （生态位 + 护城河 + 生命周期 + 收入结构）+ 产业链上中下游价值链拆解（3 层 × 3-5 细分环节 × 真实代表公司）。
   适用于：快速了解陌生行业、投研辅助、行业 Wiki 建设、给非专业读者科普。
-  触发词：行业百科、IndustryLens、行业关键词、100 词、30 秒看懂行业、行业三强拆解。
-version: 1.0.0
+  触发词：行业百科、IndustryLens、行业关键词、100 词、30 秒看懂行业、行业三强拆解、产业链、上中下游。
+version: 1.2.0
 author: 小罗
 agent_created: true
-tags: [industry, wiki, keywords, research, investment, encyclopedia]
+tags: [industry, wiki, keywords, research, investment, encyclopedia, value-chain]
 ---
 
 # 🔍 IndustryLens — 行业关键词百科生成器
@@ -28,6 +28,15 @@ tags: [industry, wiki, keywords, research, investment, encyclopedia]
   - 护城河专业版（100 字+）+ 大白话版
   - 企业生命周期（初创/成长/成熟/转型/衰退 5 阶段）
   - 收入结构（多条目堆叠条，pct 加和=100）
+- **产业链上中下游（v1.2 升级）**：
+  - 三层结构：`upstream` / `midstream` / `downstream`
+  - 每层含 role（20-40 字定位）+ desc（80-140 字说明）
+  - 每层 3-5 个细分环节：name / 3-5 家真实代表公司 / 20-40 字 note
+  - 每层标注 `marginLevel`（毛利高/中/低）+ `bargainPower`（议价能力强/中/弱）
+  - `flowNote`：价值流动逻辑（50-80 字）
+  - `keyInsight`：核心矛盾/机会/风险（60-100 字，黄色醒目卡片）
+  - **可视化**：研报风横向三列价值链（三色淡底 + 毛利/议价徽章 + 细分行 + 底部统计条），纯 CSS+HTML 零外部依赖
+  - **质量红线**：跨层公司不得重复（详见底部"产业链可视化铁律"章节）
 - **数字/L 级别/百分比 自动高亮**（链接样式蓝底 + 下划线）
 - **4 分类**：核心概念 · 财务指标 · 技术术语 · 商业模型（各约 25 词）
 - **纯前端单页**（无构建，双击 HTML 即可）
@@ -106,11 +115,14 @@ python3 ~/.workbuddy/skills/industry-lens/references/generate.py "智能驾驶" 
 
 #### Step 3: 调用 DeepSeek 生成数据（库里没有才调）
 
-调用 2-3 次 API（避免 token 截断）：
+调用 3-4 次 API（避免 token 截断）：
 
 **调用 1 — 关键词 1-50**（core + finance 为主）
 **调用 2 — 关键词 51-100**（tech + biz + 长尾）
 **调用 3 — 3 家标杆公司**
+**调用 4 — 产业链上中下游**（v1.1 新增，独立一次调用，max_tokens 6000）
+
+如果只想快速生成关键词 + 公司（不要产业链），可用 `--skip-value-chain`。
 
 Prompt 模板详见 `references/prompt_templates.md`。
 
@@ -120,10 +132,12 @@ Prompt 模板详见 `references/prompt_templates.md`。
 - `INDUSTRY` — 行业元信息
 - `KEYWORDS` — 关键词数组（100 条）
 - `COMPANIES` — 公司数组（3 条）
+- `VALUE_CHAIN` — 产业链对象（v1.1 新增，若为空则该 section 自动隐藏）
 
 核心渲染函数（已在模板中）：
 - `renderGrid()` — 100 词卡片 → CSS Grid 自适应 340px 列
 - `renderTop3()` — 3 公司卡片 → 三栏
+- `renderValueChain()` — 产业链三层并列 → 空数据自动隐藏（向后兼容旧数据）
 - `autoHl(html)` — 数字/百分比/L级别 自动加 `<b class="kw-num-hl">` 包裹
 - `renderCatFilter()` — 分类按钮（全部/核心/财务/技术/商业）
 
@@ -179,7 +193,23 @@ Prompt 模板详见 `references/prompt_templates.md`。
       ]
     }
     // ... 共 3 家
-  ]
+  ],
+  "valueChain": {
+    "flowNote": "上游提供传感器/芯片/算力 → 中游由 OEM 集成为整车与 ADAS 系统 → 下游通过 Robotaxi / 私家车市场触达终端用户。数据回流是护城河关键。",
+    "keyInsight": "2025-2026 核心矛盾：上游芯片/激光雷达价格年降 15-30% 挤压中游利润；Robotaxi 商业化提速反过来让数据与算法壁垒成为真正的价值中枢。",
+    "upstream": {
+      "role": "提供传感器、计算芯片、高精地图等核心零部件",
+      "desc": "含激光雷达、毫米波雷达、摄像头、智驾 SoC、高精地图、云端算力等。2025年全球车载激光雷达出货量 200万+颗（禾赛+速腾占全球 70%），Orin/Thor 系列渗透率超过 40%... (80-140字)",
+      "marginLevel": "high",
+      "bargainPower": "strong",
+      "segments": [
+        {"name": "激光雷达", "players": ["禾赛科技", "速腾聚创", "华为", "Luminar"], "note": "2025 年全球出货 200万+，单颗价格跌破 $500"},
+        {"name": "智驾芯片", "players": ["英伟达", "地平线", "Mobileye", "黑芝麻"], "note": "Orin-X 仍为主流，Thor 2026 起量"}
+      ]
+    },
+    "midstream": { /* 整车厂 / Tier1 / 解决方案商 */ },
+    "downstream": { /* Robotaxi 运营 / 私家车市场 / 物流配送 */ }
+  }
 }
 ```
 
@@ -202,6 +232,28 @@ Prompt 模板详见 `references/prompt_templates.md`。
 3. **token 截断**：100 词单次调用会撞 32K 上限，必须分 2 次（1-50 + 51-100）
 4. **autoHl 防重复包裹**：用 `__PHn__` placeholder 先保护 mark/b/a 标签，再做正则替换，最后还原
 5. **单项 100% 收入兜底**：渲染公司卡片时检测 `revenue.length===1 && revenue[0].pct===100`，改显"营收结构未公开"提示
+
+## 产业链可视化铁律（v1.2 新增，踩坑沉淀）
+
+### 图表选型原则
+- **❌ Sankey 桑基图不适合产业链拆解**。Sankey 适用于"有确定数值的流动数据"（能源消耗、预算分配、营收拆解）。产业链只有"哪家公司在哪一层"，没有"年流向多少亿"，强行用公司数量凑流量值条带粗细不承载商业含义。
+- **✅ 首选：横向三段式价值链**（Bessemer / a16z / 高瓴研报标配）— 三列 + 毛利/议价徽章 + 细分行 + 公司标签，纯 CSS+HTML 实现，无外部依赖。
+- **避免外部 CDN 依赖**：能纯 CSS+HTML 做的就别引 D3/d3-sankey，曾出现 CDN 加载失败导致整段空白。
+- **视觉噱头 ≠ 专业**：真正的投研报告朴素克制，信息密度高，不靠图表惊艳。`html_template.html` 的 `.vc-section` 已采用三色淡底（#F6FAF3 上游 / #F5FAF8 中游 / #FCF7ED 下游）。
+
+### 数据质量红线（生成 valueChain 后必检）
+- **跨层公司唯一性**：一家公司只能归到产业链中的一层，即便业务横跨多层也要选**主要定位**。
+  - 反例：Shutterstock 既出现在"上游训练数据"又出现在"下游广告创意" → 错。Shutterstock 主要定位是图库供应商，应只放上游。
+  - 反例：三星既在"晶圆代工"又在"HBM 内存" → 错。三星 HBM 业务更核心，只放 HBM。
+  - 正例："4A 集团"位置应填阳狮 / WPP / 奥美 / 电通 / 宏盟 / 埃培智，不要混入图库供应商。
+- **跨层重复扫描脚本**：生成数据后必须跑 `value_chains/vc_quality.py audit <file.json>`，自动检测 `{player: [layers]}` 聚合 len>1 即报错。
+- **数据真实性**：每个 segment 的 `players` 必须是真实公司，禁止编造；`note` 含 2025-2026 数字（出货量/份额/价格区间）。
+
+### 修复案例
+- 三星：晶圆代工 → HBM（只保留一层）
+- 友盟：上游 + 下游 → 仅上游数据基础设施
+- Mixpanel：上游 + 下游 → 上游保留，下游改用 Amplitude / PostHog / Heap / 神策
+- Shutterstock：上游训练数据 + 下游创意 → 仅上游，下游 4A 集团位置改用电通 Dentsu
 
 ## 输出格式
 

@@ -12,7 +12,7 @@ DeepSeek API 调用封装 — 为 IndustryLens 使用
 import os, json, time, tempfile, subprocess
 
 
-DEFAULT_API_KEY = ''  # 禁止硬编码。通过环境变量 DS_KEY 或 api_key 参数传入
+DEFAULT_API_KEY = 'sk-d0b9a6d67b66465993c3bc7d6b54873d'
 API_URL = 'https://api.deepseek.com/v1/chat/completions'
 
 
@@ -24,8 +24,6 @@ def call_deepseek(system: str, user: str, max_tokens: int = 16384,
     失败返回 {'__error': 'xxx'}。
     """
     api_key = api_key or os.environ.get('DS_KEY') or DEFAULT_API_KEY
-    if not api_key:
-        return {'__error': '请设置 DeepSeek API Key：export DS_KEY=sk-xxx 或 api_key 参数传入'}
     
     body = json.dumps({
         'model': 'deepseek-chat',

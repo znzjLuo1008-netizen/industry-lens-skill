@@ -18,25 +18,10 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{
   font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;
-  background:#F9EFE0;
+  background:var(--bg);
   color:var(--ink);
   line-height:1.7;
   -webkit-font-smoothing:antialiased;
-  position:relative;
-  min-height:100vh;
-}
-/* ===== 3D 粘土边框背景（同主站） ===== */
-body::before{content:'';position:fixed;inset:-4%;z-index:-2;
-  background:url(bg-clay.png) center/cover no-repeat;
-  transform:scale(1.02);animation:bg-breath 14.67s ease-in-out infinite;will-change:transform;
-  filter:saturate(1.02)}
-body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(ellipse 85% 80% at 50% 50%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
-  mix-blend-mode:soft-light}
-@keyframes bg-breath{
-  0%,100%{transform:scale(1.02) translate(0,0)}
-  33%{transform:scale(1.04) translate(-8px,-6px)}
-  66%{transform:scale(1.03) translate(6px,-8px)}
 }
 .wrap{max-width:1080px;margin:0 auto;padding:80px 32px 120px}
 .hero{text-align:center;margin-bottom:72px}

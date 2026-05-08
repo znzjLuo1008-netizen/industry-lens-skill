@@ -15,20 +15,7 @@
   --ease-out:cubic-bezier(0.16,1,0.3,1);
 }
 html{font-size:15px;scroll-behavior:smooth}
-body{font-family:var(--font-body);color:#1a1a1a;background:#F9EFE0;line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;min-height:100vh;position:relative}
-/* ===== 3D 粘土边框背景（同主站） ===== */
-body::before{content:'';position:fixed;inset:-4%;z-index:-2;
-  background:url(bg-clay.png) center/cover no-repeat;
-  transform:scale(1.02);animation:bg-breath 14.67s ease-in-out infinite;will-change:transform;
-  filter:saturate(1.02)}
-body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(ellipse 85% 80% at 50% 50%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
-  mix-blend-mode:soft-light}
-@keyframes bg-breath{
-  0%,100%{transform:scale(1.02) translate(0,0)}
-  33%{transform:scale(1.04) translate(-8px,-6px)}
-  66%{transform:scale(1.03) translate(6px,-8px)}
-}
+body{font-family:var(--font-body);color:#1a1a1a;background:#FAF8F3;line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;min-height:100vh}
 ::selection{background:#166534;color:#fff}
 
 /* ===== 顶部 ===== */

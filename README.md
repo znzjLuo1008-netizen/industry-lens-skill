@@ -9,19 +9,20 @@
 ![License](https://img.shields.io/badge/License-MIT-blue)
 ![AI](https://img.shields.io/badge/LLM-DeepSeek-8b5cf6)
 
-🌐 **在线 Demo**：[znzjluo1008-netizen.github.io/industrylens](https://znzjluo1008-netizen.github.io/industrylens/)
+🌐 **在线 Demo**：[znzjluo1008-netizen.github.io/industry-lens-skill](https://znzjluo1008-netizen.github.io/industry-lens-skill/)
 
 ---
 
 ## 📸 效果预览
 
-本 skill 生成的页面效果（见 `examples/` 目录）：
+本 skill 生成的页面效果（见 `examples/` 目录，可直接点击在线访问）：
 
-| 行业 | 文件 | 词数 | 公司数 | 产业链 |
+| 行业 | 在线访问 | 词数 | 公司数 | 产业链 |
 |---|---|---|---|---|
-| 智能驾驶 | `examples/智能驾驶-百科.html` | 100 | 3 | 上中下 13 细分 / 64 家 |
-| 光伏 | `examples/光伏-百科.html` | 100 | 3 | 上中下 12 细分 / 59 家 |
-| AI 生图 | `examples/AI生图-百科.html` | 100 | 3 | 上中下 13 细分 / 65 家 |
+| 光伏 | [打开 →](https://znzjluo1008-netizen.github.io/industry-lens-skill/examples/%E5%85%89%E4%BC%8F-%E7%99%BE%E7%A7%91.html) | 100 | 3 | 上中下 12 细分 / 59 家 |
+| 智能驾驶 | [打开 →](https://znzjluo1008-netizen.github.io/industry-lens-skill/examples/%E6%99%BA%E8%83%BD%E9%A9%BE%E9%A9%B6-%E7%99%BE%E7%A7%91.html) | 100 | 3 | 上中下 13 细分 / 64 家 |
+| AI 生图 | [打开 →](https://znzjluo1008-netizen.github.io/industry-lens-skill/examples/AI%E7%94%9F%E5%9B%BE-%E7%99%BE%E7%A7%91.html) | 100 | 3 | 上中下 13 细分 / 65 家 |
+| 烟草 | [打开 →](https://znzjluo1008-netizen.github.io/industry-lens-skill/examples/%E7%83%9F%E8%8D%89-%E7%99%BE%E7%A7%91.html) | 100 | 3 | 上中下 14 细分 / 69 家 |
 
 每个关键词卡包含 **4 区块**：
 - 📖 **专业释义** 150-200 字三段式（定义 + 2025-2026 数据 + 产业影响）

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>烟草 · 行业百科</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --font-display:'Space Grotesk','Noto Sans SC',-apple-system,sans-serif;
+  --font-body:'Inter','Noto Sans SC','PingFang SC',-apple-system,sans-serif;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:var(--font-body);color:#1a1a1a;background:#FAF8F3;line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;min-height:100vh}
+::selection{background:#166534;color:#fff}
+
+/* ===== 顶部 ===== */
+.page-head{max-width:1200px;margin:0 auto;padding:60px 32px 32px;text-align:center}
+.page-head h1{font-family:var(--font-display);font-size:2.8rem;font-weight:700;letter-spacing:-.035em;color:#111;margin-bottom:12px}
+.page-head .subtitle{font-size:1rem;color:#666;font-weight:400;max-width:640px;margin:0 auto 8px;line-height:1.6}
+.page-head .meta{display:inline-flex;gap:16px;margin-top:20px;padding:8px 18px;border-radius:24px;background:#fff;font-size:.72rem;color:#666;font-weight:500;letter-spacing:.04em;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
+.page-head .meta strong{color:#166534;font-weight:600}
+
+/* ===== 三强区 ===== */
+.top3-section{max-width:1200px;margin:0 auto 48px;padding:36px;border-radius:32px;background:#fff;position:relative;box-shadow:0 2px 20px rgba(0,0,0,0.04)}
+.top3-head{margin-bottom:28px}
+.top3-title{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.top3-title h2{font-family:var(--font-display);font-size:1.32rem;font-weight:700;color:#111}
+.top3-title h2 em{font-style:normal;color:#0F6E56;font-weight:500;font-size:.82rem;margin-left:8px}
+.top3-sub{font-size:.78rem;color:#888;letter-spacing:.01em}
+.top3-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cmp-card{background:#fff;border-radius:20px;overflow:visible;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;transition:all .3s var(--ease-out)}
+.cmp-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+.cmp-body{padding:20px 20px 4px}
+.cmp-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.cmp-logo{width:44px;height:44px;border-radius:12px;background:#F4F4F1;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:600;color:#888;flex-shrink:0;overflow:hidden}
+.cmp-logo img{width:100%;height:100%;object-fit:contain}
+.cmp-name-wrap{flex:1;min-width:0}
+.cmp-name{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:#111;letter-spacing:-.01em;line-height:1.2}
+.cmp-en{font-size:.68rem;color:#888;letter-spacing:.04em;margin-top:2px}
+.cmp-niche{font-size:.8rem;color:#444;line-height:1.5;margin-top:8px;word-break:break-word}
+.cmp-tags{display:flex;gap:6px;flex-wrap:wrap;margin:4px 20px 14px}
+.cmp-tag{font-size:.65rem;padding:3px 10px;background:#F4F4F1;color:#555;border-radius:10px;font-weight:500}
+.cmp-section-label{font-family:var(--font-display);font-size:.66rem;font-weight:600;color:#0F6E56;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.cmp-moat{padding:0 20px;margin-bottom:14px}
+.cmp-moat-pro{font-size:.78rem;color:#333;line-height:1.75;background:#F0F8F2;border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.cmp-moat-pro::before{content:'专业视角';display:block;font-size:.62rem;color:#0F6E56;letter-spacing:.08em;margin-bottom:4px;font-weight:600}
+.cmp-moat-ez{font-size:.78rem;color:#333;line-height:1.75;background:#F4F4F1;border-radius:10px;padding:10px 12px}
+.cmp-moat-ez::before{content:'大白话';display:block;font-size:.62rem;color:#888;letter-spacing:.08em;margin-bottom:4px;font-weight:600}
+
+.cmp-life{padding:0 20px;margin-bottom:14px}
+.cmp-life-stages{display:flex;gap:4px}
+.cmp-life-stage{flex:1;text-align:center;position:relative}
+.cmp-life-stage .dot{width:10px;height:10px;border-radius:50%;background:#ddd;margin:0 auto 4px;transition:background .3s}
+.cmp-life-stage.done .dot{background:#B8E4C8}
+.cmp-life-stage.active .dot{background:#0F6E56;box-shadow:0 0 0 4px rgba(15,110,86,0.15)}
+.cmp-life-stage .label{font-size:.65rem;color:#999}
+.cmp-life-stage.active .label{color:#0F6E56;font-weight:600}
+
+.cmp-rev{padding:0 20px 4px}
+.cmp-rev-item{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.cmp-rev-label{font-size:.72rem;color:#444;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.cmp-rev-bar-wrap{flex:1.2;height:8px;background:#F0F0EC;border-radius:6px;overflow:hidden}
+.cmp-rev-bar{height:100%;border-radius:6px;width:var(--w,0%);transition:width 1s var(--ease-out)}
+.cmp-rev-pct{font-family:var(--font-display);font-size:.72rem;font-weight:700;color:#111;width:40px;text-align:right}
+.cmp-rev-empty{font-size:.72rem;color:#999;font-style:italic;padding:8px 12px;background:rgba(0,0,0,0.03);border-radius:8px;text-align:center}
+
+.cmp-visit{display:inline-flex;align-items:center;gap:6px;margin:4px 20px 20px;padding:8px 14px;border-radius:12px;background:#F4F4F1;color:#444;font-size:.78rem;font-weight:500;text-decoration:none;transition:all .2s}
+.cmp-visit:hover{background:#E8F1EB;color:#0F6E56;transform:translateY(-1px)}
+
+/* ===== 关键词 Section ===== */
+.kw-section-title{max-width:1200px;margin:48px auto 16px;padding:0 32px;display:flex;align-items:baseline;justify-content:space-between}
+.kw-section-title h2{font-family:var(--font-display);font-size:1.22rem;font-weight:700;color:#111}
+.kw-section-title h2 em{font-style:normal;color:#0F6E56;font-size:.78rem;font-weight:500;margin-left:6px}
+.kw-section-title .kst-meta{font-size:.72rem;color:#666;letter-spacing:.02em}
+
+.kw-grid{max-width:1200px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+
+/* ===== 关键词卡片 ===== */
+.kw-card{position:relative;background:#fff;border-radius:16px;overflow:visible;transition:all .3s var(--ease-out);box-shadow:0 2px 8px rgba(0,0,0,0.04);border:0.5px solid rgba(0,0,0,0.08)}
+.kw-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+.kw-top{padding:18px 20px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.kw-num{font-family:var(--font-display);font-size:.62rem;font-weight:500;letter-spacing:.04em;color:#999;flex-shrink:0;white-space:nowrap}
+.kw-name{font-family:var(--font-display);font-size:1.06rem;font-weight:600;flex:1;letter-spacing:-.01em;line-height:1.35;color:#111}
+.kw-name mark{background:rgba(34,197,94,0.18);color:#166534;font-weight:600;padding:0 2px;border-radius:2px}
+.kw-body{padding:0 20px 16px}
+
+/* ===== 区块通用 ===== */
+.kw-section{position:relative;padding:12px 0;border-top:0.5px solid rgba(0,0,0,0.08)}
+.kw-section:first-child{border-top:none;padding-top:4px}
+
+/* ===== 区块标签 ===== */
+.kw-label{display:inline-block;padding:0;font-family:var(--font-display);font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;white-space:nowrap}
+.kw-label-pro,.kw-label-ez{color:#0F6E56}
+.kw-label-ref,.kw-label-ind{color:#5F5E5A}
+
+/* 专业释义 */
+.kw-section-pro{background:transparent}
+.kw-pro-text{font-size:.86rem;color:#1a1a1a;line-height:1.85}
+.kw-pro-text mark{background:rgba(34,197,94,0.18);color:#166534;padding:0 2px;font-weight:600;border-radius:2px}
+
+/* 数字/百分比 高亮 */
+.kw-num-hl{color:#185FA5;font-weight:600;background:rgba(24,95,165,0.08);padding:1px 4px;border-radius:3px;border-bottom:1.5px solid rgba(24,95,165,0.4);cursor:default;transition:all .15s}
+.kw-num-hl:hover{background:rgba(24,95,165,0.14);border-bottom-color:rgba(24,95,165,0.7)}
+
+/* 大白话 */
+.kw-section-ez{background:#F0F8F2;border-radius:12px;padding:12px 14px;border-top:none;margin-top:6px}
+.kw-ez-text{font-size:.86rem;color:#1a1a1a;line-height:1.85}
+.kw-ez-text mark{background:rgba(34,197,94,0.22);color:#166534;padding:0 2px;border-radius:2px;font-weight:600}
+
+/* 查资料 */
+.kw-section-ref{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:transparent}
+.kw-section-ref .kw-label{margin-bottom:0}
+.kw-ref-links{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.kw-ref{height:24px;padding:0 10px;border-radius:12px;display:inline-flex;align-items:center;gap:4px;background:#E8F1EB;color:#166534;font-size:.72rem;font-weight:600;letter-spacing:.02em;text-decoration:none;font-family:var(--font-display);transition:all .2s}
+.kw-ref::after{content:'↗';font-size:.7rem;opacity:.7;margin-left:2px}
+.kw-ref:hover{background:#0F6E56;color:#fff;transform:translateY(-1px)}
+
+/* 行业数据 */
+.kw-section-ind{background:transparent}
+.kw-id-text{font-size:.86rem;color:#1a1a1a;line-height:1.85}
+.kw-id-text mark{background:rgba(34,197,94,0.18);color:#166534;padding:0 2px;border-radius:2px;font-weight:600}
+
+/* 分类过滤 */
+.cat-filter{max-width:1200px;margin:0 auto 20px;padding:0 32px;display:flex;gap:8px;flex-wrap:wrap}
+.cat-btn{padding:6px 14px;border-radius:20px;background:#fff;color:#555;font-size:.78rem;font-weight:500;border:1px solid rgba(0,0,0,0.08);cursor:pointer;transition:all .2s;font-family:var(--font-body)}
+.cat-btn:hover{background:#F0F8F2;color:#0F6E56;border-color:rgba(15,110,86,0.2)}
+.cat-btn.active{background:#0F6E56;color:#fff;border-color:#0F6E56}
+.cat-btn .cnt{opacity:.6;margin-left:4px;font-size:.72rem}
+
+/* 脚注 */
+.page-foot{max-width:1200px;margin:60px auto 40px;padding:24px 32px;text-align:center;color:#999;font-size:.76rem;line-height:1.7;border-top:0.5px solid rgba(0,0,0,0.08)}
+
+/* Scroll Reveal */
+.scroll-reveal{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
+.scroll-reveal.revealed{opacity:1;transform:translateY(0)}
+
+/* ===== 产业链上中下游（投研研报风） ===== */
+.vc-section{max-width:1200px;margin:0 auto 48px;padding:36px;border-radius:32px;background:#fff;box-shadow:0 2px 20px rgba(0,0,0,0.04)}
+.vc-head{margin-bottom:18px}
+.vc-head h2{font-family:var(--font-display);font-size:1.32rem;font-weight:700;color:#111;margin-bottom:4px}
+.vc-head h2 em{font-style:normal;color:#0F6E56;font-weight:500;font-size:.82rem;margin-left:8px}
+.vc-head .vc-subtitle{font-size:.78rem;color:#888;letter-spacing:.01em}
+
+.vc-insight{font-size:.82rem;color:#3a3a3a;line-height:1.8;background:#F9FAFB;border-left:3px solid #0F6E56;padding:14px 18px;border-radius:0 10px 10px 0;margin-bottom:22px}
+.vc-insight::before{content:'产业链观察';display:block;font-size:.66rem;color:#0F6E56;letter-spacing:.12em;margin-bottom:6px;font-weight:600;text-transform:uppercase}
+.vc-insight strong{color:#166534;font-weight:600}
+
+/* 金钱流向示意（轴） */
+.vc-money-flow{display:flex;align-items:center;justify-content:space-between;padding:10px 4px 18px;font-size:.72rem;color:#666;border-bottom:1px dashed #E8E3D4;margin-bottom:22px}
+.vc-money-flow .mf-label{font-weight:500;color:#0F6E56}
+.vc-money-flow .mf-arrow{flex:1;display:flex;align-items:center;gap:8px;padding:0 16px;color:#999}
+.vc-money-flow .mf-arrow .line{flex:1;height:1px;background:linear-gradient(to right,#0F6E56,#BA7517)}
+.vc-money-flow .mf-note{color:#888;font-size:.7rem}
+
+/* 三列价值链 */
+.vc-chain{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;position:relative;border:1px solid #EDE9DC;border-radius:16px;overflow:hidden}
+.vc-col{padding:18px 18px 20px;position:relative;background:#fff}
+.vc-col + .vc-col{border-left:1px solid #EDE9DC}
+.vc-col.up{background:#F6FAF3}
+.vc-col.mid{background:#F5FAF8}
+.vc-col.down{background:#FCF7ED}
+
+/* 层级头 */
+.vc-col-head{margin-bottom:12px}
+.vc-col-title{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+.vc-col-title .cn{font-family:var(--font-display);font-size:1.02rem;font-weight:700;color:#111}
+.vc-col-title .en{font-size:.66rem;color:#888;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.vc-col-badges{display:flex;gap:5px;margin-bottom:8px}
+.vc-col-badge{font-size:.6rem;padding:2px 8px;border-radius:6px;font-weight:600;letter-spacing:.02em}
+.vc-col-badge.m-high,.vc-col-badge.p-strong{background:#E8F5EC;color:#166534}
+.vc-col-badge.m-mid,.vc-col-badge.p-medium{background:#F1F5F9;color:#475569}
+.vc-col-badge.m-low,.vc-col-badge.p-weak{background:#FEF3C7;color:#A16207}
+.vc-col-role{font-size:.74rem;color:#0F6E56;font-weight:600;line-height:1.55;margin-bottom:6px}
+.vc-col-desc{font-size:.7rem;color:#555;line-height:1.7;padding-bottom:12px;margin-bottom:12px;border-bottom:1px dashed #E8E3D4}
+
+/* 细分环节行 */
+.vc-seg-row{padding:8px 0;border-bottom:1px dashed #F0EDE3;display:block}
+.vc-seg-row:last-child{border-bottom:none}
+.vc-seg-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:3px}
+.vc-seg-name{font-size:.76rem;font-weight:600;color:#222}
+.vc-seg-note{font-size:.65rem;color:#999;font-weight:400;text-align:right;max-width:55%}
+.vc-seg-row .players{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.vc-seg-row .player{font-size:.63rem;padding:1px 7px;background:#fff;border:1px solid #E0DCCF;color:#444;border-radius:4px;font-weight:500}
+.vc-seg-row:hover .player{border-color:#0F6E56;color:#0F6E56}
+
+/* 列底部毛利带 */
+.vc-col-meter{margin-top:14px;padding-top:10px;border-top:1px dashed #E8E3D4;display:flex;align-items:center;justify-content:space-between;font-size:.65rem;color:#888}
+.vc-col-meter .metric{display:flex;align-items:center;gap:4px}
+.vc-col-meter .dot{width:6px;height:6px;border-radius:50%}
+.vc-col.up .dot{background:#3B6D11}
+.vc-col.mid .dot{background:#0F6E56}
+.vc-col.down .dot{background:#BA7517}
+
+/* 小屏适配 */
+@media (max-width:860px){
+  .top3-section{padding:24px;border-radius:20px}
+  .top3-grid{grid-template-columns:1fr}
+  .page-head h1{font-size:2rem}
+  .kw-grid{grid-template-columns:1fr}
+  .vc-section{padding:24px;border-radius:20px}
+  .vc-chain{grid-template-columns:1fr}
+  .vc-col + .vc-col{border-left:none;border-top:1px solid #EDE9DC}
+  .vc-money-flow{flex-direction:column;gap:6px;align-items:flex-start}
+  .vc-money-flow .mf-arrow{width:100%;padding:0}
+}
+@media (max-width:520px){
+  .page-head{padding:40px 20px 24px}
+  .kw-card{border-radius:14px}
+  .kw-top{padding:16px 16px 10px}
+  .kw-body{padding:0 16px 14px}
+  .kw-section{padding:10px 0}
+  .kw-section-ez{padding:10px 12px}
+  .kw-ref{padding:0 8px;font-size:.68rem;height:22px}
+  .kw-id-text,.kw-pro-text,.kw-ez-text{font-size:.83rem}
+}
+</style>
+</head>
+<body>
+<div class="page-head">
+  <h1>烟草</h1>
+  <div class="subtitle"></div>
+  <div class="meta"><span><strong>100</strong> 关键词</span><span><strong>3</strong> 标杆公司</span><span><strong>2025-2026</strong> 最新数据</span></div>
+</div>
+
+<!-- 三强区块 -->
+<div class="top3-section" id="top3Section"></div>
+
+<!-- 产业链上中下游（Sankey 桑基图） -->
+<div class="vc-section" id="vcSection" style="display:none"></div>
+
+<!-- 分类过滤 -->
+<div class="cat-filter" id="catFilter"></div>
+
+<!-- 关键词区 -->
+<div class="kw-section-title">
+  <h2>100 词百科<em>· 覆盖核心 / 财务 / 技术 / 商业四大维度</em></h2>
+  <div class="kst-meta" id="kwMeta"></div>
+</div>
+<div class="kw-grid" id="kwGrid"></div>
+
+<div class="page-foot">
+  Generated by <strong style="color:#0F6E56">IndustryLens</strong> · 专业释义 + 大白话 + 行业数据 + 三强拆解<br>
+  数据基于公开资料整理，不构成投资建议
+</div>
+
+<script>
+// ========== 数据注入点 ==========
+// 下面 3 个变量由 skill 在生成时填充
+var INDUSTRY = {"name": "烟草", "desc": ""};
+var KEYWORDS = [{"rank": 1, "cat": "core", "term": "尼古丁", "pro": "尼古丁（Nicotine）是烟草中的主要生物碱，是一种强效神经毒素，通过激活大脑中的尼古丁乙酰胆碱受体（nAChRs）产生依赖性和愉悦感。2025年全球尼古丁替代疗法（NRT）市场规模约45亿美元，年增长率5.2%，主要厂商包括葛兰素史克（Nicorette）和强生（Nicoderm CQ）。在烟草产业链中，尼古丁是决定烟草制品成瘾性的核心成分，也是新型烟草（如电子烟烟油）的关键原料。其含量直接影响产品吸引力和监管政策，如FDA要求卷烟尼古丁含量降至0.4mg/g以下。", "ref": {"google": "尼古丁 成瘾机制 2025", "wiki": "Nicotine"}, "industryData": "2025年全球NRT市场45亿美元，葛兰素史克占30%份额，年增长5.2%。", "ez": "尼古丁就像烟草里的‘快乐小魔鬼’，让你抽了还想抽，欲罢不能。"}, {"rank": 2, "cat": "core", "term": "焦油", "pro": "焦油（Tar）是烟草燃烧时产生的复杂混合物，含有多环芳烃、亚硝胺等致癌物。2025年世界卫生组织（WHO）数据显示，全球因吸烟导致的肺癌死亡中约85%与焦油相关。中国国家标准规定卷烟焦油量上限为11mg/支，主流产品已降至8mg以下。在烟草产业链中，焦油是衡量卷烟危害性的关键指标，低焦油产品（如1mg）通过滤嘴通风等技术实现，但实际摄入量可能因补偿吸烟行为而增加。", "ref": {"google": "焦油 卷烟 标准 2025", "wiki": "Tar (tobacco residue)"}, "industryData": "2025年中国卷烟平均焦油量8.2mg/支，较2020年下降15%。", "ez": "焦油就是烟里的‘黑油漆’，把肺慢慢涂黑，是肺癌的头号帮凶。"}, {"rank": 3, "cat": "core", "term": "一氧化碳", "pro": "一氧化碳（Carbon monoxide, CO）是烟草不完全燃烧产生的有毒气体，与血红蛋白亲和力是氧气的200-250倍，导致组织缺氧。2025年吸烟者血液中COHb（碳氧血红蛋白）水平平均为5-10%，而非吸烟者低于1%。在烟草产业链中，CO是卷烟主流烟气中的主要气相成分，其浓度受滤嘴通风率和燃烧温度影响。长期暴露会增加心血管疾病风险，是烟草危害评估的重要指标。", "ref": {"google": "一氧化碳 吸烟 危害 2025", "wiki": "Carbon monoxide"}, "industryData": "吸烟者血液COHb平均6.5%，是非吸烟者的10倍以上。", "ez": "一氧化碳就像‘隐形杀手’，抢走你血液里的氧气，让你慢慢窒息。"}, {"rank": 4, "cat": "core", "term": "滤嘴", "pro": "滤嘴（Filter）是卷烟末端的过滤装置，通常由醋酸纤维或活性炭制成，用于截留部分焦油和尼古丁。2025年全球滤嘴市场约120亿美元，主要厂商包括Filtrona（英美烟草子公司）和日本烟草的滤嘴业务。滤嘴通风技术通过稀释主流烟气降低焦油量，但可能导致补偿吸烟（更深、更频繁）。在产业链中，滤嘴是卷烟设计的关键部件，其效率影响产品评级和消费者体验。", "ref": {"google": "滤嘴 通风 技术 2025", "wiki": "Cigarette filter"}, "industryData": "2025年全球滤嘴市场120亿美元，醋酸纤维占70%份额。", "ez": "滤嘴像香烟的‘口罩’，挡住一部分脏东西，但挡不住你上瘾。"}, {"rank": 5, "cat": "core", "term": "卷烟纸", "pro": "卷烟纸（Cigarette paper）是包裹烟丝的专用纸，需具备透气性、燃烧速度和灰分控制等特性。2025年全球卷烟纸市场约25亿美元，主要供应商包括施伟策-摩迪国际（Schweitzer-Mauduit）和德拉鲁（De La Rue）。卷烟纸的透气度影响主流烟气稀释率，燃烧速度调节剂（如柠檬酸盐）控制静燃速率。在产业链中，卷烟纸是影响产品外观和吸阻的关键辅料，其质量直接影响品牌形象。", "ref": {"google": "卷烟纸 透气度 2025", "wiki": "Cigarette paper"}, "industryData": "2025年全球卷烟纸市场25亿美元，施伟策-摩迪占40%份额。", "ez": "卷烟纸就是烟的外衣，决定了烟烧得快还是慢，像衣服的布料。"}, {"rank": 6, "cat": "core", "term": "烟丝", "pro": "烟丝（Tobacco blend）是卷烟填充料，由不同品种的烟叶（如烤烟、白肋烟、香料烟）按配方混合而成。2025年全球烟叶产量约600万吨，中国占40%以上，主要产区包括云南、贵州、河南。烟丝配方决定卷烟的香气、劲头和口感，通过加料（糖、可可）和加香（薄荷、水果）调整风味。在产业链中，烟丝是核心原料，其成本占卷烟生产成本的50-60%。", "ref": {"google": "烟丝 配方 2025", "wiki": "Tobacco blend"}, "industryData": "2025年中国烟叶产量240万吨，云南占全国35%。", "ez": "烟丝就像香烟的‘馅料’，不同配方调出不同味道，比如薄荷味。"}, {"rank": 7, "cat": "core", "term": "烤烟", "pro": "烤烟（Flue-cured tobacco）是卷烟的主要烟叶类型，通过热风烘烤干燥，颜色金黄，含糖量高，劲头适中。2025年全球烤烟产量约400万吨，中国、巴西、印度是主产国。中国烤烟收购均价约28元/公斤，云南优质烟叶价格可达40元/公斤。在产业链中，烤烟是中式卷烟的核心原料，其香气特征决定了产品风格，如中华、玉溪等品牌均以优质烤烟为基础。", "ref": {"google": "烤烟 产量 2025", "wiki": "Flue-cured tobacco"}, "industryData": "2025年中国烤烟产量210万吨，云南占40%。", "ez": "烤烟是烟草里的‘黄金叶’，经过烘烤变得香喷喷，是香烟的主力军。"}, {"rank": 8, "cat": "core", "term": "白肋烟", "pro": "白肋烟（Burley tobacco）是一种浅色晾烟，尼古丁含量较高，含糖量低，常用于混合型卷烟。2025年全球白肋烟产量约80万吨，主要生产国为美国、巴西、马拉维。美国白肋烟均价约4.5美元/公斤。在产业链中，白肋烟是美式混合烟（如万宝路）的关键成分，提供劲头和吸收性，常与烤烟搭配使用。其晾制过程需要60-90天，对气候要求高。", "ref": {"google": "白肋烟 产量 2025", "wiki": "Burley (tobacco)"}, "industryData": "2025年美国白肋烟产量15万吨，占全球18%。", "ez": "白肋烟是烟草里的‘黑马’，劲大味浓，是万宝路的秘密武器。"}, {"rank": 9, "cat": "core", "term": "香料烟", "pro": "香料烟（Oriental tobacco）是一种小型芳香烟叶，产于土耳其、希腊等地，香气浓郁，尼古丁含量低。2025年全球香料烟产量约30万吨，土耳其占60%。香料烟在混合型卷烟中用量仅5-15%，但赋予独特香气。在产业链中，香料烟是高端卷烟的调香原料，如骆驼品牌使用大量香料烟。其种植需要贫瘠土壤和特定气候，产量有限，价格较高。", "ref": {"google": "香料烟 产量 2025", "wiki": "Oriental tobacco"}, "industryData": "2025年土耳其香料烟产量18万吨，占全球60%。", "ez": "香料烟是烟草里的‘香水’，一点点就能让整支烟变得香气扑鼻。"}, {"rank": 10, "cat": "core", "term": "膨胀烟丝", "pro": "膨胀烟丝（Expanded tobacco）是通过二氧化碳或氟利昂膨胀工艺处理后的烟丝，体积增大，填充值提高，可降低卷烟成本。2025年全球膨胀烟丝市场约15亿美元，主要技术供应商包括Airco和BAT。膨胀烟丝在卷烟配方中占比可达20-30%，能减少烟叶用量10-15%。在产业链中，膨胀烟丝是降本增效的重要手段，同时可降低焦油释放量。", "ref": {"google": "膨胀烟丝 工艺 2025", "wiki": "Expanded tobacco"}, "industryData": "2025年全球膨胀烟丝市场15亿美元，年增长3%。", "ez": "膨胀烟丝就像‘爆米花’，把烟丝变大变轻，省原料还降焦油。"}, {"rank": 11, "cat": "core", "term": "再造烟叶", "pro": "再造烟叶（Reconstituted tobacco）是利用烟梗、烟末等废弃物经造纸法或干法工艺制成的薄片，用于卷烟填充。2025年全球再造烟叶产量约50万吨，主要生产商包括施伟策-摩迪和德拉鲁。再造烟叶可替代20-40%天然烟叶，成本降低30-50%。在产业链中，它是循环经济的重要部分，同时可调控卷烟化学成分，如降低焦油。", "ref": {"google": "再造烟叶 产量 2025", "wiki": "Reconstituted tobacco"}, "industryData": "2025年全球再造烟叶产量50万吨，中国占30%。", "ez": "再造烟叶是烟草界的‘变废为宝’，把边角料做成薄片，省钱又环保。"}, {"rank": 12, "cat": "core", "term": "烟梗", "pro": "烟梗（Tobacco stem）是烟叶的主脉，占烟叶重量的25-30%。传统上被视为废弃物，现通过膨胀或再造工艺利用。2025年全球烟梗处理量约150万吨，中国烟梗利用率达80%。在产业链中，烟梗经膨胀后可作为填充料，或用于生产再造烟叶和烟碱提取。其纤维含量高，也可用于生物质能源。", "ref": {"google": "烟梗 利用 2025", "wiki": "Tobacco stem"}, "industryData": "2025年中国烟梗利用率80%，年处理量50万吨。", "ez": "烟梗是烟叶的‘骨架’，以前是垃圾，现在变废为宝做填充料。"}, {"rank": 13, "cat": "core", "term": "加料", "pro": "加料（Casing）是卷烟生产过程中向烟丝添加糖、可可、甘草等调味物质的过程，以改善口感和香气。2025年全球烟草加料市场约8亿美元，主要供应商包括国际香料公司（IFF）和奇华顿。加料配方是品牌机密，如万宝路使用独特的加料体系。在产业链中，加料是决定卷烟风味的关键步骤，可掩盖烟叶不良气息，增加甜润感。", "ref": {"google": "烟草加料 配方 2025", "wiki": "Casing (tobacco)"}, "industryData": "2025年全球烟草加料市场8亿美元，IFF占25%份额。", "ez": "加料就像给烟丝‘加调料’，糖啊可可啊，让烟更好抽。"}, {"rank": 14, "cat": "core", "term": "加香", "pro": "加香（Flavoring）是在卷烟生产后期向烟丝或滤嘴添加香料，赋予产品特定香气，如薄荷、水果、香草。2025年全球烟草加香市场约12亿美元，薄荷醇是最常用的香料，占60%以上。加香技术包括微胶囊和喷雾干燥，用于电子烟油也广泛使用。在产业链中，加香是差异化竞争的重要手段，但面临监管限制，如欧盟禁止薄荷卷烟。", "ref": {"google": "烟草加香 薄荷 2025", "wiki": "Flavoring (tobacco)"}, "industryData": "2025年全球薄荷卷烟市场占卷烟总量15%，约2000亿支。", "ez": "加香就是给烟‘喷香水’，薄荷味、水果味，让你抽得开心。"}, {"rank": 15, "cat": "core", "term": "主流烟气", "pro": "主流烟气（Mainstream smoke）是吸烟者从滤嘴端吸入的烟气，包含约4000种化学物质，其中至少70种致癌物。2025年研究显示，主流烟气中焦油、尼古丁和一氧化碳含量是衡量卷烟危害的核心指标。在产业链中，主流烟气分析是产品开发和质量控制的关键，通过ISO和加拿大深度吸烟法测定。低危害产品（如加热不燃烧）旨在减少主流烟气中有害成分。", "ref": {"google": "主流烟气 成分 2025", "wiki": "Mainstream smoke"}, "industryData": "2025年主流烟气中焦油平均8mg/支，较2000年下降50%。", "ez": "主流烟气就是你吸进去的那口烟，里面藏着几千种化学物质。"}, {"rank": 16, "cat": "core", "term": "侧流烟气", "pro": "侧流烟气（Sidestream smoke）是卷烟燃烧端直接释放到空气中的烟气，其成分与主流烟气不同，含有更高浓度的致癌物和氨。2025年WHO指出，侧流烟气是二手烟的主要来源，导致全球每年120万非吸烟者死亡。在产业链中，侧流烟气是环境烟草烟雾（ETS）研究重点，也是公共场所禁烟的依据。低侧流卷烟通过改进卷烟纸和燃烧技术减少排放。", "ref": {"google": "侧流烟气 危害 2025", "wiki": "Sidestream smoke"}, "industryData": "侧流烟气中苯并芘浓度是主流烟气的3-4倍。", "ez": "侧流烟气就是烟头冒出的‘野烟’，比吸进去的还毒，害人害己。"}, {"rank": 17, "cat": "core", "term": "二手烟", "pro": "二手烟（Secondhand smoke）由主流烟气和侧流烟气混合而成，含有超过7000种化学物质，其中69种致癌物。2025年全球约40%的儿童暴露于二手烟，每年导致65万人死亡。中国公共场所禁烟法规覆盖人口比例达30%。在产业链中，二手烟危害推动了无烟政策，也促进了通风系统和空气净化设备市场发展。", "ref": {"google": "二手烟 危害 2025", "wiki": "Secondhand smoke"}, "industryData": "2025年全球二手烟导致65万人死亡，中国占20%。", "ez": "二手烟就是别人抽烟你遭殃，比直接抽还毒，躲远点。"}, {"rank": 18, "cat": "core", "term": "三手烟", "pro": "三手烟（Thirdhand smoke）是吸烟后残留在衣物、家具、地毯等表面的烟草残留物，可长期存在并与环境反应形成致癌物。2025年研究显示，三手烟中的亚硝胺（TSNA）在室内可存留数月。在产业链中，三手烟概念推动了清洁服务和特殊清洁剂市场，如臭氧消毒。其对婴幼儿危害最大，因爬行和手口接触。", "ref": {"google": "三手烟 残留 2025", "wiki": "Thirdhand smoke"}, "industryData": "三手烟中TSNA浓度在吸烟后24小时仍可检测到。", "ez": "三手烟是烟味‘赖着不走’，粘在沙发衣服上，小孩最受害。"}, {"rank": 19, "cat": "core", "term": "电子烟", "pro": "电子烟（E-cigarette）是一种通过加热烟油产生气溶胶的电子设备，不含烟草燃烧过程。2025年全球电子烟市场规模约300亿美元，主要品牌包括Juul、Vuse（英美烟草）和悦刻（RLX）。中国电子烟出口占全球80%，但国内监管趋严。在产业链中，电子烟被视为减害产品，但长期健康影响仍存争议，FDA要求PMTA（上市前烟草申请）审批。", "ref": {"google": "电子烟 市场规模 2025", "wiki": "Electronic cigarette"}, "industryData": "2025年全球电子烟市场300亿美元，Juul占美国30%份额。", "ez": "电子烟是‘高科技烟’，不用火，但一样让你上瘾，只是可能没那么毒。"}, {"rank": 20, "cat": "core", "term": "加热不燃烧", "pro": "加热不燃烧（Heat-not-burn, HnB）是一种新型烟草制品，通过加热烟草至350°C以下（而非燃烧）产生气溶胶。2025年全球HnB市场约150亿美元，主要产品包括IQOS（菲利普莫里斯）和glo（英美烟草）。IQOS在日本市占率超过20%。在产业链中，HnB被视为减害替代品，其有害成分较传统卷烟减少90-95%，但仍有尼古丁依赖风险。", "ref": {"google": "加热不燃烧 市场 2025", "wiki": "Heat-not-burn tobacco product"}, "industryData": "2025年IQOS全球用户超2400万，日本市场占25%。", "ez": "加热不燃烧是‘烤烟’而不是‘烧烟’，据说危害小很多，但照样上瘾。"}, {"rank": 21, "cat": "core", "term": "烟油", "pro": "烟油（E-liquid）是电子烟使用的液体，主要成分包括丙二醇（PG）、植物甘油（VG）、尼古丁和香料。2025年全球烟油市场约80亿美元，中国深圳是主要生产基地。烟油中尼古丁盐（Nicotine salt）技术提高了吸收效率，使电子烟更接近卷烟体验。在产业链中，烟油是电子烟的核心耗材，其成分和口味受FDA监管，禁止未经PMTA的调味产品。", "ref": {"google": "烟油 成分 2025", "wiki": "E-liquid"}, "industryData": "2025年全球烟油市场80亿美元，中国出口占70%。", "ez": "烟油就是电子烟的‘墨水’，有各种口味，但尼古丁还在。"}, {"rank": 22, "cat": "core", "term": "尼古丁盐", "pro": "尼古丁盐（Nicotine salt）是尼古丁与有机酸（如苯甲酸）结合形成的盐，相比游离碱尼古丁，其pH值更低，吸入更顺畅，血液吸收更快。2025年电子烟中尼古丁盐使用占比超过60%，Juul首创该技术。在产业链中，尼古丁盐使高浓度尼古丁（如5%）变得可接受，提升了电子烟的满足感，但也增加了成瘾性。", "ref": {"google": "尼古丁盐 技术 2025", "wiki": "Nicotine salt"}, "industryData": "2025年电子烟中尼古丁盐使用率60%，Juul专利到期。", "ez": "尼古丁盐是‘升级版尼古丁’，让你吸得更顺，上瘾更快。"}, {"rank": 23, "cat": "core", "term": "雾化器", "pro": "雾化器（Atomizer）是电子烟中将烟油转化为气溶胶的核心部件，通常由加热线圈和棉芯组成。2025年全球雾化器市场约50亿美元，陶瓷雾化芯（如FEELM技术）成为主流。在产业链中，雾化器性能决定用户体验，包括口感、烟雾量和漏油问题。中国深圳是雾化器制造中心，占全球产量90%。", "ref": {"google": "雾化器 陶瓷芯 2025", "wiki": "Atomizer (electronic cigarette)"}, "industryData": "2025年陶瓷雾化芯市场占电子烟60%，FEELM技术领先。", "ez": "雾化器是电子烟的‘心脏’，把烟油变成雾，让你吸到嘴里。"}, {"rank": 24, "cat": "core", "term": "烟弹", "pro": "烟弹（Pod）是电子烟中预装烟油的封闭式容器，与电池杆配合使用。2025年全球烟弹市场约120亿美元，可换弹式电子烟（如Juul、悦刻）主导市场。烟弹通常含2-5%尼古丁盐，每颗约可吸200-400口。在产业链中，烟弹是电子烟厂商的主要利润来源，类似打印机墨盒模式，复购率高。", "ref": {"google": "烟弹 市场 2025", "wiki": "Pod mod"}, "industryData": "2025年全球烟弹市场120亿美元，悦刻在中国占60%份额。", "ez": "烟弹就是电子烟的‘墨盒’，用完就换，厂商靠这个赚钱。"}, {"rank": 25, "cat": "core", "term": "烟草专卖", "pro": "烟草专卖（Tobacco monopoly）是中国对烟草行业实行国家专营的制度，由中国烟草总公司统一管理。2025年中国烟草专卖制度下，卷烟生产、销售、进出口均受国家控制，年利税总额约1.2万亿元人民币，占国家财政收入6%以上。在产业链中，专卖制度确保了高利润和稳定市场，但也限制了竞争和创新，地方保护主义存在。", "ref": {"google": "烟草专卖 制度 2025", "wiki": "Tobacco monopoly in China"}, "industryData": "2025年中国烟草利税1.2万亿元，占财政6%。", "ez": "烟草专卖就是国家‘垄断卖烟’，利润巨大，是纳税大户。"}, {"rank": 26, "cat": "core", "term": "中国烟草总公司", "pro": "中国烟草总公司（CNTC）是负责中国烟草专卖的国有企业，旗下拥有31家省级烟草公司及多家卷烟厂。2025年CNTC年产卷烟约2.3万亿支，占全球卷烟产量40%以上，营业收入约1.5万亿元。主要品牌包括中华、云烟、芙蓉王等。在产业链中，CNTC控制从烟叶种植到销售的全链条，是全球最大的烟草企业。", "ref": {"google": "中国烟草总公司 营收 2025", "wiki": "China National Tobacco Corporation"}, "industryData": "2025年CNTC营收1.5万亿元，利润1.2万亿元。", "ez": "中国烟草总公司是‘烟草界的巨无霸’，全球最大，赚得盆满钵满。"}, {"rank": 27, "cat": "core", "term": "中华烟", "pro": "中华烟（Zhonghua）是中国烟草总公司的旗舰品牌，定位高端，被誉为‘国烟’。2025年中华烟年销量约100万箱（500亿支），零售价从45元/包到100元/包不等，高端系列如中华（金中支）售价100元/包。在产业链中，中华烟使用优质云南烤烟，配方严格保密，是社交和礼品市场的硬通货，品牌价值超千亿元。", "ref": {"google": "中华烟 销量 2025", "wiki": "Zhonghua (cigarette)"}, "industryData": "2025年中华烟销量100万箱，高端系列占30%。", "ez": "中华烟是‘烟中贵族’，送礼有面子，价格贵得吓人。"}, {"rank": 28, "cat": "core", "term": "万宝路", "pro": "万宝路（Marlboro）是菲利普莫里斯国际（PMI）旗下的全球最畅销卷烟品牌，2025年全球销量约3000亿支，占国际市场份额约10%。万宝路以美式混合型口味著称，红色包装经典。在产业链中，万宝路品牌价值超800亿美元，其成功源于强大的营销（如西部牛仔形象）和全球分销网络。中国市场上，万宝路由中烟授权生产。", "ref": {"google": "万宝路 销量 2025", "wiki": "Marlboro (cigarette)"}, "industryData": "2025年万宝路全球销量3000亿支，品牌价值800亿美元。", "ez": "万宝路是‘烟界明星’，牛仔广告深入人心，全球销量第一。"}, {"rank": 29, "cat": "core", "term": "IQOS", "pro": "IQOS是菲利普莫里斯国际（PMI）推出的加热不燃烧产品，使用专用烟弹（HeatSticks）。2025年IQOS全球用户超2400万，在70多个国家销售，日本和韩国是主要市场。IQOS烟弹加热至350°C，产生气溶胶，有害成分较传统卷烟减少90-95%。在产业链中，IQOS推动了新型烟草革命，PMI计划2030年实现无烟产品收入占比50%以上。", "ref": {"google": "IQOS 用户 2025", "wiki": "IQOS"}, "industryData": "2025年IQOS用户2400万，PMI无烟产品收入占比35%。", "ez": "IQOS是‘电子烟和真烟的混血儿’，加热不燃烧，号称危害小。"}, {"rank": 30, "cat": "core", "term": "PMTA", "pro": "PMTA（Premarket Tobacco Product Application）是美国FDA要求新型烟草产品上市前提交的申请，证明产品适合保护公众健康。2025年FDA已接受超过600万份PMTA，但仅批准了23种电子烟产品（如Vuse Solo）。在产业链中，PMTA是电子烟企业进入美国市场的关键门槛，申请费用高达数百万美元，导致行业洗牌。", "ref": {"google": "PMTA 批准 2025", "wiki": "Premarket Tobacco Product Application"}, "industryData": "2025年FDA仅批准23种电子烟PMTA，拒批率99.9%。", "ez": "PMTA是电子烟进美国的‘准生证’，难拿又贵，小公司玩不起。"}, {"rank": 31, "cat": "finance", "term": "毛利率", "pro": "毛利率（Gross margin）是烟草企业销售收入减去销售成本后的比率。2025年中国烟草行业平均毛利率约70%，远高于其他消费品。以中国烟草总公司为例，其毛利率约65%，主要因高税负（消费税占比56%）和专卖制度。国际烟草公司如菲利普莫里斯毛利率约68%。在产业链中，高毛利率反映了品牌溢价和成本控制，但受税收政策影响大。", "ref": {"google": "烟草行业 毛利率 2025", "wiki": "Gross margin"}, "industryData": "2025年中国烟草毛利率70%，菲利普莫里斯68%。", "ez": "毛利率就是卖烟赚的钱扣除成本后剩多少，烟草行业简直暴利。"}, {"rank": 32, "cat": "finance", "term": "净利率", "pro": "净利率（Net profit margin）是烟草企业净利润占销售收入的比率。2025年中国烟草总公司净利率约25%，国际烟草公司如英美烟草净利率约20%。高净利率得益于专卖制度和规模效应。在产业链中，净利率受税收、运营成本和竞争影响，中国烟草因垄断地位净利率高于国际同行。", "ref": {"google": "烟草 净利率 2025", "wiki": "Net profit margin"}, "industryData": "2025年中国烟草净利率25%，英美烟草20%。", "ez": "净利率是真正落袋的利润比例，烟草公司每卖100元赚25元。"}, {"rank": 33, "cat": "finance", "term": "消费税", "pro": "消费税（Excise tax）是政府对烟草制品征收的特定税种，中国卷烟消费税在生产环节征收，税率分两档：甲类卷烟（70元/条以上）56%加0.003元/支，乙类卷烟36%加0.003元/支。2025年中国烟草消费税总额约8000亿元，占卷烟零售价格的56%左右。在产业链中，消费税是政府控烟和财政收入的重要工具，高税率抑制消费但增加国家收入。", "ref": {"google": "烟草消费税 税率 2025", "wiki": "Tobacco tax"}, "industryData": "2025年中国烟草消费税8000亿元，占零售价56%。", "ez": "消费税是政府从烟里抽的‘重税’，一包烟一半以上是税。"}, {"rank": 34, "cat": "finance", "term": "从量税", "pro": "从量税（Specific tax）是按卷烟数量征收的固定税额，中国每支卷烟征收0.003元从量税。2025年全球从量税差异大，如美国联邦从量税约0.10美元/包，英国约3.50英镑/包。在产业链中，从量税与从价税结合构成复合税制，低端卷烟从量税占比更高，对低价烟影响更大。", "ref": {"google": "从量税 卷烟 2025", "wiki": "Specific tax"}, "industryData": "中国从量税0.003元/支，美国0.10美元/包。", "ez": "从量税是按根收的‘人头税’，每根烟交3厘钱。"}, {"rank": 35, "cat": "finance", "term": "从价税", "pro": "从价税（Ad valorem tax）是按卷烟价格比例征收的税，中国甲类卷烟56%，乙类36%。2025年全球从价税率各异，如印度约40%，欧盟最低52%。在产业链中，从价税导致高价烟税负更重，但厂商通过提价转嫁税负，消费者承担。从价税与从量税组合影响卷烟定价策略。", "ref": {"google": "从价税 卷烟 2025", "wiki": "Ad valorem tax"}, "industryData": "中国甲类卷烟从价税56%，乙类36%。", "ez": "从价税是按价格收的‘比例税’，烟越贵交税越多。"}, {"rank": 36, "cat": "finance", "term": "烟草税负", "pro": "烟草税负（Tobacco tax burden）指烟草制品总税收占零售价格的比重，中国约56%，远高于世界平均50%。2025年WHO建议税负至少75%以实现控烟目标。在产业链中，高税负导致卷烟价格上升，抑制消费，但中国因收入增长，消费量仍稳定。税负结构影响厂商利润和消费者行为。", "ref": {"google": "烟草税负 2025", "wiki": "Tobacco tax burden"}, "industryData": "2025年中国烟草税负56%，WHO建议75%。", "ez": "烟草税负就是烟价里税的比例，中国烟一半是税，政府赚大头。"}, {"rank": 37, "cat": "finance", "term": "利税总额", "pro": "利税总额（Total profit and tax）是烟草企业利润与税收之和，反映对财政的贡献。2025年中国烟草行业利税总额约1.2万亿元，占全国财政收入的6%以上。其中利润约3000亿元，税收约9000亿元。在产业链中，利税总额是衡量烟草行业经济地位的核心指标，也是专卖制度合理性的依据。", "ref": {"google": "烟草利税总额 2025", "wiki": "Profit and tax"}, "industryData": "2025年中国烟草利税1.2万亿元，利润3000亿，税收9000亿。", "ez": "利税总额是烟草给国家交的‘保护费’，一年1.2万亿，养得起军队。"}, {"rank": 38, "cat": "finance", "term": "卷烟销量", "pro": "卷烟销量（Cigarette sales volume）是衡量烟草市场规模的关键指标。2025年中国卷烟销量约2.3万亿支，同比下降2%，但结构升级推动收入增长。全球卷烟销量约5.5万亿支，呈下降趋势（年降1-2%）。在产业链中，销量受控烟政策、健康意识和新型烟草替代影响，但中国因人口基数大仍为最大市场。", "ref": {"google": "卷烟销量 2025 中国", "wiki": "Cigarette sales"}, "industryData": "2025年中国卷烟销量2.3万亿支，全球5.5万亿支。", "ez": "卷烟销量就是一年卖了多少根烟，中国一年卖2.3万亿根。"}, {"rank": 39, "cat": "finance", "term": "单箱收入", "pro": "单箱收入（Revenue per case）是烟草公司每箱（250条/50000支）卷烟的销售收入。2025年中国烟草单箱收入约1.5万元，高端品牌如中华单箱收入可达3万元。国际烟草公司如菲利普莫里斯单箱收入约2000美元。在产业链中，单箱收入反映产品结构和定价能力，是衡量品牌价值的重要指标。", "ref": {"google": "单箱收入 卷烟 2025", "wiki": "Revenue per unit"}, "industryData": "2025年中国烟草单箱收入1.5万元，中华3万元。", "ez": "单箱收入就是每箱烟能卖多少钱，中华一箱顶普通两箱。"}, {"rank": 40, "cat": "finance", "term": "市场占有率", "pro": "市场占有率（Market share）指品牌或公司在特定市场中的销售份额。2025年中国烟草市场，中华品牌在高端市场占有率约30%，整体市场前三大品牌（中华、云烟、芙蓉王）合计占40%。国际市场上，万宝路占全球10%。在产业链中，市场占有率反映竞争力和品牌忠诚度，是投资者关注的核心指标。", "ref": {"google": "卷烟 市场占有率 2025", "wiki": "Market share"}, "industryData": "2025年中华高端市场占有率30%，万宝路全球10%。", "ez": "市场占有率就是谁卖得最多，中华在高端烟里占三成。"}, {"rank": 41, "cat": "finance", "term": "品牌价值", "pro": "品牌价值（Brand value）是品牌在消费者心中的资产价值，通常通过Interbrand等机构评估。2025年万宝路品牌价值约800亿美元，中华品牌价值约1000亿元人民币。在产业链中，品牌价值源于品质、营销和消费者忠诚度，高品牌价值带来溢价和抗风险能力。烟草品牌因健康争议，品牌价值增长受限。", "ref": {"google": "烟草品牌价值 2025", "wiki": "Brand value"}, "industryData": "2025年万宝路品牌价值800亿美元，中华1000亿元。", "ez": "品牌价值就是名字值多少钱，万宝路这个名字值800亿美元。"}, {"rank": 42, "cat": "finance", "term": "股息率", "pro": "股息率（Dividend yield）是烟草公司每股股息与股价的比率。2025年国际烟草巨头如菲利普莫里斯股息率约5.5%，英美烟草约7%。中国烟草总公司未上市，但其债券收益率参考。在产业链中，高股息率反映成熟行业和稳定现金流，吸引价值投资者，但增长前景有限。", "ref": {"google": "烟草股 股息率 2025", "wiki": "Dividend yield"}, "industryData": "2025年菲利普莫里斯股息率5.5%，英美烟草7%。", "ez": "股息率就是买烟股每年能分多少红利，英美烟草一年分7%。"}, {"rank": 43, "cat": "finance", "term": "市盈率", "pro": "市盈率（Price-to-earnings ratio, P/E）是股价与每股收益的比率。2025年菲利普莫里斯市盈率约18倍，英美烟草约10倍，中国烟草未上市但可比公司估值约15倍。在产业链中，低市盈率反映行业增长缓慢和监管风险，但高股息提供支撑。烟草股通常被视为防御性股票。", "ref": {"google": "烟草 市盈率 2025", "wiki": "Price–earnings ratio"}, "industryData": "2025年菲利普莫里斯市盈率18倍，英美烟草10倍。", "ez": "市盈率是买股票回本的年数，烟草股10-18年回本。"}, {"rank": 44, "cat": "finance", "term": "自由现金流", "pro": "自由现金流（Free cash flow, FCF）是烟草公司经营现金流减去资本支出后的余额。2025年菲利普莫里斯自由现金流约90亿美元，中国烟草总公司约2000亿元人民币。高FCF源于高利润和低资本支出，支撑高股息和回购。在产业链中，FCF是衡量财务健康和股东回报的关键指标。", "ref": {"google": "烟草 自由现金流 2025", "wiki": "Free cash flow"}, "industryData": "2025年菲利普莫里斯FCF 90亿美元，中国烟草2000亿元。", "ez": "自由现金流是公司真正能花的钱，烟草公司现金多到花不完。"}, {"rank": 45, "cat": "finance", "term": "资本支出", "pro": "资本支出（Capital expenditure, CapEx）是烟草公司用于购买设备、建设工厂等长期资产的支出。2025年菲利普莫里斯资本支出约20亿美元，主要用于新型烟草产能。中国烟草资本支出约100亿元，用于技术改造。在产业链中，烟草行业资本支出较低（占收入5%以下），因生产设备成熟，但新型烟草投资增加。", "ref": {"google": "烟草 资本支出 2025", "wiki": "Capital expenditure"}, "industryData": "2025年菲利普莫里斯CapEx 20亿美元，中国烟草100亿元。", "ez": "资本支出是公司买机器建厂的钱，烟草公司花得少，赚得多。"}, {"rank": 46, "cat": "finance", "term": "研发投入", "pro": "研发投入（R&D expenditure）是烟草公司用于新产品和减害技术开发的支出。2025年菲利普莫里斯研发投入约10亿美元，占收入2%，重点在IQOS和无烟产品。中国烟草研发投入约50亿元，占收入0.3%。在产业链中，研发投入驱动新型烟草创新，但传统烟草研发占比低。", "ref": {"google": "烟草 研发投入 2025", "wiki": "Research and development"}, "industryData": "2025年菲利普莫里斯研发投入10亿美元，中国烟草50亿元。", "ez": "研发投入是公司搞创新的钱，菲利普莫里斯砸钱搞电子烟。"}, {"rank": 47, "cat": "finance", "term": "负债率", "pro": "负债率（Debt ratio）是烟草公司总负债与总资产的比率。2025年菲利普莫里斯负债率约85%，英美烟草约70%，中国烟草总公司负债率约30%（因无有息负债）。在产业链中，高负债率反映公司利用财务杠杆，但烟草公司现金流稳定，偿债能力强。低负债率体现中国烟草的保守财务策略。", "ref": {"google": "烟草 负债率 2025", "wiki": "Debt ratio"}, "industryData": "2025年菲利普莫里斯负债率85%，中国烟草30%。", "ez": "负债率是公司欠钱的比例，菲利普莫里斯借了很多钱，但还得起。"}, {"rank": 48, "cat": "finance", "term": "净资产收益率", "pro": "净资产收益率（Return on equity, ROE）是净利润与股东权益的比率。2025年中国烟草总公司ROE约80%，菲利普莫里斯ROE约40%。高ROE源于高利润率和高杠杆。在产业链中，ROE是衡量股东回报的核心指标，中国烟草因无负债且利润高，ROE极高。", "ref": {"google": "烟草 ROE 2025", "wiki": "Return on equity"}, "industryData": "2025年中国烟草ROE 80%，菲利普莫里斯40%。", "ez": "ROE是股东每投100元赚多少，中国烟草赚80元，暴利。"}, {"rank": 49, "cat": "finance", "term": "控烟政策", "pro": "控烟政策（Tobacco control policy）包括税收、广告禁令、警示包装、公共场所禁烟等措施。2025年全球有180个国家签署WHO《烟草控制框架公约》，中国实施《健康中国行动》控烟目标，计划2030年吸烟率降至20%以下。在产业链中，控烟政策抑制销量，推动烟草公司转型新型烟草，同时增加合规成本。", "ref": {"google": "控烟政策 2025 中国", "wiki": "Tobacco control"}, "industryData": "2025年中国吸烟率25.8%，目标2030年20%。", "ez": "控烟政策是政府‘打压’烟草的手段，加税、禁广告，让烟民少抽。"}, {"rank": 50, "cat": "finance", "term": "新型烟草", "pro": "新型烟草（Novel tobacco products）包括电子烟、加热不燃烧、尼古丁袋等，被视为减害替代品。2025年全球新型烟草市场约600亿美元，占烟草总市场10%，预计2030年达30%。菲利普莫里斯、英美烟草等巨头加速转型。在产业链中，新型烟草是行业增长点，但面临监管不确定性和健康争议。", "ref": {"google": "新型烟草 市场 2025", "wiki": "Novel tobacco products"}, "industryData": "2025年全球新型烟草市场600亿美元，年增长15%。", "ez": "新型烟草是烟草界的‘未来战士’，电子烟、加热烟，试图洗白。"}, {"rank": 51, "cat": "tech", "term": "烟叶复烤", "pro": "烟叶复烤是卷烟加工前的重要工序，通过热风干燥和回潮处理，调整烟叶水分和温度，促进化学成分转化。2025年，中国烟叶复烤年处理量约180万吨，主要企业包括云南复烤、贵州复烤等。复烤后烟叶含水率控制在12%-13%，提升醇化效果。该环节位于产业链中游，直接影响卷烟品质和成本。", "ref": {"google": "烟叶复烤 工艺 2025", "wiki": "Tobacco curing"}, "industryData": "2025年中国烟叶复烤量180万吨，云南复烤占35%份额，年产值约50亿元。", "ez": "就像给烟叶做SPA，蒸个桑拿再吹干，让它们更香更柔。"}, {"rank": 52, "cat": "tech", "term": "切丝宽度", "pro": "切丝宽度指烟叶切丝后的宽度，通常为0.8-1.2mm，影响填充值和燃烧速度。2025年，主流卷烟切丝宽度标准为1.0mm，偏差±0.1mm。细支烟切丝宽度更窄（0.6-0.8mm）。切丝设备由德国HAUNI和国产中烟机械主导。该参数是制丝工艺关键控制点，决定卷烟吸阻和口感。", "ref": {"google": "切丝宽度 卷烟 标准 2025", "wiki": "Cut rag"}, "industryData": "2025年细支烟切丝宽度0.7mm，中烟机械设备市占率60%，年产量2000台。", "ez": "烟丝切多宽？1毫米左右，太粗费烟，太细呛喉。"}, {"rank": 53, "cat": "tech", "term": "膨化烟丝", "pro": "膨化烟丝是通过CO₂或氮气膨胀处理的烟丝，体积增大30%-50%，降低焦油和尼古丁含量。2025年，中国膨化烟丝年产量约50万吨，占烟丝总量20%。主要技术有干冰膨胀法（DIET）和氮气膨胀法。该技术用于降低卷烟危害，但可能影响香气。企业如云南中烟、上海烟草集团采用。", "ref": {"google": "膨化烟丝 技术 2025", "wiki": "Expanded tobacco"}, "industryData": "2025年膨化烟丝产量50万吨，云南中烟占25%，焦油降低15%。", "ez": "烟丝像爆米花一样膨起来，抽起来更淡，但老烟枪嫌没劲。"}, {"rank": 54, "cat": "tech", "term": "梗丝处理", "pro": "梗丝处理是将烟梗加工成丝状，用于填充卷烟，降低原料成本。2025年，梗丝添加比例约10%-15%，通过压梗、切梗、干燥等工序。梗丝宽度0.5-0.8mm，填充值高于烟丝。主要设备有梗丝膨化机。该技术提高烟梗利用率，减少废弃物。但梗丝过多影响口感。", "ref": {"google": "梗丝处理 工艺 2025", "wiki": "Stem processing"}, "industryData": "2025年烟梗利用率85%，梗丝添加比例12%，节省原料成本约20亿元。", "ez": "烟梗变废为宝，切碎了掺进烟丝，省成本但味道差点。"}, {"rank": 55, "cat": "tech", "term": "加香加料", "pro": "加香加料是在卷烟生产中添加香料和料液，赋予产品独特风味。2025年，中国卷烟加香加料市场规模约30亿元，主要香料包括天然提取物（如甘草、蜂蜜）和合成香料。添加比例0.5%-2%。该工序位于制丝末端，影响品牌差异化。企业如华宝国际、波顿香料主导。", "ref": {"google": "卷烟加香加料 2025", "wiki": "Flavoring tobacco"}, "industryData": "2025年加香加料市场30亿元，华宝国际市占率40%，年增长5%。", "ez": "给烟丝加点料，就像给菜放调料，每个牌子味道不同。"}, {"rank": 56, "cat": "tech", "term": "滤嘴通风率", "pro": "滤嘴通风率指空气通过滤嘴进入烟气的比例，影响焦油和尼古丁吸入量。2025年，中国卷烟滤嘴通风率平均30%-50%，细支烟更高（60%）。通过激光打孔或成型纸透气度控制。该参数是降焦减害关键，但过高会降低满足感。国家烟草专卖局规定通风率上限。", "ref": {"google": "滤嘴通风率 标准 2025", "wiki": "Filter ventilation"}, "industryData": "2025年卷烟平均通风率35%，细支烟达55%，焦油量降至8mg/支。", "ez": "滤嘴上打孔，空气混进去，抽起来淡，但有人觉得不过瘾。"}, {"rank": 57, "cat": "tech", "term": "卷烟纸透气度", "pro": "卷烟纸透气度指空气通过卷烟纸的能力，单位CU（Coresta单位），影响燃烧速度和烟气成分。2025年，主流卷烟纸透气度40-60CU，高透气度纸（80CU）用于低焦油产品。主要生产商有法国施伟策-摩迪、中国恒丰纸业。该指标影响卷烟吸阻和安全性。", "ref": {"google": "卷烟纸透气度 2025", "wiki": "Cigarette paper porosity"}, "industryData": "2025年恒丰纸业市占率30%，透气度产品年销量10万吨。", "ez": "卷烟纸的呼吸能力，透气好燃烧快，烟味更淡。"}, {"rank": 58, "cat": "tech", "term": "烟支硬度", "pro": "烟支硬度指卷烟抗压能力，用硬度计测量，单位%。2025年，中国卷烟硬度标准≥60%，细支烟≥55%。硬度影响包装和吸食体验。主要设备有烟支硬度检测仪。该指标与烟丝填充密度、水分相关。企业通过调整切丝宽度和加料量控制。", "ref": {"google": "烟支硬度 标准 2025", "wiki": "Cigarette hardness"}, "industryData": "2025年卷烟硬度合格率98%，细支烟硬度均值58%。", "ez": "烟支捏起来硬不硬，太软容易瘪，太硬抽不动。"}, {"rank": 59, "cat": "tech", "term": "烟支圆周", "pro": "烟支圆周指卷烟周长，单位mm，影响口感和烟支外观。2025年，常规烟支圆周24.5mm，细支烟17mm，中支烟20mm。细支烟市场份额增至20%。圆周由卷接机控制，偏差±0.2mm。该参数是产品差异化要素，细支烟吸引女性消费者。", "ref": {"google": "烟支圆周 规格 2025", "wiki": "Cigarette circumference"}, "industryData": "2025年细支烟圆周17mm，销量增长15%，占总量20%。", "ez": "烟支粗细，细支像铅笔，中支像筷子，粗支像雪茄。"}, {"rank": 60, "cat": "tech", "term": "烟支吸阻", "pro": "烟支吸阻指吸烟时气流阻力，单位Pa，影响抽吸轻松度。2025年，中国卷烟吸阻标准800-1200Pa，细支烟较低（600-800Pa）。吸阻由烟丝填充密度、滤嘴通风率决定。过高吸阻导致抽吸费力，过低则烟气稀薄。该参数是消费者体验关键。", "ref": {"google": "烟支吸阻 标准 2025", "wiki": "Draw resistance"}, "industryData": "2025年卷烟平均吸阻950Pa，细支烟700Pa，消费者偏好适中。", "ez": "抽一口费不费劲，吸阻大像吸奶茶，小像喝白水。"}, {"rank": 61, "cat": "tech", "term": "烟支含水率", "pro": "烟支含水率指烟丝水分含量，单位%，影响燃烧和口感。2025年，卷烟含水率标准12%-13%，细支烟略高（13.5%）。含水率过高易霉变，过低则燃烧快。通过烘丝和回潮控制。该指标是质量监控重点，偏差±0.5%。", "ref": {"google": "烟支含水率 标准 2025", "wiki": "Moisture content of cigarettes"}, "industryData": "2025年卷烟含水率合格率99%，平均12.5%。", "ez": "烟丝干湿度，太干呛人，太湿熄火，12%刚刚好。"}, {"rank": 62, "cat": "tech", "term": "烟支重量", "pro": "烟支重量指单支卷烟质量，单位g，影响填充值和成本。2025年，常规烟支重量0.9-1.0g，细支烟0.6-0.7g。重量偏差±0.02g。由卷接机称重系统控制。该参数与烟丝填充密度相关，企业通过优化切丝宽度降低重量。", "ref": {"google": "烟支重量 标准 2025", "wiki": "Cigarette weight"}, "industryData": "2025年细支烟平均重量0.65g，较2020年下降5%。", "ez": "一支烟多重？不到1克，轻飘飘的，但抽的是税。"}, {"rank": 63, "cat": "tech", "term": "烟支燃烧速度", "pro": "烟支燃烧速度指卷烟燃烧的线速度，单位mm/min，影响抽吸口数。2025年，常规烟支燃烧速度4-5mm/min，细支烟3-4mm/min。由卷烟纸透气度、烟丝配方决定。燃烧速度过快导致不耐抽，过慢则易熄火。该参数是产品设计关键。", "ref": {"google": "烟支燃烧速度 2025", "wiki": "Cigarette burn rate"}, "industryData": "2025年卷烟平均燃烧速度4.5mm/min，细支烟3.5mm/min。", "ez": "烟烧得快慢，快的一根不够，慢的像慢动作。"}, {"rank": 64, "cat": "tech", "term": "烟支灰柱", "pro": "烟支灰柱指燃烧后烟灰的形态，影响外观和持灰能力。2025年，优质卷烟灰柱呈白色、紧实，长度≥30mm。灰柱颜色与烟叶钾含量相关。通过添加助燃剂（如柠檬酸钾）改善。该指标是消费者评价品质的直观因素。", "ref": {"google": "烟支灰柱 品质 2025", "wiki": "Cigarette ash"}, "industryData": "2025年高端烟灰柱白度提升，持灰长度35mm，助燃剂用量0.5%。", "ez": "烟灰白不白、掉不掉，好烟灰像雪茄，差烟灰像煤渣。"}, {"rank": 65, "cat": "tech", "term": "烟支端部密度", "pro": "烟支端部密度指烟支两端烟丝填充密度差异，影响燃烧均匀性。2025年，标准要求端部密度偏差≤5%。通过卷接机平准器控制。高密度端部导致燃烧慢，低密度则燃烧快。该参数是工艺控制难点，影响消费者体验。", "ref": {"google": "烟支端部密度 2025", "wiki": "Cigarette density distribution"}, "industryData": "2025年端部密度偏差控制4%，高端品牌达3%。", "ez": "烟两头松紧不一样，一头紧一头松，抽起来怪怪的。"}, {"rank": 66, "cat": "tech", "term": "烟支包装密封性", "pro": "烟支包装密封性指烟盒的防潮能力，影响烟支保质期。2025年，密封性测试标准为负压泄漏率≤5%。采用铝箔纸和拉线密封。主要设备有密封性检测仪。该指标与包装材料相关，企业通过改进热封工艺提升。", "ref": {"google": "烟支包装密封性 2025", "wiki": "Cigarette pack seal integrity"}, "industryData": "2025年包装密封性合格率97%，铝箔纸厚度0.02mm。", "ez": "烟盒密封好不好，漏气烟会受潮，抽起来一股霉味。"}, {"rank": 67, "cat": "tech", "term": "烟支包装外观", "pro": "烟支包装外观指烟盒的印刷、烫金、压纹等质量，影响品牌形象。2025年，包装外观缺陷率≤0.5%。采用凹版印刷和激光防伪。主要企业有劲嘉股份、东风股份。该参数是消费者第一印象，高端品牌注重细节。", "ref": {"google": "烟支包装外观 质量 2025", "wiki": "Cigarette packaging appearance"}, "industryData": "2025年包装外观缺陷率0.3%，劲嘉股份市占率20%。", "ez": "烟盒好不好看，印刷精美像艺术品，粗糙像地摊货。"}, {"rank": 68, "cat": "tech", "term": "烟支包装材料", "pro": "烟支包装材料包括纸盒、铝箔纸、拉线等，影响成本和环保。2025年，可降解包装材料占比10%，主要使用PLA和纸基材料。传统包装材料中，白卡纸用量最大。企业如紫江企业、上海烟印。该领域受环保政策影响，向轻量化发展。", "ref": {"google": "烟支包装材料 环保 2025", "wiki": "Cigarette packaging materials"}, "industryData": "2025年可降解包装材料使用量5万吨，年增长20%。", "ez": "烟盒用什么做的？纸、铝箔、塑料，现在流行环保材料。"}, {"rank": 69, "cat": "tech", "term": "烟支包装机械", "pro": "烟支包装机械用于卷烟包装，包括小盒、条盒、箱装设备。2025年，中国包装机械市场规模约100亿元，主要企业有上海烟草机械、常德烟草机械。设备速度达800包/分钟。该领域向智能化、高速化发展，国产化率70%。", "ref": {"google": "烟支包装机械 2025", "wiki": "Cigarette packaging machinery"}, "industryData": "2025年包装机械国产化率70%，上海烟机市占率30%。", "ez": "包烟的机器，像流水线一样，一分钟包800包。"}, {"rank": 70, "cat": "tech", "term": "烟支物流系统", "pro": "烟支物流系统指卷烟从生产到销售的仓储和运输系统。2025年，中国烟草物流市场规模约200亿元，主要企业有中烟物流、顺丰。采用自动化立体仓库和GPS追踪。该环节影响库存周转和成本，向数字化、智能化转型。", "ref": {"google": "烟支物流系统 2025", "wiki": "Tobacco logistics"}, "industryData": "2025年自动化仓储覆盖率60%，物流成本降低10%。", "ez": "烟怎么运到店里？自动化仓库加智能配送，像快递一样。"}, {"rank": 71, "cat": "tech", "term": "烟支防伪技术", "pro": "烟支防伪技术用于打击假冒伪劣，包括激光全息、二维码、RFID等。2025年，中国烟草防伪市场规模约50亿元，二维码普及率90%。主要企业有中钞防伪、华工科技。该技术保护品牌和消费者，每年减少损失100亿元。", "ref": {"google": "烟支防伪技术 2025", "wiki": "Cigarette anti-counterfeiting"}, "industryData": "2025年二维码防伪覆盖率90%，假烟率降至2%。", "ez": "烟盒上的防伪码，扫一扫辨真假，山寨货无处遁形。"}, {"rank": 72, "cat": "tech", "term": "烟支质量检测", "pro": "烟支质量检测包括物理指标（重量、吸阻、硬度）和化学指标（焦油、尼古丁）。2025年，检测设备市场规模约20亿元，主要企业有德国Borgwaldt、中国中烟机械。采用在线检测和离线实验室。该环节确保产品符合标准。", "ref": {"google": "烟支质量检测 2025", "wiki": "Cigarette quality control"}, "industryData": "2025年在线检测系统覆盖率80%，检测精度±0.5%。", "ez": "烟的质量怎么查？机器自动测重量、吸阻，不合格的淘汰。"}, {"rank": 73, "cat": "tech", "term": "烟支感官评价", "pro": "烟支感官评价是通过专业人员对卷烟香气、口感、刺激性等进行评分。2025年，中国烟草感官评价师约5000人，采用盲评法。评价指标包括香气量、杂气、余味等。该环节是产品研发关键，影响消费者接受度。", "ref": {"google": "烟支感官评价 2025", "wiki": "Sensory evaluation of cigarettes"}, "industryData": "2025年感官评价师培训费用人均10万元，年评价样品10万支。", "ez": "烟好不好抽，请专家来品，像品酒师一样专业。"}, {"rank": 74, "cat": "tech", "term": "烟支化学成分分析", "pro": "烟支化学成分分析检测烟气中的有害物质，如焦油、尼古丁、一氧化碳。2025年，检测方法包括气相色谱-质谱联用。中国卷烟焦油量平均8mg/支，尼古丁0.8mg/支。该分析用于产品降焦减害，企业投入研发费用年增10%。", "ref": {"google": "烟支化学成分分析 2025", "wiki": "Chemical analysis of cigarette smoke"}, "industryData": "2025年焦油量降至8mg/支，一氧化碳量10mg/支。", "ez": "烟里有什么？机器一测，焦油、尼古丁清清楚楚。"}, {"rank": 75, "cat": "tech", "term": "烟支微生物检测", "pro": "烟支微生物检测用于控制烟叶和卷烟中的霉菌、细菌。2025年，检测标准为霉菌≤100CFU/g，细菌≤1000CFU/g。采用培养法和PCR技术。该检测保障产品安全，企业通过控制仓储湿度预防。", "ref": {"google": "烟支微生物检测 2025", "wiki": "Microbiological testing of tobacco"}, "industryData": "2025年微生物合格率99%，霉菌超标率0.5%。", "ez": "烟有没有发霉？检测一下，细菌太多不能卖。"}, {"rank": 76, "cat": "tech", "term": "烟支放射性检测", "pro": "烟支放射性检测用于测定烟叶中的钋-210等放射性物质。2025年，中国卷烟放射性水平低于国际标准，钋-210含量约10mBq/支。检测采用α谱仪。该指标与烟草种植土壤有关，企业通过选择低放射性烟叶降低。", "ref": {"google": "烟支放射性检测 2025", "wiki": "Radioactivity in tobacco"}, "industryData": "2025年钋-210含量10mBq/支，低于欧盟标准15mBq/支。", "ez": "烟有没有辐射？测一下，比香蕉还低，别担心。"}, {"rank": 77, "cat": "tech", "term": "烟支重金属检测", "pro": "烟支重金属检测测定铅、镉、砷等含量。2025年，中国卷烟重金属限量标准：铅≤5mg/kg，镉≤3mg/kg。检测采用原子吸收光谱。该指标与烟叶产地相关，企业通过土壤改良降低。", "ref": {"google": "烟支重金属检测 2025", "wiki": "Heavy metals in cigarettes"}, "industryData": "2025年铅含量平均2mg/kg，镉1.5mg/kg，合格率99%。", "ez": "烟里有重金属吗？测一下，铅镉超标的不合格。"}, {"rank": 78, "cat": "tech", "term": "烟支农药残留检测", "pro": "烟支农药残留检测测定烟叶中的杀虫剂、除草剂等。2025年，检测标准涉及100多种农药，限量值ppb级。采用液相色谱-质谱联用。该检测确保安全性，企业推广绿色种植。", "ref": {"google": "烟支农药残留检测 2025", "wiki": "Pesticide residues in tobacco"}, "industryData": "2025年农药残留合格率98%，有机烟叶占比5%。", "ez": "烟叶打农药了吗？测残留，超标的不让用。"}, {"rank": 79, "cat": "tech", "term": "烟支转基因检测", "pro": "烟支转基因检测用于鉴别烟叶是否含转基因成分。2025年，中国禁止转基因烟草种植，检测采用PCR方法。市售卷烟均未检出转基因。该检测保障法规合规，企业从非转基因产区采购。", "ref": {"google": "烟支转基因检测 2025", "wiki": "Genetically modified tobacco"}, "industryData": "2025年转基因检测阴性率100%，无转基因烟草流通。", "ez": "烟叶是转基因的吗？测一下，中国不允许种。"}, {"rank": 80, "cat": "tech", "term": "烟支碳足迹", "pro": "烟支碳足迹指卷烟全生命周期的碳排放，包括种植、加工、运输、消费。2025年，中国卷烟碳足迹平均每支约20g CO₂。企业通过节能减排降低，如使用可再生能源。该指标受环保政策关注，推动绿色生产。", "ref": {"google": "烟支碳足迹 2025", "wiki": "Carbon footprint of cigarettes"}, "industryData": "2025年卷烟碳足迹20g/支，较2020年下降10%。", "ez": "一支烟产生多少碳？20克，种树才能抵消。"}, {"rank": 81, "cat": "biz", "term": "烟草行业数字化转型", "pro": "烟草行业数字化转型指利用大数据、AI、物联网优化生产、营销和管理。2025年，中国烟草数字化投入约500亿元，主要项目包括智能工厂、数字营销。云南中烟建成5G智慧工厂，效率提升20%。该趋势降低运营成本，提升决策效率。", "ref": {"google": "烟草行业数字化转型 2025", "wiki": "Digital transformation in tobacco industry"}, "industryData": "2025年数字化投入500亿元，智能工厂覆盖率30%。", "ez": "烟草行业搞数字化，用大数据种烟、卖烟，效率翻倍。"}, {"rank": 82, "cat": "biz", "term": "烟草行业智能制造", "pro": "烟草行业智能制造指应用机器人、自动化生产线和工业互联网。2025年，中国烟草智能制造试点企业20家，设备联网率80%。主要技术包括机器视觉检测、AGV物流。该趋势提高产品质量和一致性。", "ref": {"google": "烟草行业智能制造 2025", "wiki": "Smart manufacturing in tobacco"}, "industryData": "2025年智能制造试点20家，设备联网率80%，缺陷率降低50%。", "ez": "烟厂用机器人，自动检测、搬运，比人工更精准。"}, {"rank": 83, "cat": "biz", "term": "烟草行业绿色制造", "pro": "烟草行业绿色制造指节能减排、循环利用和环保包装。2025年，中国烟草绿色制造标准发布，单位产值能耗下降15%。主要措施包括光伏发电、废水零排放。该趋势响应碳中和目标，提升企业形象。", "ref": {"google": "烟草行业绿色制造 2025", "wiki": "Green manufacturing in tobacco"}, "industryData": "2025年能耗下降15%，光伏装机容量100MW。", "ez": "烟厂搞环保，用太阳能、回收废料，减少污染。"}, {"rank": 84, "cat": "biz", "term": "烟草行业ESG", "pro": "烟草行业ESG（环境、社会、治理）评估企业可持续发展。2025年，中国烟草ESG报告发布率50%，主要关注控烟、员工健康。国际评级机构如MSCI对烟草行业低评级。该趋势影响投资者决策，推动企业改善社会责任。", "ref": {"google": "烟草行业ESG 2025", "wiki": "ESG in tobacco industry"}, "industryData": "2025年ESG报告发布率50%，MSCI评级多为CCC。", "ez": "烟草公司的ESG评分，环保、社会责任做得好不好。"}, {"rank": 85, "cat": "biz", "term": "烟草行业社会责任", "pro": "烟草行业社会责任包括控烟宣传、减少危害、员工关怀。2025年，中国烟草捐赠公益金50亿元，用于控烟教育。企业推出低危害产品。该领域受舆论关注，企业通过报告披露。", "ref": {"google": "烟草行业社会责任 2025", "wiki": "Corporate social responsibility in tobacco"}, "industryData": "2025年公益捐赠50亿元，控烟教育覆盖1亿人。", "ez": "烟草公司做公益，宣传吸烟有害，有点矛盾。"}, {"rank": 86, "cat": "biz", "term": "烟草行业税收贡献", "pro": "烟草行业税收贡献指烟草企业上缴的消费税、增值税等。2025年，中国烟草行业税收约1.4万亿元，占全国税收8%。主要税种包括消费税（56%）、增值税（13%）。该贡献支撑财政，但受控烟政策影响增长放缓。", "ref": {"google": "烟草行业税收贡献 2025", "wiki": "Tobacco tax revenue"}, "industryData": "2025年税收1.4万亿元，消费税占70%，增速3%。", "ez": "烟草交税多，一包烟一半是税，养活了财政。"}, {"rank": 87, "cat": "biz", "term": "烟草行业就业", "pro": "烟草行业就业包括种植、加工、销售等环节。2025年，中国烟草行业直接就业约500万人，间接就业2000万人。主要岗位包括烟农、工人、销售人员。该行业提供大量就业，但受自动化影响岗位减少。", "ref": {"google": "烟草行业就业 2025", "wiki": "Employment in tobacco industry"}, "industryData": "2025年直接就业500万人，烟农占60%，年收入3万元。", "ez": "烟草养活了多少人？500万直接就业，还有2000万间接。"}, {"rank": 88, "cat": "biz", "term": "烟草行业并购重组", "pro": "烟草行业并购重组指企业通过收购、合并整合资源。2025年，中国烟草并购案例10起，金额约200亿元。主要方向是海外扩张和多元化。如中国烟草收购国际品牌。该趋势提高行业集中度。", "ref": {"google": "烟草行业并购重组 2025", "wiki": "Mergers and acquisitions in tobacco industry"}, "industryData": "2025年并购金额200亿元，海外并购占60%。", "ez": "烟草公司买买买，收购国外品牌，扩张版图。"}, {"rank": 89, "cat": "biz", "term": "烟草行业品牌价值", "pro": "烟草行业品牌价值指品牌的市场影响力和溢价能力。2025年，中华品牌价值约3000亿元，位列中国品牌前列。评估基于销量、利润、消费者忠诚度。品牌价值提升通过高端化和创新。", "ref": {"google": "烟草行业品牌价值 2025", "wiki": "Brand value of tobacco"}, "industryData": "2025年中华品牌价值3000亿元，年增长5%。", "ez": "中华烟牌子值多少钱？3000亿，比很多公司还值钱。"}, {"rank": 90, "cat": "biz", "term": "烟草行业价格策略", "pro": "烟草行业价格策略包括定价、调价和促销。2025年，中国卷烟平均零售价20元/包，高端烟100元以上。价格受消费税影响，企业通过提价提升利润。价格策略需平衡销量和控烟政策。", "ref": {"google": "烟草行业价格策略 2025", "wiki": "Pricing strategy in tobacco"}, "industryData": "2025年平均零售价20元，高端烟占比15%。", "ez": "烟价怎么定？成本加税，高端烟贵得离谱。"}, {"rank": 91, "cat": "biz", "term": "烟草行业渠道管理", "pro": "烟草行业渠道管理指卷烟从生产到零售的流通控制。2025年，中国烟草零售点约500万个，采用专卖许可证制度。渠道包括批发、零售、电商（禁止）。企业通过数据分析优化库存。", "ref": {"google": "烟草行业渠道管理 2025", "wiki": "Tobacco distribution channels"}, "industryData": "2025年零售点500万个，电商禁售，渠道数字化率60%。", "ez": "烟怎么卖到店里？专卖店加批发，网上不让卖。"}, {"rank": 92, "cat": "biz", "term": "烟草行业消费者画像", "pro": "烟草行业消费者画像描述吸烟者的特征，包括年龄、性别、收入。2025年，中国吸烟者约3亿，男性占95%，平均年龄45岁。年轻群体吸烟率下降。企业针对不同群体推出产品，如细支烟吸引女性。", "ref": {"google": "烟草行业消费者画像 2025", "wiki": "Tobacco consumer profile"}, "industryData": "2025年吸烟者3亿，男性95%，年轻群体吸烟率降至10%。", "ez": "谁在抽烟？中年男人为主，年轻人越来越少。"}, {"rank": 93, "cat": "biz", "term": "烟草行业消费趋势", "pro": "烟草行业消费趋势指消费者行为变化，如低焦油、细支烟、电子烟替代。2025年，细支烟销量增长15%，电子烟用户达2000万。消费升级推动高端化。该趋势影响产品创新和营销策略。", "ref": {"google": "烟草行业消费趋势 2025", "wiki": "Tobacco consumption trends"}, "industryData": "2025年细支烟增长15%，电子烟用户2000万。", "ez": "现在流行抽什么？细支烟和电子烟，传统烟受冷落。"}, {"rank": 94, "cat": "biz", "term": "烟草行业国际化", "pro": "烟草行业国际化指中国烟草企业拓展海外市场。2025年，中国烟草出口量约200万箱，主要市场东南亚、非洲。企业通过并购当地品牌进入。该战略应对国内需求下滑，但面临法律和文化障碍。", "ref": {"google": "烟草行业国际化 2025", "wiki": "Internationalization of tobacco industry"}, "industryData": "2025年出口200万箱，东南亚占50%，增长10%。", "ez": "中国烟卖到国外，东南亚最爱，但老外不习惯。"}, {"rank": 95, "cat": "biz", "term": "烟草行业反垄断", "pro": "烟草行业反垄断指防止市场垄断行为。2025年，中国烟草专卖制度下，反垄断案例少。但国际上面临诉讼，如美国对烟草公司垄断指控。该领域影响行业竞争格局。", "ref": {"google": "烟草行业反垄断 2025", "wiki": "Antitrust in tobacco industry"}, "industryData": "2025年国内无反垄断案，国际诉讼赔偿10亿美元。", "ez": "烟草公司会不会垄断？中国专卖，国外被罚。"}, {"rank": 96, "cat": "biz", "term": "烟草行业知识产权", "pro": "烟草行业知识产权包括专利、商标、商业秘密。2025年，中国烟草专利申请量约5000件，主要涉及降焦减害技术。商标保护防止假冒。企业通过专利布局构建壁垒。", "ref": {"google": "烟草行业知识产权 2025", "wiki": "Intellectual property in tobacco"}, "industryData": "2025年专利申请5000件，商标注册1万件。", "ez": "烟草公司搞专利，新技术受保护，山寨被打击。"}, {"rank": 97, "cat": "biz", "term": "烟草行业合规管理", "pro": "烟草行业合规管理指遵守法律法规，如控烟、广告限制。2025年，中国烟草合规投入约100亿元，主要应对《烟草控制框架公约》。企业设立合规部门。该领域风险高，违规面临罚款。", "ref": {"google": "烟草行业合规管理 2025", "wiki": "Compliance in tobacco industry"}, "industryData": "2025年合规投入100亿元，违规罚款10亿元。", "ez": "烟草公司要守法，广告不能打，包装要印警示。"}, {"rank": 98, "cat": "biz", "term": "烟草行业风险管理", "pro": "烟草行业风险管理指识别和应对政策、市场、法律风险。2025年，主要风险包括控烟政策收紧、电子烟冲击、健康诉讼。企业通过多元化降低风险。该领域是战略重点。", "ref": {"google": "烟草行业风险管理 2025", "wiki": "Risk management in tobacco industry"}, "industryData": "2025年风险事件10起，主要涉及诉讼，损失50亿元。", "ez": "烟草公司怕什么？政策变、电子烟抢生意、被告。"}, {"rank": 99, "cat": "biz", "term": "烟草行业创新生态", "pro": "烟草行业创新生态指企业、科研机构、供应商协同创新。2025年，中国烟草创新投入约200亿元，建设国家级实验室。主要方向是减害产品、智能制造。该生态推动行业转型。", "ref": {"google": "烟草行业创新生态 2025", "wiki": "Innovation ecosystem in tobacco"}, "industryData": "2025年创新投入200亿元，研发人员1万人。", "ez": "烟草搞创新，联合大学搞研发，造更安全的烟。"}, {"rank": 100, "cat": "biz", "term": "烟草行业未来展望", "pro": "烟草行业未来展望指行业发展趋势，包括销量下降、产品多元化、监管加强。2025-2030年，预计卷烟销量年降2%，电子烟增长10%。企业转型为烟草和尼古丁公司。该展望影响投资决策。", "ref": {"google": "烟草行业未来展望 2025", "wiki": "Future of tobacco industry"}, "industryData": "2025-2030年卷烟销量年降2%，电子烟增长10%。", "ez": "烟草未来会怎样？越来越难卖，转型做电子烟。"}];
+var COMPANIES = [{"name": "菲利普莫里斯国际公司", "enName": "Philip Morris International Inc.", "domain": "www.pmi.com", "ecoNiche": "全球无烟烟草转型领导者，IQOS加热不燃烧产品核心玩家", "tags": ["加热不燃烧", "IQOS", "无烟未来", "全球巨头", "烟草转型"], "moatPro": "技术壁垒：IQOS拥有超过3000项专利，加热不燃烧技术领先行业5年以上；市占率：在全球加热不燃烧市场占据约70%份额，2025年无烟产品收入占比超40%，目标2026年达到50%以上；品牌护城河：Marlboro、L&M等传统品牌仍贡献现金流，同时IQOS已在70多个国家销售，用户超2000万；研发投入：每年超10亿美元用于无烟产品研发，持续迭代产品。", "moatEz": "就像从燃油车转型电动车，PMI用IQOS把传统香烟变成更干净的电子加热烟，专利多到别人做不了。", "lifecycle": 2, "lifeLabel": "成熟期", "revenue": [{"label": "无烟产品（IQOS等）", "pct": 42, "color": "#1E90FF"}, {"label": "传统卷烟（Marlboro等）", "pct": 55, "color": "#FF4500"}, {"label": "其他（雪茄、烟具等）", "pct": 3, "color": "#32CD32"}]}, {"name": "英美烟草公司", "enName": "British American Tobacco p.l.c.", "domain": "www.bat.com", "ecoNiche": "全球第二大烟草商，多品类无烟产品组合（雾化、加热、口含烟）", "tags": ["雾化电子烟", "Vuse", "glo", "多品类", "全球布局"], "moatPro": "技术壁垒：拥有Vuse雾化电子烟和glo加热不燃烧双技术平台，专利超2000项；市占率：在雾化电子烟市场全球第二（Vuse市占率约25%），加热不燃烧市场第三；品牌矩阵：Vuse、glo、Velo（口含烟）覆盖主要无烟品类，2025年无烟产品收入占比约20%，目标2026年达到30%；研发投入：每年超8亿英镑用于无烟创新，拥有全球最大的烟草科研中心之一。", "moatEz": "就像超市里同时卖可乐、雪碧和芬达，BAT用不同技术路线（雾化、加热、口含）覆盖所有想戒烟的人。", "lifecycle": 2, "lifeLabel": "成熟期", "revenue": [{"label": "传统卷烟（Dunhill、Kent等）", "pct": 78, "color": "#8B0000"}, {"label": "无烟产品（Vuse、glo、Velo）", "pct": 20, "color": "#00CED1"}, {"label": "其他（雪茄、烟丝等）", "pct": 2, "color": "#FFD700"}]}, {"name": "中国烟草总公司", "enName": "China National Tobacco Corporation", "domain": "www.tobacco.gov.cn", "ecoNiche": "全球最大烟草垄断企业，控制中国卷烟市场，HNB出口导向", "tags": ["国有垄断", "全球最大", "卷烟", "HNB", "出口"], "moatPro": "技术壁垒：拥有全球最完整的烟草产业链，从种植到零售全链条控制，专利主要集中在传统卷烟工艺和新型烟草（HNB）领域，专利数量超5000项；市占率：在中国卷烟市场占有率接近100%，全球卷烟产量占比约40%，2025年新型烟草（HNB）出口增长显著，但国内仍以传统卷烟为主；政策护城河：国家专卖制度，无竞争对手，年利税超1.2万亿元人民币，占国家财政收入约6%。", "moatEz": "就像全国只有一家加油站，所有车必须来加油，中国烟草靠国家规定垄断了所有香烟生意。", "lifecycle": 2, "lifeLabel": "成熟期", "revenue": [{"label": "传统卷烟（中华、玉溪、芙蓉王等）", "pct": 90, "color": "#DC143C"}, {"label": "新型烟草（HNB出口）", "pct": 5, "color": "#4169E1"}, {"label": "其他（烟叶、复烤等）", "pct": 5, "color": "#228B22"}]}];
+var VALUE_CHAIN = {"flowNote": "上游烟叶种植与复烤提供原料 → 中游中烟体系卷烟制造 + 国际四大烟草集团 + 新型烟草（HNB/电子烟）研发制造 → 下游通过国营专卖渠道、便利店、免税与新型烟草专卖店触达消费者，烟草税构成各国财政重要支柱。", "keyInsight": "2025-2026 核心矛盾：① 中国国家专卖让中烟集团享受全球独一无二的现金流（年税利 1.5 万亿，超贵州茅台净利+华为净利之和），但海外扩张被严管制约；② HNB 加热不燃烧成跨国巨头利润中枢——PMI 转型最彻底（IQOS 收入占比 50%+），BAT 紧追；③ 中国电子烟新规后，封闭式产品出海是思摩尔等企业唯一增长极；控烟政策与税率持续上调，品牌+牌照才是真正护城河。", "upstream": {"role": "烟叶种植、复烤加工与烟用辅料供应", "desc": "中国是全球最大烟叶生产国（年产 240 万吨，占全球 36%），云南/贵州/河南是核心产区。国际市场由 Universal Leaf、Pyxus、Alliance One 三巨头垄断 70%+ 国际贸易。2025 年烟用辅料市场（接装纸/卷烟纸/醋纤滤棒）规模 600 亿，华宝国际、SWM 等龙头主导。", "marginLevel": "low", "bargainPower": "weak", "segments": [{"name": "烟叶种植", "players": ["云南烟草公司", "贵州烟草公司", "津巴布韦烟叶集团", "巴西 Souza Cruz", "印度 ITC 农业部"], "note": "全球年产 660 万吨，中国占 36%，津巴布韦/巴西/印度为主要出口国"}, {"name": "烟叶复烤", "players": ["云南烟叶复烤", "贵州烟叶复烤", "湖南烟叶复烤", "湖北烟叶复烤", "河南许昌烟叶复烤"], "note": "复烤是烟叶进入卷烟制造前的必经环节，2025 年中国复烤产能 350 万吨"}, {"name": "国际烟叶贸易商", "players": ["Universal Leaf", "Pyxus International", "Alliance One", "Hail & Cotton", "中烟国际"], "note": "三巨头垄断 70%+ 全球烟叶国际贸易，中烟国际为中国对外采购主体"}, {"name": "烟用辅料", "players": ["华宝国际", "SWM International", "Schweitzer-Mauduit", "瑞声国际", "陕西金叶"], "note": "接装纸/卷烟纸/滤棒醋纤龙头，2025 年市场 600 亿元"}, {"name": "HNB 烟弹原料", "players": ["巴斯夫 BASF", "Cellanese", "Imerys", "重庆烟草薄片", "湖北中烟特种纸"], "note": "甘油/烟草薄片/再造烟叶等 HNB 专用原料，市场规模 80 亿"}]}, "midstream": {"role": "卷烟与新型烟草制造，全球烟草利润中枢", "desc": "中国实行国家专卖制度，中烟集团下属省级中烟公司垄断 240 亿包年产能。国际四大烟草（PMI/BAT/JT/Imperial）占全球非中国市场 85%+ 份额。新型烟草赛道：HNB（IQOS/glo/Ploom）+ 电子烟（Juul/Vuse/思摩尔）2025 年合计规模 700 亿美元。", "marginLevel": "high", "bargainPower": "strong", "segments": [{"name": "中烟体系卷烟", "players": ["云南中烟", "湖南中烟", "上海烟草集团", "浙江中烟", "湖北中烟"], "note": "中烟年税利 1.5 万亿，云南中烟玉溪/红塔山+湖南芙蓉王是利润王牌"}, {"name": "国际四大烟草", "players": ["菲莫国际 PMI", "英美烟草 BAT", "日本烟草 JT", "帝国品牌 Imperial", "韩国 KT&G"], "note": "PMI 万宝路收入 380 亿美元，合计份额 85%（除中国市场）"}, {"name": "卷烟包装印刷", "players": ["劲嘉股份", "东风股份", "贵联控股", "陕西金叶印务", "深圳科彩"], "note": "中国卷烟包装年规模 500 亿，劲嘉+东风合计份额超 30%"}, {"name": "加热不燃烧 HNB", "players": ["IQOS（PMI）", "glo（BAT）", "Ploom（JT）", "MOK（KT&G）", "RELX 灵犀（中烟海外）"], "note": "2025 全球 HNB 用户 3000 万+，PMI HNB 收入超传统卷烟"}, {"name": "电子烟 Vape", "players": ["Juul", "Vuse（BAT）", "NJOY", "思摩尔国际", "雾芯科技 RLX"], "note": "思摩尔代工份额全球 25%，海外封闭式 vape 市场监管严"}]}, "downstream": {"role": "国营专卖、便利店、免税与新型烟草专卖店等终端渠道", "desc": "中国 21 万家烟草专卖店是全球最大零售网络，年销卷烟 2400 亿支。国际市场由 7-Eleven/Circle K 等便利店连锁主导（占全球 60%+），免税渠道（DFS/中免/Lotte）年规模 250 亿美元，HNB+vape 专门店全球 5 万+。", "marginLevel": "mid", "bargainPower": "weak", "segments": [{"name": "国营专卖渠道", "players": ["中国烟草总公司", "中烟新商盟", "各省烟草专卖局", "各地烟草批发"], "note": "中国 21 万家专卖店，年销卷烟 2400 亿支，专卖牌照是稀缺资源"}, {"name": "跨国便利店渠道", "players": ["7-Eleven", "Circle K", "Lawson", "美宜佳", "Walmart"], "note": "便利店渠道占全球烟草零售 60%+，单店烟草贡献毛利 15-25%"}, {"name": "免税与机场", "players": ["DFS", "中免 CDFG", "Lotte Duty Free", "Dufry", "Lagardère TR"], "note": "免税烟草渠道年规模 250 亿美元，中免在中国免税烟草份额 90%+"}, {"name": "新型烟草专卖店", "players": ["RELX 悦刻专卖", "YOOZ 柚子", "IQOS 体验店", "Vuse 专卖", "LANA"], "note": "全球 HNB+vape 专卖店 5 万+，中国电子烟新规后份额向头部集中"}]}};
+
+// ========== 渲染：三强公司 ==========
+var lifecyclePhases = ['初创期','成长期','成熟期','转型期','衰退期'];
+function renderTop3() {
+  var el = document.getElementById('top3Section');
+  var head = '<div class="top3-head">' +
+    '<div class="top3-title">' +
+      '<h2>行业标杆三强<em>· ' + INDUSTRY.name + '</em></h2>' +
+    '</div>' +
+    '<div class="top3-sub">生态位 / 护城河 / 生命周期 / 收入结构</div>' +
+  '</div>';
+  
+  var cards = COMPANIES.slice(0,3).map(function(c){
+    var logoSrc = 'https://logo.clearbit.com/' + (c.domain || '');
+    var fb = (c.name || '?').charAt(0);
+    var lifeIdx = typeof c.lifecycle === 'number' ? c.lifecycle : 1;
+    
+    var tagsHtml = (c.tags || []).map(function(t){
+      return '<span class="cmp-tag">' + t + '</span>';
+    }).join('');
+    
+    var revArr = c.revenue || [];
+    var revIsPlaceholder = revArr.length === 1 && revArr[0] && revArr[0].pct === 100;
+    var revHtml = revIsPlaceholder
+      ? '<div class="cmp-rev-empty">营收结构未公开 · ' + (revArr[0].label || '主要支出') + '</div>'
+      : revArr.map(function(r){
+          return '<div class="cmp-rev-item">' +
+            '<div class="cmp-rev-label">' + r.label + '</div>' +
+            '<div class="cmp-rev-bar-wrap"><div class="cmp-rev-bar" style="--w:' + r.pct + '%;background:' + (r.color || '#0F6E56') + '"></div></div>' +
+            '<div class="cmp-rev-pct">' + r.pct + '%</div>' +
+          '</div>';
+        }).join('');
+    
+    var stageHtml = lifecyclePhases.slice(0,4).map(function(p, i){
+      var cls = i === lifeIdx ? 'active' : (i < lifeIdx ? 'done' : '');
+      return '<div class="cmp-life-stage ' + cls + '"><div class="dot"></div><div class="label">' + p + '</div></div>';
+    }).join('');
+    
+    return '<div class="cmp-card">' +
+      '<div class="cmp-body">' +
+        '<div class="cmp-head">' +
+          '<div class="cmp-logo"><img src="' + logoSrc + '" alt="' + c.name + '" onerror="this.style.display=\'none\';this.parentNode.textContent=\'' + fb + '\'"></div>' +
+          '<div class="cmp-name-wrap">' +
+            '<div class="cmp-name">' + c.name + '</div>' +
+            '<div class="cmp-en">' + (c.enName || '') + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="cmp-niche">' + (c.ecoNiche || '') + '</div>' +
+      '</div>' +
+      (tagsHtml ? '<div class="cmp-tags">' + tagsHtml + '</div>' : '') +
+      '<div class="cmp-moat">' +
+        '<div class="cmp-section-label">核心护城河</div>' +
+        '<div class="cmp-moat-pro">' + fmtList(c.moatPro || '') + '</div>' +
+        '<div class="cmp-moat-ez">' + (c.moatEz || '') + '</div>' +
+      '</div>' +
+      '<div class="cmp-life">' +
+        '<div class="cmp-section-label">企业生命周期</div>' +
+        '<div class="cmp-life-stages">' + stageHtml + '</div>' +
+      '</div>' +
+      (revHtml ? '<div class="cmp-rev">' +
+        '<div class="cmp-section-label">收入结构</div>' + revHtml + '</div>' : '') +
+      (c.domain ? '<a class="cmp-visit" href="https://' + c.domain + '" target="_blank" rel="noopener">访问官网 ↗</a>' : '') +
+    '</div>';
+  }).join('');
+  
+  el.innerHTML = head + '<div class="top3-grid">' + cards + '</div>';
+}
+
+function fmtList(html) {
+  return (html || '').replace(/(\d+[.)]\s*)/g, '<br>$1');
+}
+
+// ========== 自动高亮数字 / L级别 ==========
+function autoHl(html) {
+  if (!html) return '';
+  var placeholders = [];
+  var safe = html.replace(/<mark[\s\S]*?<\/mark>|<b[\s\S]*?<\/b>|<a[\s\S]*?<\/a>/g, function(m){
+    placeholders.push(m);
+    return '__PH' + (placeholders.length - 1) + '__';
+  });
+  safe = safe.replace(/(\d+(?:\.\d+)?%\+?)/g, '<b class="kw-num-hl">$1</b>');
+  safe = safe.replace(/\b(L[0-9](?:[\u2013\-]L[0-9])?\+?)\b/g, '<b class="kw-num-hl">$1</b>');
+  safe = safe.replace(/__PH(\d+)__/g, function(_, idx){
+    return placeholders[parseInt(idx, 10)];
+  });
+  return safe;
+}
+
+// ========== 渲染：关键词网格 ==========
+var catNames = {core:'核心概念', finance:'财务指标', tech:'技术术语', biz:'商业模型'};
+var currentCat = 'all';
+
+function renderGrid() {
+  var el = document.getElementById('kwGrid');
+  var data = currentCat === 'all' ? KEYWORDS : KEYWORDS.filter(function(k){return k.cat === currentCat;});
+  
+  document.getElementById('kwMeta').textContent = '显示 ' + data.length + ' / ' + KEYWORDS.length + ' 条';
+  
+  el.innerHTML = data.map(function(kw, i) {
+    var delay = Math.min(i % 9, 8) * 60;
+    var q = encodeURIComponent(kw.term || '');
+    var googleQ = (kw.ref && kw.ref.google) ? encodeURIComponent(kw.ref.google) : q;
+    var wikiQ   = (kw.ref && kw.ref.wiki) ? encodeURIComponent(kw.ref.wiki) : q;
+    var refLinks =
+      '<a class="kw-ref" href="https://zh.wikipedia.org/wiki/Special:Search?search=' + wikiQ + '" target="_blank" rel="noopener">Wiki</a>' +
+      '<a class="kw-ref" href="https://www.google.com/search?q=' + googleQ + '" target="_blank" rel="noopener">Google</a>';
+    
+    var indSection = '';
+    if (kw.industryData && kw.industryData.length > 10) {
+      indSection = '<div class="kw-section kw-section-ind">' +
+        '<div class="kw-label kw-label-ind">行业数据</div>' +
+        '<div class="kw-id-text">' + autoHl(kw.industryData) + '</div>' +
+      '</div>';
+    }
+    
+    return '<div class="kw-card scroll-reveal" data-delay="' + delay + '">' +
+      '<div class="kw-top">' +
+        '<div class="kw-name">' + kw.term + '</div>' +
+        '<span class="kw-num">#' + (kw.rank || i + 1) + ' · ' + (catNames[kw.cat] || '') + '</span>' +
+      '</div>' +
+      '<div class="kw-body">' +
+        '<div class="kw-section kw-section-pro">' +
+          '<div class="kw-label kw-label-pro">专业释义</div>' +
+          '<div class="kw-pro-text">' + autoHl(kw.pro || '') + '</div>' +
+        '</div>' +
+        '<div class="kw-section kw-section-ref">' +
+          '<div class="kw-label kw-label-ref">查资料</div>' +
+          '<div class="kw-ref-links">' + refLinks + '</div>' +
+        '</div>' +
+        indSection +
+        '<div class="kw-section kw-section-ez">' +
+          '<div class="kw-label kw-label-ez">大白话</div>' +
+          '<div class="kw-ez-text">' + autoHl(kw.ez || '') + '</div>' +
+        '</div>' +
+      '</div></div>';
+  }).join('');
+  
+  observeScrollReveal();
+}
+
+// ========== 分类过滤按钮 ==========
+function renderCatFilter() {
+  var el = document.getElementById('catFilter');
+  var counts = {all: KEYWORDS.length, core:0, finance:0, tech:0, biz:0};
+  KEYWORDS.forEach(function(k){ if(counts[k.cat] != null) counts[k.cat]++; });
+  
+  var cats = [
+    {id:'all', name:'全部'},
+    {id:'core', name:'核心概念'},
+    {id:'finance', name:'财务指标'},
+    {id:'tech', name:'技术术语'},
+    {id:'biz', name:'商业模型'}
+  ];
+  
+  el.innerHTML = cats.map(function(c){
+    return '<button class="cat-btn ' + (currentCat===c.id?'active':'') + '" data-cat="' + c.id + '">' + c.name + '<span class="cnt">' + counts[c.id] + '</span></button>';
+  }).join('');
+  
+  el.querySelectorAll('.cat-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      currentCat = btn.getAttribute('data-cat');
+      renderCatFilter();
+      renderGrid();
+      // 滚动到关键词区
+      document.querySelector('.kw-section-title').scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+}
+
+// ========== Scroll Reveal ==========
+var revealObserver = null;
+function observeScrollReveal() {
+  if (revealObserver) revealObserver.disconnect();
+  var cards = document.querySelectorAll('.scroll-reveal:not(.revealed)');
+  if (!cards.length) return;
+  revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var delay = parseInt(el.getAttribute('data-delay') || '0', 10);
+        setTimeout(function() { el.classList.add('revealed'); }, delay);
+        revealObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  cards.forEach(function(card) { revealObserver.observe(card); });
+}
+
+// ========== 渲染：产业链上中下游（研报风横向价值链） ==========
+function renderValueChain() {
+  var el = document.getElementById('vcSection');
+  if (!VALUE_CHAIN || !VALUE_CHAIN.upstream || !VALUE_CHAIN.midstream || !VALUE_CHAIN.downstream) {
+    el.style.display = 'none';
+    return;
+  }
+  el.style.display = 'block';
+
+  var marginLabels = {high:'高毛利 ≥40%', mid:'中毛利 20-40%', low:'低毛利 ≤20%'};
+  var powerLabels = {strong:'议价强', medium:'议价中', weak:'议价弱'};
+  var layerCNs = {upstream:'上游', midstream:'中游', downstream:'下游'};
+  var layerENs = {upstream:'Upstream', midstream:'Midstream', downstream:'Downstream'};
+  var layerCls = {upstream:'up', midstream:'mid', downstream:'down'};
+
+  // -------- HTML 骨架 --------
+  var html = '<div class="vc-head">' +
+    '<h2>产业链上中下游<em>· ' + INDUSTRY.name + ' 价值链拆解</em></h2>' +
+    '<div class="vc-subtitle">顺序从左至右：上游提供能力 → 中游封装产品 → 下游消费付费；价值货币从右向左回流</div>' +
+  '</div>';
+
+  if (VALUE_CHAIN.keyInsight) {
+    html += '<div class="vc-insight">' + VALUE_CHAIN.keyInsight + '</div>';
+  }
+
+  // 金钱流向轴
+  html += '<div class="vc-money-flow">' +
+    '<span class="mf-label">💰 价值流动</span>' +
+    '<span class="mf-arrow">' +
+      '<span>上游提供算力/底模</span>' +
+      '<span class="line"></span>' +
+      '<span>下游消费付费</span>' +
+    '</span>' +
+    (VALUE_CHAIN.flowNote ? '<span class="mf-note">' + VALUE_CHAIN.flowNote + '</span>' : '') +
+  '</div>';
+
+  // 三列价值链
+  html += '<div class="vc-chain">';
+  ['upstream', 'midstream', 'downstream'].forEach(function(key){
+    var layer = VALUE_CHAIN[key];
+    if (!layer) return;
+    var marg = layer.marginLevel || 'mid';
+    var pow = layer.bargainPower || 'medium';
+
+    var segsHtml = (layer.segments || []).map(function(s){
+      var players = (s.players || []).map(function(p){
+        return '<span class="player">' + p + '</span>';
+      }).join('');
+      return '<div class="vc-seg-row">' +
+        '<div class="vc-seg-top">' +
+          '<span class="vc-seg-name">' + (s.name || '') + '</span>' +
+          (s.note ? '<span class="vc-seg-note">' + s.note + '</span>' : '') +
+        '</div>' +
+        '<div class="players">' + players + '</div>' +
+      '</div>';
+    }).join('');
+
+    html += '<div class="vc-col ' + layerCls[key] + '">' +
+      '<div class="vc-col-head">' +
+        '<div class="vc-col-title"><span class="cn">' + layerCNs[key] + '</span><span class="en">' + layerENs[key] + '</span></div>' +
+        '<div class="vc-col-badges">' +
+          '<span class="vc-col-badge m-' + marg + '">' + marginLabels[marg] + '</span>' +
+          '<span class="vc-col-badge p-' + pow + '">' + powerLabels[pow] + '</span>' +
+        '</div>' +
+        (layer.role ? '<div class="vc-col-role">' + layer.role + '</div>' : '') +
+        (layer.desc ? '<div class="vc-col-desc">' + layer.desc + '</div>' : '') +
+      '</div>' +
+      segsHtml +
+      '<div class="vc-col-meter">' +
+        '<span class="metric"><span class="dot"></span>' + (layer.segments || []).length + ' 个细分 · ' + (layer.segments || []).reduce(function(sum, s){ return sum + (s.players || []).length; }, 0) + ' 家代表公司</span>' +
+        '<span>' + marginLabels[marg].split(' ')[1] + '</span>' +
+      '</div>' +
+    '</div>';
+  });
+  html += '</div>';
+
+  el.innerHTML = html;
+}
+
+// 初始化
+renderTop3();
+renderValueChain();
+renderCatFilter();
+renderGrid();
+</script>
+</body>
+</html>

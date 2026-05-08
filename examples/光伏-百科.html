@@ -22,8 +22,8 @@ body::before{content:'';position:fixed;inset:-4%;z-index:-2;
   transform:scale(1.02);animation:bg-breath 14.67s ease-in-out infinite;will-change:transform;
   filter:saturate(1.02)}
 body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(ellipse 75% 70% at 50% 50%, rgba(249,239,224,0.85) 0%, rgba(249,239,224,0.55) 40%, rgba(249,239,224,0) 80%);
-  }
+  background:radial-gradient(ellipse 85% 80% at 50% 50%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+  mix-blend-mode:soft-light}
 @keyframes bg-breath{
   0%,100%{transform:scale(1.02) translate(0,0)}
   33%{transform:scale(1.04) translate(-8px,-6px)}
@@ -35,18 +35,18 @@ body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
 .page-head{max-width:1200px;margin:0 auto;padding:60px 32px 32px;text-align:center}
 .page-head h1{font-family:var(--font-display);font-size:2.8rem;font-weight:700;letter-spacing:-.035em;color:#111;margin-bottom:12px}
 .page-head .subtitle{font-size:1rem;color:#666;font-weight:400;max-width:640px;margin:0 auto 8px;line-height:1.6}
-.page-head .meta{display:inline-flex;gap:16px;margin-top:20px;padding:8px 18px;border-radius:24px;background:rgba(255,255,255,0.78);backdrop-filter:blur(14px) saturate(130%);-webkit-backdrop-filter:blur(14px) saturate(130%);font-size:.72rem;color:#444;font-weight:500;letter-spacing:.04em;box-shadow:0 2px 12px rgba(0,0,0,0.05),inset 0 0 0 1px rgba(255,255,255,0.5)}
+.page-head .meta{display:inline-flex;gap:16px;margin-top:20px;padding:8px 18px;border-radius:24px;background:#fff;font-size:.72rem;color:#666;font-weight:500;letter-spacing:.04em;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
 .page-head .meta strong{color:#166534;font-weight:600}
 
 /* ===== 三强区 ===== */
-.top3-section{max-width:1200px;margin:0 auto 48px;padding:36px;border-radius:32px;background:rgba(255,255,255,0.78);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);position:relative;box-shadow:0 4px 24px rgba(0,0,0,0.05),inset 0 0 0 1px rgba(255,255,255,0.5)}
+.top3-section{max-width:1200px;margin:0 auto 48px;padding:36px;border-radius:32px;background:#fff;position:relative;box-shadow:0 2px 20px rgba(0,0,0,0.04)}
 .top3-head{margin-bottom:28px}
 .top3-title{display:flex;align-items:center;gap:12px;margin-bottom:6px}
 .top3-title h2{font-family:var(--font-display);font-size:1.32rem;font-weight:700;color:#111}
 .top3-title h2 em{font-style:normal;color:#0F6E56;font-weight:500;font-size:.82rem;margin-left:8px}
 .top3-sub{font-size:.78rem;color:#888;letter-spacing:.01em}
 .top3-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.cmp-card{background:rgba(255,255,255,0.92);backdrop-filter:blur(10px) saturate(130%);-webkit-backdrop-filter:blur(10px) saturate(130%);border-radius:20px;overflow:visible;box-shadow:0 2px 14px rgba(0,0,0,0.05);position:relative;transition:all .3s var(--ease-out);border:0.5px solid rgba(255,255,255,0.5)}
+.cmp-card{background:#fff;border-radius:20px;overflow:visible;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;transition:all .3s var(--ease-out)}
 .cmp-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.1)}
 .cmp-body{padding:20px 20px 4px}
 .cmp-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
@@ -94,7 +94,7 @@ body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
 .kw-grid{max-width:1200px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
 
 /* ===== 关键词卡片 ===== */
-.kw-card{position:relative;background:rgba(255,255,255,0.88);backdrop-filter:blur(12px) saturate(130%);-webkit-backdrop-filter:blur(12px) saturate(130%);border-radius:16px;overflow:visible;transition:all .3s var(--ease-out);box-shadow:0 2px 12px rgba(0,0,0,0.04);border:0.5px solid rgba(255,255,255,0.5)}
+.kw-card{position:relative;background:#fff;border-radius:16px;overflow:visible;transition:all .3s var(--ease-out);box-shadow:0 2px 8px rgba(0,0,0,0.04);border:0.5px solid rgba(0,0,0,0.08)}
 .kw-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
 .kw-top{padding:18px 20px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .kw-num{font-family:var(--font-display);font-size:.62rem;font-weight:500;letter-spacing:.04em;color:#999;flex-shrink:0;white-space:nowrap}
@@ -153,7 +153,7 @@ body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
 .scroll-reveal.revealed{opacity:1;transform:translateY(0)}
 
 /* ===== 产业链上中下游（投研研报风） ===== */
-.vc-section{max-width:1200px;margin:0 auto 48px;padding:36px;border-radius:32px;background:rgba(255,255,255,0.78);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);box-shadow:0 4px 24px rgba(0,0,0,0.05),inset 0 0 0 1px rgba(255,255,255,0.5)}
+.vc-section{max-width:1200px;margin:0 auto 48px;padding:36px;border-radius:32px;background:#fff;box-shadow:0 2px 20px rgba(0,0,0,0.04)}
 .vc-head{margin-bottom:18px}
 .vc-head h2{font-family:var(--font-display);font-size:1.32rem;font-weight:700;color:#111;margin-bottom:4px}
 .vc-head h2 em{font-style:normal;color:#0F6E56;font-weight:500;font-size:.82rem;margin-left:8px}
@@ -474,7 +474,7 @@ function renderValueChain() {
   // -------- HTML 骨架 --------
   var html = '<div class="vc-head">' +
     '<h2>产业链上中下游<em>· ' + INDUSTRY.name + ' 价值链拆解</em></h2>' +
-    '<div class="vc-subtitle">上中下游三层结构 · 毛利与议价徽章 · 真实公司池</div>' +
+    '<div class="vc-subtitle">顺序从左至右：上游提供能力 → 中游封装产品 → 下游消费付费；价值货币从右向左回流</div>' +
   '</div>';
 
   if (VALUE_CHAIN.keyInsight) {

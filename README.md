@@ -3,11 +3,12 @@
 [English](README.en.md) | [中文](README.md)
 
 
-> **输入一个行业名，30 秒生成 100 词百科 + 3 家标杆公司深度拆解的单页 HTML**
+> **输入一个行业名，30 秒生成包含 100 词百科 + 3 家标杆公司深度拆解 + 产业链上中下游 12-14 细分的研报风单页 HTML**
 
 ![GitHub](https://img.shields.io/badge/Type-WorkBuddy%20Skill-166534)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 ![AI](https://img.shields.io/badge/LLM-DeepSeek-8b5cf6)
+![Version](https://img.shields.io/badge/Version-v1.3.0-22C55E)
 
 🌐 **在线 Demo**：[znzjluo1008-netizen.github.io/industry-lens-skill](https://znzjluo1008-netizen.github.io/industry-lens-skill/)
 
@@ -31,6 +32,12 @@
 - 💬 **大白话** 25-50 字生活化类比
 
 每家公司卡包含：**生态位 + 护城河（专业版/大白话）+ 生命周期 + 收入结构（堆叠进度条）**
+
+**产业链 v1.3 升级**（研报风横向价值链）：
+- 上中下游三层结构 + 每层标注毛利徽章 / 议价能力徽章
+- 每层 3-5 个细分环节，每个环节 4-5 家真实公司
+- 跨层公司唯一性（v1.3 红线）：一家公司只能归到一层，按"营收占比/市场地位/战略叙事/避让"四原则判定主业
+- `keyInsight` 黄色卡片点出 2025-2026 核心矛盾
 
 ---
 
@@ -77,17 +84,19 @@ python3 references/generate.py "智能驾驶" \
 
 ```
 industry-lens-skill/
-├── SKILL.md                     ← WorkBuddy skill 触发规则 + 设计规范
+├── SKILL.md                     ← WorkBuddy skill 触发规则 + 设计规范 + v1.3 产业链铁律
+├── index.html                   ← GitHub Pages 主页（4 行业卡片入口）
 ├── references/
-│   ├── generate.py              ← 主入口脚本
-│   ├── html_template.html       ← 完整单页 HTML 骨架（CSS+JS）
+│   ├── generate.py              ← 主入口脚本（含产业链生成 + 质量自检）
+│   ├── html_template.html       ← 完整单页 HTML 骨架（CSS+JS，含研报风产业链可视化）
 │   ├── api_call.py              ← DeepSeek API 封装
-│   └── prompt_templates.md      ← 全量 prompt 模板
-├── examples/                    ← 生成样例
-│   ├── 智能驾驶-百科.html
+│   └── prompt_templates.md      ← 全量 prompt 模板（含 v1.3 跨层唯一性硬约束）
+├── examples/                    ← 4 个真实生成样例
 │   ├── 光伏-百科.html
-│   └── AI生图-百科.html
-├── README.md
+│   ├── 智能驾驶-百科.html
+│   ├── AI生图-百科.html
+│   └── 烟草-百科.html
+├── README.md / README.en.md
 └── LICENSE
 ```
 
@@ -100,6 +109,12 @@ industry-lens-skill/
 - **主色调深绿 + 灰白**：`#166534` / `#0F6E56` / `#185FA5`
 - **拒绝**：彩色渐变条、多色胶囊、emoji 标签、多重边框
 - **仅"大白话"区块保留淡绿底**（情感锚点）
+
+### 产业链可视化（v1.3 沉淀的踩坑铁律）
+- ❌ Sankey 桑基图不适合产业链拆解（公司数量凑流量值不承载商业含义）
+- ✅ 横向三段式价值链（Bessemer / a16z / 高瓴研报标配）：三色淡底 + 毛利/议价徽章 + 细分行 + 公司标签
+- 🛡 跨层公司唯一性红线：一家公司只能归到一层，按主业判定四原则归一
+- 📦 纯 CSS+HTML 实现，零外部依赖（避免 D3/d3-sankey CDN 失败）
 
 ### 交互体验
 - **数字自动高亮**：百分比、L 等级自动套链接样式（蓝底 + 底部下划线）
@@ -126,7 +141,9 @@ industry-lens-skill/
 2. 用临时文件 `--data @file.json` 避免 shell 转义
 3. 100 词生成拆成 2 次调用（1-50 + 51-100）避免 token 截断
 4. 公司单独调用（schema 不同）
-5. 带质量自检：pro ≥130 字、ref 覆盖率 100%、公司 ≥3 条 revenue
+5. 产业链单独调用（v1.1 起）：max_tokens 6000，含跨层唯一性硬约束
+6. 带质量自检：pro ≥130 字、ref 覆盖率 100%、公司 ≥3 条 revenue
+7. 产业链生成后必跑跨层重复扫描（v1.3 红线）
 
 ---
 
@@ -134,8 +151,9 @@ industry-lens-skill/
 
 | 规模 | API 次数 | 耗时 | 费用 |
 |---|---|---|---|
-| 单行业生成 | 3 次 | 3-4 min | ~$0.15 |
-| 100 行业批量 | 300 次 | 3-5 hrs | ~$15 |
+| 单行业生成 | 4 次（关键词×2 + 公司 + 产业链） | 5-8 min | ~$0.20 |
+| 100 行业批量 | 400 次 | 5-8 hrs | ~$20 |
+| 跳过产业链 | 3 次 | 3-4 min | ~$0.15 |
 
 ---
 
@@ -161,12 +179,14 @@ industry-lens-skill/
 - 人脸/人物图像在卡片中**不生成**（仅公司 Logo，通过 Clearbit 获取）
 - 完整 100 词单次生成会撞 token 上限，必须 split
 - Civitai Logo 等部分公司 Clearbit 可能缺图，自动 fallback 首字母
+- DeepSeek 生成产业链时仍会犯跨层重复（一体化龙头自动塞 2-3 层），必须跑 v1.3 审计脚本兜底
 
 ---
 
 ## 🔗 相关项目
 
-- **IndustryLens 主站**：[https://znzjluo1008-netizen.github.io/industrylens/](https://znzjluo1008-netizen.github.io/industrylens/)（109 行业完整预加载版）
+- **本 Skill 在线 Demo**：[znzjluo1008-netizen.github.io/industry-lens-skill](https://znzjluo1008-netizen.github.io/industry-lens-skill/)（4 行业完整示例）
+- **IndustryLens 主站**：[znzjluo1008-netizen.github.io/industrylens](https://znzjluo1008-netizen.github.io/industrylens/)（109 行业完整预加载版）
 - **WorkBuddy**：[codebuddy.cn/docs/workbuddy](https://www.codebuddy.cn/docs/workbuddy/Overview)（AI 助手平台，本 skill 的运行宿主）
 
 ---
@@ -174,6 +194,15 @@ industry-lens-skill/
 ## 📜 License
 
 MIT License · © 2026 小罗 (znzjLuo1008-netizen)
+
+---
+
+## 📝 更新日志
+
+- **v1.3.0**（2026-05-08）：一体化龙头判定法则 + 4 行业示例上线 GitHub Pages + 价值流动区块修复
+- **v1.2.0**（2026-05-08）：产业链可视化铁律沉淀（Sankey 选型禁区 + 跨层重复红线）
+- **v1.1.0**（2026-05-07）：新增产业链上中下游 3 层模块
+- **v1.0.0**（2026-05-06）：100 词关键词卡片 + 3 家公司深度拆解
 
 ---
 

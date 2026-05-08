@@ -2,11 +2,12 @@
 
 [English](README.en.md) | [中文](README.md)
 
-> **Input an industry name, and in 30 seconds get a single-page HTML encyclopedia of 100 keywords + deep-dive on 3 flagship companies.**
+> **Input an industry name. In 30 seconds get a single-page HTML with 100 keyword cards + 3 flagship-company deep-dives + an upstream/midstream/downstream value chain (12-14 segments, research-report style).**
 
 ![GitHub](https://img.shields.io/badge/Type-WorkBuddy%20Skill-166534)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 ![AI](https://img.shields.io/badge/LLM-DeepSeek-8b5cf6)
+![Version](https://img.shields.io/badge/Version-v1.3.0-22C55E)
 
 🌐 **Live demo**: [znzjluo1008-netizen.github.io/industry-lens-skill](https://znzjluo1008-netizen.github.io/industry-lens-skill/)
 

@@ -230,8 +230,10 @@ Prompt 模板详见 `references/prompt_templates.md`。
 1. **SSL 证书校验失败**（公司网络）：必须用 `curl -k` 跳过校验，不能用 urllib
 2. **大 JSON payload**：必须写临时文件用 `--data @file.json`，不能 shell 内联
 3. **token 截断**：100 词单次调用会撞 32K 上限，必须分 2 次（1-50 + 51-100）
-4. **autoHl 防重复包裹**：用 `__PHn__` placeholder 先保护 mark/b/a 标签，再做正则替换，最后还原
+4. **autoHl 防重复包裹**：用 `__PHn__` placeholder 先保护 mark/b/a 标签，最后还原
 5. **单项 100% 收入兜底**：渲染公司卡片时检测 `revenue.length===1 && revenue[0].pct===100`，改显"营收结构未公开"提示
+6. **旧版页面增量补数据 ≠ 升级**（v1.3 实战踩坑）：如果某个页面是旧模板（v1.0 / v1.1）生成的，仅向 HTML 注入新的 `var VALUE_CHAIN = {...}` **不会** 渲染产业链——因为旧模板根本没有 `renderValueChain` 函数。**升级老页面必须用最新 `html_template.html` 重新拼装整个 HTML**，保留旧数据（INDUSTRY/KEYWORDS/COMPANIES/VALUE_CHAIN）即可。检查方式：`grep -c "renderValueChain" file.html`，结果应为 ≥4（函数定义+调用）。
+7. **括号配对解析嵌套 JSON**：用 `re.search(r'\{.*?\}\s*;', ...)` 匹配 valueChain 这类含嵌套 `}` 的 JSON 会被截断。必须手动用 depth+in_str+escape 状态机做括号配对找到真正的结尾位置。
 
 ## 产业链可视化铁律（v1.2 沉淀 + v1.3 扩展）
 

@@ -10,20 +10,18 @@
 ![AI](https://img.shields.io/badge/LLM-DeepSeek-8b5cf6)
 ![Version](https://img.shields.io/badge/Version-v1.3.0-22C55E)
 
-🌐 **在线 Demo**：[znzjluo1008-netizen.github.io/industry-lens-skill](https://znzjluo1008-netizen.github.io/industry-lens-skill/)
-
 ---
 
 ## 📸 效果预览
 
-本 skill 生成的页面效果（见 `examples/` 目录，可直接点击在线访问）：
+本 skill 生成的页面效果（见 `examples/` 目录，克隆到本地后双击即可浏览）：
 
-| 行业 | 在线访问 | 词数 | 公司数 | 产业链 |
+| 行业 | 文件 | 词数 | 公司数 | 产业链 |
 |---|---|---|---|---|
-| 光伏 | [打开 →](https://znzjluo1008-netizen.github.io/industry-lens-skill/examples/%E5%85%89%E4%BC%8F-%E7%99%BE%E7%A7%91.html) | 100 | 3 | 上中下 12 细分 / 59 家 |
-| 智能驾驶 | [打开 →](https://znzjluo1008-netizen.github.io/industry-lens-skill/examples/%E6%99%BA%E8%83%BD%E9%A9%BE%E9%A9%B6-%E7%99%BE%E7%A7%91.html) | 100 | 3 | 上中下 13 细分 / 64 家 |
-| AI 生图 | [打开 →](https://znzjluo1008-netizen.github.io/industry-lens-skill/examples/AI%E7%94%9F%E5%9B%BE-%E7%99%BE%E7%A7%91.html) | 100 | 3 | 上中下 13 细分 / 65 家 |
-| 烟草 | [打开 →](https://znzjluo1008-netizen.github.io/industry-lens-skill/examples/%E7%83%9F%E8%8D%89-%E7%99%BE%E7%A7%91.html) | 100 | 3 | 上中下 14 细分 / 69 家 |
+| 光伏 | `examples/光伏-百科.html` | 100 | 3 | 上中下 12 细分 / 59 家 |
+| 智能驾驶 | `examples/智能驾驶-百科.html` | 100 | 3 | 上中下 13 细分 / 64 家 |
+| AI 生图 | `examples/AI生图-百科.html` | 100 | 3 | 上中下 13 细分 / 65 家 |
+| 烟草 | `examples/烟草-百科.html` | 100 | 3 | 上中下 14 细分 / 69 家 |
 
 每个关键词卡包含 **4 区块**：
 - 📖 **专业释义** 150-200 字三段式（定义 + 2025-2026 数据 + 产业影响）
@@ -85,7 +83,6 @@ python3 references/generate.py "智能驾驶" \
 ```
 industry-lens-skill/
 ├── SKILL.md                     ← WorkBuddy skill 触发规则 + 设计规范 + v1.3 产业链铁律
-├── index.html                   ← GitHub Pages 主页（4 行业卡片入口）
 ├── references/
 │   ├── generate.py              ← 主入口脚本（含产业链生成 + 质量自检）
 │   ├── html_template.html       ← 完整单页 HTML 骨架（CSS+JS，含研报风产业链可视化）
@@ -185,7 +182,6 @@ industry-lens-skill/
 
 ## 🔗 相关项目
 
-- **本 Skill 在线 Demo**：[znzjluo1008-netizen.github.io/industry-lens-skill](https://znzjluo1008-netizen.github.io/industry-lens-skill/)（4 行业完整示例）
 - **IndustryLens 主站**：[znzjluo1008-netizen.github.io/industrylens](https://znzjluo1008-netizen.github.io/industrylens/)（109 行业完整预加载版）
 - **WorkBuddy**：[codebuddy.cn/docs/workbuddy](https://www.codebuddy.cn/docs/workbuddy/Overview)（AI 助手平台，本 skill 的运行宿主）
 
@@ -199,7 +195,7 @@ MIT License · © 2026 小罗 (znzjLuo1008-netizen)
 
 ## 📝 更新日志
 
-- **v1.3.0**（2026-05-08）：一体化龙头判定法则 + 4 行业示例上线 GitHub Pages + 价值流动区块修复
+- **v1.3.0**（2026-05-08）：一体化龙头判定法则 + 4 行业示例 + 价值流动区块修复
 - **v1.2.0**（2026-05-08）：产业链可视化铁律沉淀（Sankey 选型禁区 + 跨层重复红线）
 - **v1.1.0**（2026-05-07）：新增产业链上中下游 3 层模块
 - **v1.0.0**（2026-05-06）：100 词关键词卡片 + 3 家公司深度拆解
